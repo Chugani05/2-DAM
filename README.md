@@ -3,7 +3,7 @@
 <div align=center>
   <table>
     <tr>
-      <td><img src="./extras/hacker.gif" alt="me" width="100%"></td>
+      <td><img src="./extras/hacker.gif" alt="hacker" width="100%"></td>
       <td>Repositorio dedicado a todo lo hecho en el segundo curso de Desarrollo de Aplicaciones Multiplataforma.</td>
     </tr>
   </table>
