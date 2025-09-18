@@ -252,24 +252,25 @@ The factorial of 8 is: 40320
 ```php
 <?php
 for ($i = 1; $i <= 50; $i++) {
-    if ($i < 2) {
-        continue;
-    }
+    $isPrime = true;
+
     for ($j = 2; $j < $i; $j++) {
         if ($i % $j == 0) {
-            continue;
+            $isPrime = false;
+            break;
         }
     }
-    echo ""
+    
+    if ($isPrime) {
+        echo $i . " ";
+    }
 }
-
-
 ?>
 ```
 
 **Output**
 ```
-
+1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47
 ```
 
 12. **Fibonacci**  
@@ -277,13 +278,26 @@ for ($i = 1; $i <= 50; $i++) {
 
 ```php
 <?php
+function fibonacci($n) {
+    $fibList = [0, 1];
+    
+    for ($i = 2; $i < $n; $i++) {
+        $fibList[] = $fibList[$i - 1] + $fibList[$i - 2];
+    }
+    return $fibList;
+}
 
+$result = fibonacci(20);
+
+foreach ($result as $value) {
+    echo $value . " ";
+}
 ?>
 ```
 
 **Output**
 ```
-
+0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181
 ```
 
 13. **Múltiplos de un número**  
@@ -467,13 +481,27 @@ Aibohphobia is a palindrome
 
 ```php
 <?php
+$num1 = readline("Insert a number: ");
+$num2 = readline("Insert another number: ");
 
+function calculate_gcd(int $a, int $b): int {
+    if ($b === 0) {
+        return $a;
+    }
+    return calculate_gcd($b, $a % $b);
+}
+
+$gcd = calculate_gcd($num1, $num2);
+
+echo "The GCD of $num1 and $num2 is: $gcd";
 ?>
 ```
 
 **Output**
 ```
-
+Insert a number: 8
+Insert another number: 12
+The GCD of 8 and 12 is: 4
 ```
 
 20. **Triángulo de asteriscos**  
