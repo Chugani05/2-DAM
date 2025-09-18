@@ -8,23 +8,26 @@
 ```php
 <?php
 
-$number1 = 48;
-$number2 = 37;
+$number1 = readline("Enter a number: ");
+$number2 = readline("Enter another number: ");
 
-$result = "Both numbers are the same ($number1 y $number2)";
+$result = "Both numbers are the same ($number1 and $number2)";
 if ($number1 > $number2) {
-    $result = "$number1 is bigger than $number2";
+    $result = "The number $number1 is bigger than $number2";
 }
 if ($number1 < $number2) {
-    $result = "$number2 is bigger than $number1";
+    $result = "The number $number2 is bigger than $number1";
 }
 echo $result
+
 ?>
 ```
 
 **Output**
 ```
-
+Enter a number: 48
+Enter another number: 37
+The number 48 is bigger than 37 
 ```
 
 2. **Edad permitida**  
@@ -35,12 +38,21 @@ echo $result
 ```php
 <?php
 
+$age = readline("Enter your age: ");
+
+$result = "You are an adult"
+if ($age < 18) {
+    $result = "You are a minor";
+}
+echo $result
+
 ?>
 ```
 
 **Output**
 ```
-
+Enter your age: 20
+You are an adult
 ```
 
 3. **Positivo, negativo o cero**  
@@ -49,12 +61,23 @@ echo $result
 ```php
 <?php
 
+$number = -32;
+
+$result = "The number is negative";
+if ($number > 0) {
+    $result = "The number is positive";
+} 
+if ($number == 0) {
+    $result = "The number is zero";
+}
+echo $result
+
 ?>
 ```
 
 **Output**
 ```
-
+The number is negative
 ```
 
 4. **Nota final**  
@@ -64,12 +87,27 @@ echo $result
 ```php
 <?php
 
+$mark = readline("Enter your mark: ");
+
+$result = "Fail"
+if ($mark == 5 || $mark == 6) {
+    $result = "Approved"
+}
+if ($mark == 7 || $mark == 8) {
+    $result = "Remarkable"
+}
+if ($mark == 9 || $mark == 10) {
+    $result = "Outstanding"
+}
+echo $result
+
 ?>
 ```
 
 **Output**
 ```
-
+Enter your mark: 7
+Remarkable
 ```
 
 
@@ -80,13 +118,19 @@ echo $result
 
 ```php
 <?php
+$counter = 1;
+
+while ($counter <= 100) {
+    echo "$counter ";
+    $counter++;
+}
 
 ?>
 ```
 
 **Output**
 ```
-
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 
 ```
 
 6. **Suma acumulada**  
