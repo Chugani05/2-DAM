@@ -7,7 +7,6 @@
 
 ```php
 <?php
-
 $number1 = readline("Enter a number: ");
 $number2 = readline("Enter another number: ");
 
@@ -19,7 +18,6 @@ if ($number1 < $number2) {
     $result = "The number $number2 is bigger than $number1";
 }
 echo $result
-
 ?>
 ```
 
@@ -37,7 +35,6 @@ The number 48 is bigger than 37
 
 ```php
 <?php
-
 $age = readline("Enter your age: ");
 
 $result = "You are an adult"
@@ -45,7 +42,6 @@ if ($age < 18) {
     $result = "You are a minor";
 }
 echo $result
-
 ?>
 ```
 
@@ -60,7 +56,6 @@ You are an adult
 
 ```php
 <?php
-
 $number = -32;
 
 $result = "The number is negative";
@@ -71,7 +66,6 @@ if ($number == 0) {
     $result = "The number is zero";
 }
 echo $result
-
 ?>
 ```
 
@@ -86,7 +80,6 @@ The number is negative
 
 ```php
 <?php
-
 $mark = readline("Enter your mark: ");
 
 $result = "Fail"
@@ -100,7 +93,6 @@ if ($mark == 9 || $mark == 10) {
     $result = "Outstanding"
 }
 echo $result
-
 ?>
 ```
 
@@ -121,10 +113,9 @@ Remarkable
 $counter = 1;
 
 while ($counter <= 100) {
-    echo "$counter ";
+    echo $counter. " ";
     $counter++;
 }
-
 ?>
 ```
 
@@ -138,13 +129,19 @@ while ($counter <= 100) {
 
 ```php
 <?php
+$sum = 0;
 
+for ($i = 1; $i <= 50; $i++) {
+    $sum += $i;
+}
+
+echo "The sum of the numbers from 1 to 50 is: $sum";
 ?>
 ```
 
 **Output**
 ```
-
+The sum of the numbers from 1 to 50 is: 1275
 ```
 
 7. **Tabla de multiplicar**  
@@ -152,13 +149,28 @@ while ($counter <= 100) {
 
 ```php
 <?php
+$num = readline("Enter a number to get its table of multiplication: ");
 
+for ($i = 1; $i <= 10; $i++) {
+    $result = $num * $i;
+    echo "$num x $i = $result\n";
+}
 ?>
 ```
 
 **Output**
 ```
-
+Enter a number: 5
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+5 x 4 = 20
+5 x 5 = 25
+5 x 6 = 30
+5 x 7 = 35
+5 x 8 = 40
+5 x 9 = 45
+5 x 10 = 50
 ```
 
 8. **Números pares**  
@@ -166,13 +178,17 @@ while ($counter <= 100) {
 
 ```php
 <?php
-
+for ($i = 1; $i <= 50; $i++) {
+    if ($i % 2 == 0) {
+        echo $i . " ";
+    }
+}
 ?>
 ```
 
 **Output**
 ```
-
+2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48 50 
 ```
 
 9. **Cuenta atrás**  
@@ -180,13 +196,16 @@ while ($counter <= 100) {
 
 ```php
 <?php
-
+for ($i = 10; $i >= 1; $i--) {
+    echo $i. " ";
+}
+echo "¡Fin!";
 ?>
 ```
 
 **Output**
 ```
-
+10 9 8 7 6 5 4 3 2 1 ¡Fin!
 ```
 
 10. **Factorial**  
@@ -194,13 +213,34 @@ while ($counter <= 100) {
 
 ```php
 <?php
+$num = readline("Enter a number to calculate its factorial: ");
 
+function factorialCalculator($num) {
+    if ($num == 0) {
+        return 1;
+    }
+    elseif ($num < 0) {
+        return "The factorial is not defined for negative numbers";
+    }
+    else {
+        $factorial = 1;
+        for ($i = 1; $i <= $num; $i++) {
+            $factorial *= $i;
+        }
+        return $factorial;
+    }
+}
+
+$result = factorialCalculator($num);
+
+echo "The factorial of $num is: $result";
 ?>
 ```
 
 **Output**
 ```
-
+Enter a number: 8
+The factorial of 8 is: 40320
 ```
 
 
@@ -268,13 +308,48 @@ while ($counter <= 100) {
 
 ```php
 <?php
+$random_num = rand(1, 20);
 
+echo "Welcome to guess the number.\n";
+echo "The secret number is between 1 and 20.\n";
+
+while (true) {
+    $input = readline("Insert number: ");
+
+    if (!is_numeric($input)) {
+        echo "Please enter a valid number.\n";
+        continue;
+    }
+    $user_num = (int)$input;
+
+    if ($user_num == $random_num) {
+        echo "Congratulations! You've guessed the number.\n";
+        break;
+    } elseif ($user_num < $random_num) {
+        echo "The number you are looking for is higher.\n";
+    } else {
+        echo "The number you are looking for is lower.\n";
+    }
+}
 ?>
 ```
 
 **Output**
 ```
-
+Welcome to guess the number.
+The secret number is between 1 and 20.
+Insert number: 15
+The number you are looking for is lower.
+Insert number: 9
+The number you are looking for is lower.
+Insert number: 4
+The number you are looking for is higher.
+Insert number: 6
+The number you are looking for is higher.
+Insert number: 8
+The number you are looking for is lower.
+Insert number: 7
+Congratulations! You've guessed the number.
 ```
 
 
@@ -285,6 +360,8 @@ while ($counter <= 100) {
 
 ```php
 <?php
+$num = readline("Enter a number to see if its perfect: ");
+
 
 ?>
 ```
@@ -299,13 +376,23 @@ while ($counter <= 100) {
 
 ```php
 <?php
+$num = readline("Enter a number to invert: ");
 
+function numberInverter(int $num): int {
+    $string_num = (string) $num;
+    $inverted_num = strrev($string_num);
+    return (int) $inverted_num;
+}
+
+$result = numberInverter($num);
+echo "$num inverted is: $result";
 ?>
 ```
 
 **Output**
 ```
-
+Enter a number: 12345
+12345 inverted is: 54321
 ```
 
 18. **Palíndromo**  
