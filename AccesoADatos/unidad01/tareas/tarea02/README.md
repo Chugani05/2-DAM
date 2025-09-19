@@ -80,7 +80,21 @@ Implementa una función __sumaDigitos(int $n): int__ que calcule la suma de los 
 
 ```php
 <?php
+$num = readline("Insert a number to calculate the sum of the digits: ")
 
+function sumDigits(int $n): int {
+    $sum = 0
+
+    while ($num > 0) {
+        $digit = 
+        $sum += $digit
+    }
+
+    return $sum
+}
+
+$result = sumDigits($num);
+echo "The sum of the digits of the number $num is: $result"
 ?>
 ```
 
