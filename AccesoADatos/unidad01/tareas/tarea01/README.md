@@ -1,5 +1,15 @@
 # Tarea 01 - Conceptos básicos (introducción a php)
 
+<div align=center>
+    <img src="../../../../extras/vinyl.gif" alt="vinyl" width="80%">
+</div>
+
+## Contenido
+- [Variables y Condicionales](#variables-y-condicionales)
+- [Bucles (for, while, foreach)](#bucles-for-while-foreach)
+- [Combinando Condicionales y Bucles](#combinando-condicionales-y-bucles)
+- [Construcción de Algorítmicos](#construcción-de-algorítmicos)
+
 ## Variables y Condicionales
 
 1. **Mayor de dos números**  
