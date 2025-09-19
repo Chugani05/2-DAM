@@ -300,8 +300,12 @@ chugani    55423   53953  0 02:42 pts/0    00:00:00 ps -f
 1. Identifica el **PID del proceso init/systemd** y explica su función.
 
 ```bash
-
+chugani@chugani-virtualbox:~$ ps -e
+UID        PID TTY          TIME CMD
+chugani      1 ?        00:00:01 systemd
 ```
+
+El proceso con PID 1,`systemd`, es el encargado de arrancar y gestionar todo el sistema cuando encendemos un ordenador. Su función principal es iniciar los servicios necesarios y mantener el sistema en funcionamiento de manera ordenada.
 
 2. Explica qué ocurre con el **PPID** de un proceso hijo si su padre termina antes.
 
@@ -325,8 +329,15 @@ Cuando el proceso padre termina, sus procesos hijos se convierten en huérfanos.
 3. Ejecuta un programa que genere varios procesos hijos y observa sus PIDs con `ps`.
 
 ```bash
-
+chugani@chugani-virtualbox:~$ ps -f
+UID          PID    PPID  C STIME TTY          TIME CMD
+chugani    25791   25517  0 15:02 pts/3    00:00:00 bash
+chugani    89071   25791  0 16:33 pts/3    00:00:00 xeyes
+chugani    89226   25791  0 16:34 pts/3    00:00:00 top
+chugani    90660   25791  0 16:36 pts/3    00:00:00 ps -f
 ```
+
+Desde una terminal de bash (proceso padre), ejecutamos varios procesos, estos pasan a ser procesos hijos del proceso bash. Esto se puede mirar usando `ps -f`, si nos fijamos en el **PPID(25791)** de los procesos del segundo al cuarto, veremos que es igual al **PID(25791)** del primer proceso.
 
 4. Haz que un proceso quede en **estado suspendido** con `Ctrl+Z` y réanúdalo con `fg`.
 
@@ -362,14 +373,19 @@ Waiting (D) : Procesos esperando a que se finalice alguna operación de Entrada/
 7. Usa `ps -eo pid,ppid,stat,cmd` para mostrar los estados de varios procesos.
 
 ```bash
-
+chugani@chugani-virtualbox:~$ ps -eo pid,ppid,stat,cmd
+UID        PID    PPID STAT CMD
+chugani      1       0 Ss   /sbin/init splash
+chugani      2       0 S    [kthreadd]
+chugani      3       2 S    [pool_workqueue_release]
+chugani      4       2 I<   [kworker/R-rcu_g]
+chugani      5       2 I<   [kworker/R-rcu_p]
 ```
 
 8. Ejecuta `watch -n 1 ps -e` y observa cómo cambian los procesos en tiempo real.
 
-```bash
+`watch -n 1` ejecuta repetidamente un comando cada 1 segundo, `ps -e` muestra todos los procesos en ejecución en el sistema.
 
-```
 
 9. Explica la diferencia entre ejecutar un proceso con `&` y con `nohup`.
 
@@ -378,5 +394,21 @@ Un proceso con `&` lo pone en segundo plano, permitiendo el uso de la terminal, 
 10. Usa `ulimit -a` para ver los límites de recursos de procesos en tu sistema.
 
 ```bash
-
+real-time non-blocking time  (microseconds, -R) unlimited
+core file size              (blocks, -c) 0
+data seg size               (kbytes, -d) unlimited
+scheduling priority                 (-e) 0
+file size                   (blocks, -f) unlimited
+pending signals                     (-i) 125404
+max locked memory           (kbytes, -l) 4026016
+max memory size             (kbytes, -m) unlimited
+open files                          (-n) 1024
+pipe size                (512 bytes, -p) 8
+POSIX message queues         (bytes, -q) 819200
+real-time priority                  (-r) 0
+stack size                  (kbytes, -s) 8192
+cpu time                   (seconds, -t) unlimited
+max user processes                  (-u) 125404
+virtual memory              (kbytes, -v) unlimited
+file locks                          (-x) unlimited
 ```

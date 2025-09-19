@@ -23,13 +23,25 @@ Implementa una función __esCapicua(int $n): bool__ que determine si un número 
 
 ```php
 <?php
+$num = readline("Insert a number to check if its capicua: ")
 
+function isCapicua(int $n): bool {
+    $inverted_n = strrev(strval($n));
+    return $n == $inverted_n
+}
+
+if (isCapicua($num)) {
+    echo "true\n";
+} else {
+    echo "false\n";
+}
 ?>
 ```
 
 **Output**
 ```
-
+Insert a number to check if its capicua: 12321
+true
 ```
 
 ## Escalera de asteriscos
