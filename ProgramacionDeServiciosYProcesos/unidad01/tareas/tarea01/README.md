@@ -153,8 +153,6 @@ UID          PID    PPID  C STIME TTY          TIME CMD
 chugani     2166    2163  0 wrz18 pts/0    00:00:00 /bin/bash
 chugani    46674    2166  0 02:09 pts/0    00:00:00 man pidof
 chugani    46688   46674  0 02:09 pts/0    00:00:00 pager
-chugani    46977    2166  0 02:10 pts/0    00:00:00 man systemd
-chugani    46986   46977  0 02:10 pts/0    00:00:00 pager
 chugani    49821    2166  0 02:21 pts/0    00:00:00 ps -f
 ```
 
@@ -320,8 +318,21 @@ chugani    55423   53953  0 02:42 pts/0    00:00:00 ps -f
 22. Explica qué ocurre con el **PPID** de un proceso hijo si su padre termina antes.
 
 ```bash
+chugani@chugani-virtualbox:~$ ps -f
+UID          PID    PPID  C STIME TTY          TIME CMD
+chugani     2166    2163  0 wrz18 pts/0    00:00:00 /bin/bash
+chugani    46977    2166  0 02:10 pts/0    00:00:00 man systemd
+chugani    46986   46977  0 02:10 pts/0    00:00:00 pager
 
+chugani@chugani-virtualbox:~$ kill 46977
+
+chugani@chugani-virtualbox:~$ ps -f
+UID          PID    PPID  C STIME TTY          TIME CMD
+chugani     2166    2163  0 wrz18 pts/0    00:00:00 /bin/bash
 ```
+
+Cuando el proceso padre termina, sus procesos hijos se convierten en huérfanos. Los procesos huérfanos son adoptados por el proceso init (PID 1) o por otro proceso adoptador del sistema. Si el proceso hijo ya ha terminado (como en mi caso), simplemente desaparece y no hay más interacción con su PPID anterior.
+
 
 23. Ejecuta un programa que genere varios procesos hijos y observa sus PIDs con `ps`.
 
@@ -332,20 +343,33 @@ chugani    55423   53953  0 02:42 pts/0    00:00:00 ps -f
 24. Haz que un proceso quede en **estado suspendido** con `Ctrl+Z` y réanúdalo con `fg`.
 
 ```bash
+chugani@chugani-virtualbox:~$ sleep 30
+^Z
+[1]+  Detenido                sleep 30
 
+chugani@chugani-virtualbox:~$ fg
+sleep 30
 ```
 
 25. Lanza un proceso en **segundo plano** con `&` y obsérvalo con `jobs`.
 
 ```bash
+chugani@chugani-virtualbox:~$ xeyes &
+[1] 27372
 
+chugani@chugani-virtualbox:~$ jobs
+[1]+  Ejecutando              xeyes &
 ```
+
+Con el comando `jobs`, puedes listar los trabajos en segundo plano y ver su estado, en este caso vemos q `xeyes`sigue en ejecución.
 
 26. Explica la diferencia entre los estados de un proceso: **Running, Sleeping, Zombie, Stopped**.
 
-```bash
-
-```
+- Running (R) : Procesos que están en ejecución.
+- Sleeping (S) : Procesos que están esperando su turno para ejecutarse.
+Waiting (D) : Procesos esperando a que se finalice alguna operación de Entrada/Salida.
+- Zombie (Z) : Procesos que han terminado pero que siguen apareciendo en la tabla de procesos. Se pueden deber a errores de programación y pueden ser el síntoma de un sistema lento o que provoca problemas.
+- Stopped (T): Procesos que han sido detenidos, generalmente por una señal enviada por el usuario o por el sistema, por ejemplo, mediante el comando `kill -STOP` o al suspender un proceso con `Ctrl+Z`. Estos procesos están en pausa y no ejecutan instrucciones hasta que se reanuden.
 
 27. Usa `ps -eo pid,ppid,stat,cmd` para mostrar los estados de varios procesos.
 
@@ -361,9 +385,7 @@ chugani    55423   53953  0 02:42 pts/0    00:00:00 ps -f
 
 29. Explica la diferencia entre ejecutar un proceso con `&` y con `nohup`.
 
-```bash
-
-```
+Un proceso con `&` lo pone en segundo plano, permitiendo el uso de la terminal, pero el proceso termina al cerrar la sesión. En cambio, `nohup` hace que un proceso ignore la señal de hangup (SIGHUP), permitiéndole continuar ejecutándose incluso después de cerrar la terminal o la sesión, y redirige su salida a un archivo `nohup.out` por defecto
 
 30. Usa `ulimit -a` para ver los límites de recursos de procesos en tu sistema.
 
