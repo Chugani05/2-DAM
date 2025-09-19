@@ -80,27 +80,29 @@ Implementa una función __sumaDigitos(int $n): int__ que calcule la suma de los 
 
 ```php
 <?php
-$num = readline("Insert a number to calculate the sum of the digits: ")
+$num = readline("Insert a number to calculate the sum of the digits: ");
 
 function sumDigits(int $n): int {
-    $sum = 0
+    $sum = 0;
+    $str_num = (strval($n));
+    $arr_num = str_split($str_num);
 
-    while ($num > 0) {
-        $digit = 
-        $sum += $digit
+
+    foreach ($arr_num as $n) {
+        $sum += (int)$n;
     }
-
-    return $sum
+    return $sum;
 }
 
 $result = sumDigits($num);
-echo "The sum of the digits of the number $num is: $result"
+echo "The sum of the digits of the number $num is: $result";
 ?>
 ```
 
 **Output**
 ```
-
+Insert a number to calculate the sum of the digits: 2025
+The sum of the digits of the number 2025 is: 9
 ```
 
 ## Número secreto (múltiplos de 3 o 5)
@@ -118,13 +120,33 @@ Suma = 23
 
 ```php
 <?php
+$num = readline("Insert a number to calculate the sum of the digits: ");
+$sum = 0;
 
+function multiplesThreeOrFive(int $n): array {
+    $multiples = [];
+
+    for ($i = 1; $i < $n; $i++ ) {
+         if ($i % 3 == 0 || $i % 5 == 0) {
+            array_push($multiples, $i);
+         }
+    }
+   return $multiples;
+}
+
+$multiples = multiplesThreeOrFive($num);
+$sum = array_sum($multiples);
+
+echo "Multiples: " . (implode(",", $multiples)) . "\n";
+echo "Sum = $sum";
 ?>
 ```
 
 **Output**
 ```
-
+Insert a number to calculate the sum of the digits: 10
+Multiples: 3,5,6,9
+Sum = 23
 ```
 
 ## Secuencia de Collatz
