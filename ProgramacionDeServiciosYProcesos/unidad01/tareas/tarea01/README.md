@@ -31,15 +31,9 @@ El **PID** (Process ID), es un identificador numérico único asignado a cada pr
 
 El **PPID** (Parent Process ID) es el PID del proceso que lo inició. Todos los procesos tienen un padre, salvo el proceso 0. Este último es un pseudo-proceso que representa el inicio del sistema y que inicia al PID 1.
 
-<details>
-    <summary>Example</summary>
+> Imagina una obra de teatro. Cada actor tiene un número en su vestuario que lo identifica en el escenario (ese es el PID). Pero cada actor pertenece a un grupo dirigido por un director, y ese director también tiene un número (ese es el PPID). Así, si el actor con PID 1203 está en escena, y su director tiene el número 456, entonces el PPID de ese actor es 456.
 
-Imagina una obra de teatro. Cada actor tiene un número en su vestuario que lo identifica en el escenario (ese es el PID). Pero cada actor pertenece a un grupo dirigido por un director, y ese director también tiene un número (ese es el PPID). Así, si el actor con PID 1203 está en escena, y su director tiene el número 456, entonces el PPID de ese actor es 456.
-
-</details>
-<br>
-
-[Source PID](https://www.lenovo.com/es/es/glossary/what-is-pid/?orgRef=https%253A%252F%252Fwww.google.com%252F)
+[Source PID](https://www.lenovo.com/es/es/glossary/what-is-pid/?orgRef=https%253A%252F%252Fwww.google.com%252F) ||
 [Source PPID](https://blog.carreralinux.com.ar/2018/04/informacion-sobre-procesos-resumen-datos/)
 
 4. Describe qué es un **cambio de contexto** y por qué es costoso.
@@ -62,7 +56,7 @@ Los procesos existen en jerarquías de padre-hijo. Un proceso iniciado por un pr
 
 Un proceso padre puede tener varios procesos hijo, pero un proceso hijo sólo puede tener un padre.
 
-[Source](https://www.ibm.com/docs/es/aix/7.2.0?topic=processes-)
+[Source](https://www.ibm.com/docs/es/aix/7.2.0?topic=processes-) ||
 [Source](https://www.investigacion.frc.utn.edu.ar/labsis/publicaciones/apunte_linux/mp.html#:~:text=COMANDO%20ps&text=Un%20proceso%20que%20crea%20a,y%20no%20el%20del%20padre.)
 
 7. Explica qué ocurre cuando un proceso queda **huérfano** en Linux.
@@ -75,13 +69,7 @@ El kernel sabe que no va a recibir una llamada `wait`, así que en su lugar conv
 
 Un **proceso zombie** es un proceso finalizado que ya no se ejecuta pero que sigue reconociéndose en la tabla de procesos (en otras palabras, tiene un número PID). Ya no se asigna espacio del sistema a dicho proceso. Los procesos zombie han sido cerrados y siguen existiendo en la tabla de procesos hasta que muere el proceso padre o se apaga el sistema y se reinicia. Los procesos zombie se muestran como <defunct> cuando se listan mediante el mandato `ps`.
 
-<details>
-    <summary>Example</summary>
-
-Un **proceso zombie** se puede imaginar como un caballero que fue enviado por su rey (el proceso padre) a cumplir una misión. El caballero cumple con la tarea y regresa al castillo, pero al llegar nadie le abre la puerta ni lo recibe oficialmente. Como no puede desaparecer hasta ser reconocido, queda vagando en la entrada del castillo sin hacer nada, sin luchar ni comer, pero ocupando espacio en la puerta. De la misma manera, un proceso zombie en un sistema ya terminó su trabajo, pero permanece en la tabla de procesos porque su padre aún no ha recogido su estado de salida.
-
-</details>
-<br>
+> Un **proceso zombie** se puede imaginar como un caballero que fue enviado por su rey (el proceso padre) a cumplir una misión. El caballero cumple con la tarea y regresa al castillo, pero al llegar nadie le abre la puerta ni lo recibe oficialmente. Como no puede desaparecer hasta ser reconocido, queda vagando en la entrada del castillo sin hacer nada, sin luchar ni comer, pero ocupando espacio en la puerta. De la misma manera, un proceso zombie en un sistema ya terminó su trabajo, pero permanece en la tabla de procesos porque su padre aún no ha recogido su estado de salida.
 
 [Source](https://www.ibm.com/docs/es/aix/7.2.0?topic=processes-)
 
@@ -102,19 +90,19 @@ En cambio, un **proceso** no es más que la instancia de un programa, el cual es
 
 ## Práctica con comandos en Linux
 
-11. Usa echo $$ para mostrar el PID del proceso actual.
+1. Usa echo $$ para mostrar el PID del proceso actual.
 
 ```bash
 2166
 ```
 
-12. Usa echo $PPID para mostrar el PID del proceso padre.
+2. Usa echo $PPID para mostrar el PID del proceso padre.
 
 ```bash
 2163
 ```
 
-13. Ejecuta pidof systemd y explica el resultado.
+3. Ejecuta pidof systemd y explica el resultado.
 
 ```bash
 1468
@@ -122,13 +110,13 @@ En cambio, un **proceso** no es más que la instancia de un programa, el cual es
 
 La ID del proceso del programa del conjunto de servicios, demonios y el sistema *systemd*, en ejecución, es 1468
 
-14. Abre un programa gráfico (ejemplo: gedit) y usa pidof para obtener sus PID.
+4. Abre un programa gráfico (ejemplo: gedit) y usa pidof para obtener sus PID.
 
 ```bash
 48224
 ```
 
-15. Ejecuta ps -e y explica qué significan sus columnas.
+5. Ejecuta ps -e y explica qué significan sus columnas.
 
 ```bash
     PID TTY          TIME CMD
@@ -146,7 +134,7 @@ El comando `ps -e` en Linux lista todos los procesos del sistema, y la informaci
 - TIME (tiempo total de CPU que el proceso ha consumido)
 - CMD (el nombre del comando que inició el proceso).
 
-16. Ejecuta ps -f y observa la relación entre procesos padre e hijo.
+6. Ejecuta ps -f y observa la relación entre procesos padre e hijo.
 
 ```bash
 UID          PID    PPID  C STIME TTY          TIME CMD
@@ -162,7 +150,7 @@ Lo que se ve en la salida de *ps -f* es la jerarquía de procesos a partir de lo
 - Desde ese **bash** lancé el comando **`man pidof` (46674)**.
 - Ese comando **`man`** no muestra el texto directamente, sino que abre otro proceso, el **`pager` (46688)**.
 
-17. Usa ps -axf o pstree para mostrar el árbol de procesos y dibújalo.
+7. Usa ps -axf o pstree para mostrar el árbol de procesos y dibújalo.
 
 <details>
     <summary>Answer</summary>
@@ -263,14 +251,14 @@ systemd─┬─ModemManager───3*[{ModemManager}]
 ```
 </details>
 
-18. Ejecuta top o htop y localiza el proceso con mayor uso de CPU.
+8. Ejecuta top o htop y localiza el proceso con mayor uso de CPU.
 
 ```bash
     PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM 
    1889 chugani   20   0   21436   6400   6144 S  20,0   0,2 
 ```
 
-19. Ejecuta sleep 100 en segundo plano y busca su PID con ps.
+9. Ejecuta sleep 100 en segundo plano y busca su PID con ps.
 
 ```bash
 chugani@chugani-virtualbox:~$ sleep 100 &
@@ -284,7 +272,7 @@ chugani@chugani-virtualbox:~$ ps
 
 ```
 
-20. Finaliza un proceso con kill <PID> y comprueba con ps que ya no está.
+10. Finaliza un proceso con kill <PID> y comprueba con ps que ya no está.
 
 ```bash
 chugani@chugani-virtualbox:~$ xeyes &
@@ -309,13 +297,13 @@ chugani    55423   53953  0 02:42 pts/0    00:00:00 ps -f
 
 ## Procesos y jerarquía
 
-21. Identifica el **PID del proceso init/systemd** y explica su función.
+1. Identifica el **PID del proceso init/systemd** y explica su función.
 
 ```bash
 
 ```
 
-22. Explica qué ocurre con el **PPID** de un proceso hijo si su padre termina antes.
+2. Explica qué ocurre con el **PPID** de un proceso hijo si su padre termina antes.
 
 ```bash
 chugani@chugani-virtualbox:~$ ps -f
@@ -334,13 +322,13 @@ chugani     2166    2163  0 wrz18 pts/0    00:00:00 /bin/bash
 Cuando el proceso padre termina, sus procesos hijos se convierten en huérfanos. Los procesos huérfanos son adoptados por el proceso init (PID 1) o por otro proceso adoptador del sistema. Si el proceso hijo ya ha terminado (como en mi caso), simplemente desaparece y no hay más interacción con su PPID anterior.
 
 
-23. Ejecuta un programa que genere varios procesos hijos y observa sus PIDs con `ps`.
+3. Ejecuta un programa que genere varios procesos hijos y observa sus PIDs con `ps`.
 
 ```bash
 
 ```
 
-24. Haz que un proceso quede en **estado suspendido** con `Ctrl+Z` y réanúdalo con `fg`.
+4. Haz que un proceso quede en **estado suspendido** con `Ctrl+Z` y réanúdalo con `fg`.
 
 ```bash
 chugani@chugani-virtualbox:~$ sleep 30
@@ -351,7 +339,7 @@ chugani@chugani-virtualbox:~$ fg
 sleep 30
 ```
 
-25. Lanza un proceso en **segundo plano** con `&` y obsérvalo con `jobs`.
+5. Lanza un proceso en **segundo plano** con `&` y obsérvalo con `jobs`.
 
 ```bash
 chugani@chugani-virtualbox:~$ xeyes &
@@ -363,7 +351,7 @@ chugani@chugani-virtualbox:~$ jobs
 
 Con el comando `jobs`, puedes listar los trabajos en segundo plano y ver su estado, en este caso vemos q `xeyes`sigue en ejecución.
 
-26. Explica la diferencia entre los estados de un proceso: **Running, Sleeping, Zombie, Stopped**.
+6. Explica la diferencia entre los estados de un proceso: **Running, Sleeping, Zombie, Stopped**.
 
 - Running (R) : Procesos que están en ejecución.
 - Sleeping (S) : Procesos que están esperando su turno para ejecutarse.
@@ -371,23 +359,23 @@ Waiting (D) : Procesos esperando a que se finalice alguna operación de Entrada/
 - Zombie (Z) : Procesos que han terminado pero que siguen apareciendo en la tabla de procesos. Se pueden deber a errores de programación y pueden ser el síntoma de un sistema lento o que provoca problemas.
 - Stopped (T): Procesos que han sido detenidos, generalmente por una señal enviada por el usuario o por el sistema, por ejemplo, mediante el comando `kill -STOP` o al suspender un proceso con `Ctrl+Z`. Estos procesos están en pausa y no ejecutan instrucciones hasta que se reanuden.
 
-27. Usa `ps -eo pid,ppid,stat,cmd` para mostrar los estados de varios procesos.
+7. Usa `ps -eo pid,ppid,stat,cmd` para mostrar los estados de varios procesos.
 
 ```bash
 
 ```
 
-28. Ejecuta `watch -n 1 ps -e` y observa cómo cambian los procesos en tiempo real.
+8. Ejecuta `watch -n 1 ps -e` y observa cómo cambian los procesos en tiempo real.
 
 ```bash
 
 ```
 
-29. Explica la diferencia entre ejecutar un proceso con `&` y con `nohup`.
+9. Explica la diferencia entre ejecutar un proceso con `&` y con `nohup`.
 
 Un proceso con `&` lo pone en segundo plano, permitiendo el uso de la terminal, pero el proceso termina al cerrar la sesión. En cambio, `nohup` hace que un proceso ignore la señal de hangup (SIGHUP), permitiéndole continuar ejecutándose incluso después de cerrar la terminal o la sesión, y redirige su salida a un archivo `nohup.out` por defecto
 
-30. Usa `ulimit -a` para ver los límites de recursos de procesos en tu sistema.
+10. Usa `ulimit -a` para ver los límites de recursos de procesos en tu sistema.
 
 ```bash
 

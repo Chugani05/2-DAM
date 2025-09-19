@@ -115,7 +115,7 @@ Remarkable
 
 ## Bucles (for, while, foreach)
 
-5. **Contar del 1 al 100**  
+1. **Contar del 1 al 100**  
    Muestra los números del 1 al 100 en pantalla.
 
 ```php
@@ -134,7 +134,7 @@ while ($counter <= 100) {
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 
 ```
 
-6. **Suma acumulada**  
+2. **Suma acumulada**  
    Calcula la suma de los números del 1 al 50 usando un bucle.
 
 ```php
@@ -154,7 +154,7 @@ echo "The sum of the numbers from 1 to 50 is: $sum";
 The sum of the numbers from 1 to 50 is: 1275
 ```
 
-7. **Tabla de multiplicar**  
+3. **Tabla de multiplicar**  
    Pide un número y genera su tabla de multiplicar del 1 al 10.
 
 ```php
@@ -183,7 +183,7 @@ Enter a number: 5
 5 x 10 = 50
 ```
 
-8. **Números pares**  
+4. **Números pares**  
    Muestra todos los números pares entre 1 y 50.
 
 ```php
@@ -201,7 +201,7 @@ for ($i = 1; $i <= 50; $i++) {
 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48 50 
 ```
 
-9. **Cuenta atrás**  
+5. **Cuenta atrás**  
    Haz un bucle que cuente de 10 a 1 y luego muestre `"¡Fin!"`.
 
 ```php
@@ -218,7 +218,7 @@ echo "¡Fin!";
 10 9 8 7 6 5 4 3 2 1 ¡Fin!
 ```
 
-10. **Factorial**  
+6. **Factorial**  
     Calcula el factorial de un número introducido (ejemplo: `5! = 120`).
 
 ```php
@@ -256,7 +256,7 @@ The factorial of 8 is: 40320
 
 ## Combinando Condicionales y Bucles
 
-11. **Números primos**  
+1. **Números primos**  
     Escribe un algoritmo que muestre los números primos entre 1 y 50.
 
 ```php
@@ -283,7 +283,7 @@ for ($i = 1; $i <= 50; $i++) {
 1 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47
 ```
 
-12. **Fibonacci**  
+2. **Fibonacci**  
     Genera los primeros 20 términos de la secuencia de Fibonacci.
 
 ```php
@@ -310,7 +310,7 @@ foreach ($result as $value) {
 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181
 ```
 
-13. **Múltiplos de un número**  
+3. **Múltiplos de un número**  
     Pide un número `n` y muestra sus múltiplos hasta 100.
 
 ```php
@@ -330,7 +330,7 @@ while ($counter <= 100) {
 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100 105 110 115 120 125 130 135 140 145 150 155 160 165 170 175 180 185 190 195 200 205 210 215 220 225 230 235 240 245 250 255 260 265 270 275 280 285 290 295 300 305 310 315 320 325 330 335 340 345 350 355 360 365 370 375 380 385 390 395 400 405 410 415 420 425 430 435 440 445 450 455 460 465 470 475 480 485 490 495 500
 ```
 
-14. **Suma de pares e impares**  
+4. **Suma de pares e impares**  
     Calcula la suma de los números pares e impares entre 1 y 100 por separado.
 
 ```php
@@ -358,7 +358,7 @@ The sum of odd numbers is 2500
 The sum of even numbers is 2550
 ```
 
-15. **Adivinar número**  
+5. **Adivinar número**  
     Genera un número aleatorio entre 1 y 20.  
     Pide al usuario que lo adivine y usa un bucle con condicionales para dar pistas: `"Mayor"` o `"Menor"`.  
 
@@ -411,7 +411,7 @@ Congratulations! You've guessed the number.
 
 ## Construcción de Algorítmicos
 
-16. **Número perfecto**  
+1. **Número perfecto**  
     Comprueba si un número es perfecto (la suma de sus divisores propios es igual al número).
 
 ```php
@@ -439,7 +439,7 @@ Enter a number to see if its perfect: 6
 6 is a perfect number
 ```
 
-17. **Invertir número**  
+2. **Invertir número**  
     Escribe un algoritmo que invierta los dígitos de un número (ejemplo: `123 → 321`).
 
 ```php
@@ -463,7 +463,7 @@ Enter a number: 12345
 12345 inverted is: 54321
 ```
 
-18. **Palíndromo**  
+3. **Palíndromo**  
     Comprueba si una palabra almacenada en una variable es palíndroma.
 
 ```php
@@ -486,7 +486,7 @@ if ($lowered_word == $inverted_word) {
 Aibohphobia is a palindrome
 ```
 
-19. **Máximo común divisor (MCD)**  
+4. **Máximo común divisor (MCD)**  
     Escribe un algoritmo que calcule el MCD de dos números.
 
 ```php
@@ -514,7 +514,7 @@ Insert another number: 12
 The GCD of 8 and 12 is: 4
 ```
 
-20. **Triángulo de asteriscos**  
+5. **Triángulo de asteriscos**  
     Muestra en pantalla un triángulo de altura `n` usando `*`.  
     Ejemplo con `n = 5`:  
     ```
