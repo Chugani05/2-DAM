@@ -86,7 +86,18 @@ Un **proceso zombie** se puede imaginar como un caballero que fue enviado por su
 [Source](https://www.ibm.com/docs/es/aix/7.2.0?topic=processes-)
 
 9. Diferencia entre **concurrencia** y **paralelismo**.
+
+La **concurrencia** se refiere a la capacidad de un sistema para ejecutar múltiples tareas que se solapan en el tiempo. En cambio, el **paralelismo** se refiere a la ejecución de múltiples procesos en distintos núcleos de un procesador, permitiendo un verdadero procesamiento simultáneo.
+
+[Source](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
+
 10. Explica qué es un **hilo (thread)** y en qué se diferencia de un proceso.
+
+Un **thread** es la unidad más pequeña a la cual un procesador puede asignar tiempo. Los threads poseerán la secuencia más pequeña de instrucciones a ejecutar. Los threads se crean, ejecutan y mueren dentro de los procesos, siendo capaces de compartir información entre ellos. 
+
+En cambio, un **proceso** no es más que la instancia de un programa, el cual es creado y controlado por el sistema operativo. Los procesos son entidades independientes y no pueden compartir información entre ellos. Para que un proceso pueda ser ejecutado es necesario que este posea por lo menos un thread.
+
+[Source](https://codigofacilito.com/articulos/threads-procesos)
 
 
 ## Práctica con comandos en Linux
