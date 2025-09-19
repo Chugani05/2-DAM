@@ -8,12 +8,12 @@
 void main() {
     List<int>numbersList = [3, -1, 5, -7, 8];
 
-    print("for");
+    // for
     for (int num in numbersList) {
         print(num);
     }
 
-    print("foreach");
+    // foreach
     numbersList.forEach(print);
 }
 ```
@@ -132,6 +132,25 @@ Ignora los negativos.
 9) Genera los primeros 20 números de la secuencia de Fibonacci y muéstralos en pantalla.
 
 ```dart
+void main() {
+    List<int> fibonacciSequence = generateFibonacci(20);
+    print(fibonacciSequence);
+}
+
+    List<int> generateFibonacci(int n) {
+        if (n <= 0) {
+            return [];
+        } else if (n == 1) {
+            return [0];
+    }
+
+    List<int> sequence = [0, 1];
+        for (int i = 2; i < n; i++) {
+            int nextNumber = sequence[i - 1] + sequence[i - 2];
+            sequence.add(nextNumber);
+        }
+        return sequence;
+    }
 ```
 
 10) Escribe un programa que lea una nota (0–10) y muestre:
