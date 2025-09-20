@@ -8,12 +8,14 @@
 void main() {
     List<int>numbersList = [3, -1, 5, -7, 8];
 
-    // for
+    // --- Using for ---
     for (int num in numbersList) {
         print(num);
     }
 
-    // foreach
+    print("");
+
+    // --- Using foreach ---
     numbersList.forEach(print);
 }
 ```
@@ -120,13 +122,56 @@ void main() {
     Resuélvelo de dos maneras: usando if-else y switch.
 
 ```dart
+void main() {
+  int age = 20;
+
+  // --- Using if-else ---
+  if (age < 12) {
+    print("child");
+  } else if (age >= 12 && age <= 17) {
+    print("teenager");
+  } else if (age >= 18 && age <= 64) {
+    print("adult");
+  } else {
+    print("senior");
+  }
+
+  print("");
+
+  // --- Using switch  ---
+  switch (age) {
+    case < 12:
+      print("child");
+      break;
+    case >= 12 && <= 17:
+      print("teenager");
+      break;
+    case >= 18 && <= 64:
+      print("adult");
+      break;
+    case >= 65:
+      print("senior");
+      break;
+  }
+}
 ```
 
 8) Tienes una lista de enteros [4, 6, -2, 7, -5, 10].
-Suma todos los números positivos e imprime el resultado.
-Ignora los negativos.
+
+    Suma todos los números positivos e imprime el resultado.
+
+    Ignora los negativos.
 
 ```dart
+void main() {
+  List<int> numbers = [4, 6, -2, 7, -5, 10];
+
+  int sum = numbers
+      .where((n) => n > 0)
+      .reduce((a, b) => a + b);
+
+  print("Sum of positive numbers: $sum");
+}
 ```
 
 9) Genera los primeros 20 números de la secuencia de Fibonacci y muéstralos en pantalla.
@@ -161,4 +206,19 @@ void main() {
     - “Sobresaliente” si es 9 o 10
 
 ```dart
+void main() {
+  int grade = 8;
+
+  if (grade < 5) {
+    print("Fail");
+  } else if (grade >= 5 && grade <= 6) {
+    print("Pass");
+  } else if (grade >= 7 && grade <= 8) {
+    print("Good");
+  } else if (grade == 9 || grade == 10) {
+    print("Excellent");
+  } else {
+    print("Invalid grade");
+  }
+}
 ```
