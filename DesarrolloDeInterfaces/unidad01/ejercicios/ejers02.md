@@ -84,7 +84,6 @@ void main() {
 1) Crea una `List<String>` con tres frutas.
 
     - Añade una fruta repetida y muestra la lista.
-
     - Convierte esa lista a un `Set` y muestra el resultado.
 
 ```dart
@@ -107,12 +106,39 @@ void main() {
 1) Crea un `Map<String, int>` con nombres como claves y edades como valores.
 
     - Muestra todas las claves.
-
     - Muestra todos los valores.
-
     - Accede a la edad de un nombre concreto y muéstrala.
 
 ```dart
+void main() {
+  Map<String, int> people = {
+    "Ana": 25,
+    "Luis": 30,
+    "Maria": 22,
+    "Pedro": 28
+  };
+
+  print("Keys (names):");
+  for (var name in people.keys) {
+    print(name);
+  }
+
+  print("");
+
+  print("Values (ages):");
+  for (var age in people.values) {
+    print(age);
+  }
+
+  print("");
+
+  String searchedName = "Maria";
+  if (people.containsKey(searchedName)) {
+    print("The age of $searchedName is: ${people[searchedName]}");
+  } else {
+    print("$searchedName is not in the list.");
+  }
+}
 ```
 
 ## ENUM
@@ -120,12 +146,21 @@ void main() {
 1) Declara un `enum` llamado `Estado` con valores: `pendiente`, `enProceso`, `completado`.
 
     - Crea una variable `tarea` con el valor `Estado.enProceso`.
-
     - Imprime el nombre y el índice de `tarea`.
-
     - Cambia el estado a `completado` y muéstralo.
 
 ```dart
+enum Status { pending, inProgress, completed }
+
+void main() {
+  Status task = Status.inProgress;
+
+  print("Task state: ${task.name}");
+  print("Index: ${task.index}");
+
+  task = Status.completed;
+  print("New task state: ${task.name}");
+}
 ```
 
 ## CONVERSIONES
@@ -137,4 +172,26 @@ void main() {
     Convierte una lista `[1,2,3,2]` en un `Set` y después vuelve a lista.
 
 ```dart
+void main() {
+  int number = 42;
+  String numberStr = number.toString();
+  int numberAgain = int.parse(numberStr);
+  print("Original: $number, As String: $numberStr, Back to int: $numberAgain");
+
+  print("");
+
+  String piStr = "3.14";
+  double pi = double.parse(piStr);
+  double result = pi + 1;
+  print("3.14 + 1 = $result");
+
+  print("");
+
+  List<int> numbers = [1, 2, 3, 2];
+  Set<int> numberSet = numbers.toSet();
+  List<int> uniqueList = numberSet.toList();
+  print("Original list: $numbers");
+  print("As Set (unique): $numberSet");
+  print("Back to List: $uniqueList");
+}
 ```
