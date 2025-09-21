@@ -61,13 +61,28 @@ Implementa una función __montañaAsteriscos(int $n, $m): void__ que imprima una
 
 ```php
 <?php
+function asterisksMountain(int $n, int $m): void {
+    for ($i = 1; $i <= $n; $i++) {
+        for ($j = 1; $j <= $m; $j++) {
+            echo str_repeat("*", $i);
+            if ($j < $m) {
+                echo str_repeat("  ", $n - $i);
+            }
+        }
+        echo "\n";
+    }
+}
 
+asterisksMountain(4, 2);
 ?>
 ```
 
 **Output**
 ```
-
+*      *
+**    **
+***  ***
+********
 ```
 
 ## Suma de dígitos
@@ -165,11 +180,29 @@ Implementa una función __secuenciaCollatz(int $n): array__ que genere la secuen
 
 ```php
 <?php
+$value = readline("Please insert a number to generate the sequence of Collatz: ");
 
+function collatzSequence(int $n): array {
+    $array = [$n];
+
+    while ($n != 1) {
+        if ($n % 2 == 0) {
+            $n /= 2;
+        } else {
+            $n = $n * 3 + 1;
+        }
+        array_push($array, $n);
+    }
+    return $array;
+}
+
+$result = collatzSequence($value);
+echo implode(" → ", $result);
 ?>
 ```
 
 **Output**
 ```
-
+Please insert a number to generate the sequence of Collatz: 6
+6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1
 ```
