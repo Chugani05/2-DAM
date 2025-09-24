@@ -275,11 +275,18 @@ lsof -i -P -n | grep LISTEN || ss -lntp
 **Salida:**
 
 ```text
-
+State  Recv-Q Send-Q   Local Address:Port   Peer Address:Port Process 
+LISTEN 0      4096        127.0.0.54:53          0.0.0.0:*            
+LISTEN 0      4096         127.0.0.1:631         0.0.0.0:*            
+LISTEN 0      4096     127.0.0.53%lo:53          0.0.0.0:*            
+LISTEN 0      511          127.0.0.1:6379        0.0.0.0:*            
+LISTEN 0      511              [::1]:6379           [::]:*            
+LISTEN 0      4096             [::1]:631            [::]:*            
+LISTEN 0      511                  *:80                *:*
 ```
 **Pregunta:** ¿Qué procesos *tuyos* están escuchando? (si no hay, explica por qué)  
 
-**Respuesta:**
+**Respuesta:** No hay procesos “míos” (del usuario) escuchando en puertos. Todos los que aparecen son servicios del sistema (DNS, CUPS, Redis, servidor web).
 
 ---
 
@@ -293,11 +300,11 @@ ps -eo pid,ppid,cmd,stat | grep "[s]leep 200"
 **Salida:**
 
 ```text
-
+Running as unit: run-rc89fb039ef3547a6a1abf2adbcb08855.scope; invocation ID: e4f945a953294439a4c96f45cbe22939
 ```
 **Pregunta:** ¿Qué ventaja tiene lanzar con `systemd-run --user` respecto a ejecutarlo “a pelo”?  
 
-**Respuesta:**
+**Respuesta:** La ventaja es que `systemd-run --user` ejecuta el proceso dentro de un `cgroup` gestionado por `systemd`, lo que permite aplicar y mantener límites de recursos (como memoria, CPU, I/O) de forma aislada, monitorizable y sin necesidad de ser root; mientras que si lo ejecutas directamente no tienes esa gestión ni control de recursos.
 
 ---
 
@@ -309,11 +316,25 @@ top -b -n 1 | head -n 15
 **Salida (resumen):**
 
 ```text
+top - 18:56:43 up 8 min,  1 user,  load average: 0,52, 0,53, 0,36
+Tasks: 225 total,   1 running, 224 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  4,5 us,  2,3 sy,  0,0 ni, 88,6 id,  2,3 wa,  0,0 hi,  2,3 si,  0,0 st 
+MiB Mem :   3818,9 total,    628,2 free,   1964,9 used,   1514,2 buff/cache     
+MiB Swap:    512,0 total,    512,0 free,      0,0 used.   1854,0 avail Mem 
 
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   4868 chugani   20   0   17032   5596   3548 R   9,1   0,1   0:00.01 top
+      1 root      20   0   22760  13368   9144 S   0,0   0,3   0:01.49 systemd
+      2 root      20   0       0      0      0 S   0,0   0,0   0:00.02 kthreadd
+      3 root      20   0       0      0      0 S   0,0   0,0   0:00.00 pool_wo+
+      4 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker+
+      5 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker+
+      6 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker+
+      7 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker+
 ```
 **Pregunta:** ¿Cuál es tu proceso con mayor `%CPU` en ese momento?  
 
-**Respuesta:**
+**Respuesta:** Mi proceso con mayor %CPU en ese momento es top (PID 4868), con 9,1 %.
 
 ---
 
@@ -328,11 +349,13 @@ strace -p "$pid" -e trace=nanosleep -tt -c -f 2>&1 | sed -n '1,10p'
 **Salida (fragmento):**
 
 ```text
-
+[1]+  Done                    systemd-run --user --scope -p MemoryMax=50M sleep 200
+strace: must have PROG [ARGS] or -p PID
+Try 'strace -h' for more information.
 ```
 **Pregunta:** Explica brevemente la syscall que observaste.  
 
-**Respuesta:**
+**Respuesta:** La syscall observada es `nanosleep`, que suspende el proceso durante el tiempo solicitado (en este caso 200 segundos). Es la forma en que el kernel implementa la función `sleep` de usuario.
 
 ---
 
@@ -347,11 +370,27 @@ pstree -p | head -n 50
 **Salida (recorta):**
 
 ```text
+systemd(1)-+-ModemManager(939)-+-{ModemManager}(959)
+           |                   |-{ModemManager}(966)
+           |                   `-{ModemManager}(973)
+           |-NetworkManager(855)-+-{NetworkManager}(948)
+           |                     |-{NetworkManager}(949)
+           |                     `-{NetworkManager}(953)
+           |-VBoxClient(1778)---VBoxClient(1780)-+-{VBoxClient}(1783)
+           |                                     |-{VBoxClient}(1784)
+           |                                     `-{VBoxClient}(1785)
+           |-VBoxClient(1787)---VBoxClient(1789)-+-{VBoxClient}(1792)
+           |                                     |-{VBoxClient}(1793)
+           |                                     `-{VBoxClient}(1794)
+           |-VBoxClient(1797)---VBoxClient(1799)-+-{VBoxClient}(1808)
+           |                                     |-{VBoxClient}(1810)
+           |                                     |-{VBoxClient}(1814)
+           |                                     `-{VBoxClient}(1817)
 
 ```
 **Pregunta:** ¿Bajo qué proceso aparece tu `systemd --user`?  
 
-**Respuesta:**
+**Respuesta:** Mi `systemd --user` aparece bajo el proceso que inicia mi sesión, y ese a su vez cuelga de `systemd(1)`.
 
 ---
 
@@ -363,11 +402,33 @@ ps -eo pid,ppid,stat,cmd | head -n 20
 **Salida:**
 
 ```text
-
+    PID    PPID STAT CMD
+      1       0 Ss   /sbin/init splash
+      2       0 S    [kthreadd]
+      3       2 S    [pool_workqueue_release]
+      4       2 I<   [kworker/R-rcu_gp]
+      5       2 I<   [kworker/R-sync_wq]
+      6       2 I<   [kworker/R-slub_flushwq]
+      7       2 I<   [kworker/R-netns]
+     11       2 I    [kworker/u16:0-ipv6_addrconf]
+     12       2 I<   [kworker/R-mm_percpu_wq]
+     13       2 I    [rcu_tasks_kthread]
+     14       2 I    [rcu_tasks_rude_kthread]
+     15       2 I    [rcu_tasks_trace_kthread]
+     16       2 S    [ksoftirqd/0]
+     17       2 I    [rcu_preempt]
+     18       2 S    [rcu_exp_par_gp_kthread_worker/0]
+     19       2 S    [rcu_exp_gp_kthread_worker]
+     20       2 S    [migration/0]
+     21       2 S    [idle_inject/0]
+     22       2 S    [cpuhp/0]
 ```
 **Pregunta:** Explica 3 flags de `STAT` que veas (ej.: `R`, `S`, `T`, `Z`, `+`).  
 
-**Respuesta:**
+**Respuesta:** De los flags observados:
+- `S` = proceso dormido esperando un evento.
+- `I` = proceso/hilo del kernel inactivo.
+- `<` = el proceso tiene prioridad alta y no es posible reducirla con `nice`.
 
 ---
 
@@ -388,12 +449,20 @@ ps -o pid,stat,cmd -p "$pid"
 ```
 **Pega los dos estados (antes/después):**
 
+Antes:
 ```text
+    PID STAT CMD
+  12096 T    sleep 120
+```
 
+Después:
+```text
+    PID STAT CMD
+  12096 S    sleep 120
 ```
 **Pregunta:** ¿Qué flag indicó la suspensión?  
 
-**Respuesta:**
+**Respuesta:** El flag que indicó la suspensión fue `T`, que significa *stopped* (proceso detenido por señal, como `SIGSTOP` o `SIGTSTP`).
 
 ---
 
@@ -419,7 +488,7 @@ ps -el | grep ' Z '
 ```
 **Pregunta:** ¿Por qué el estado `Z` y qué lo limpia finalmente?  
 
-**Respuesta:**
+**Respuesta:** El estado `Z` significa que el hijo terminó pero su padre aún no llamó a `wait()`. El zombie se limpia automáticamente cuando el padre finaliza y `systemd` adopta al hijo y hace el `wait()`.
 
 ---
 
@@ -436,8 +505,8 @@ rm -rf "$DAM/bin" "$DAM/logs" "$DAM/units"
 ```
 
 ## ¿Qué estás prácticando?
-- [ ] Pegaste **salidas reales**.  
-- [ ] Explicaste **qué significan**.  
-- [ ] Usaste **systemd --user** y **journalctl --user**.  
-- [ ] Probaste `systemd-run --user` con límites de memoria.  
-- [ ] Practicaste señales (`STOP`/`CONT`), `pstree`, `ps` y `strace` **sobre tus procesos**.
+- [X] Pegaste **salidas reales**.  
+- [X] Explicaste **qué significan**.  
+- [X] Usaste **systemd --user** y **journalctl --user**.  
+- [X] Probaste `systemd-run --user` con límites de memoria.  
+- [X] Practicaste señales (`STOP`/`CONT`), `pstree`, `ps` y `strace` **sobre tus procesos**.
