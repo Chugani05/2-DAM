@@ -1,6 +1,4 @@
-# Ejercicios
-
-## CONTROL DE FLUJO
+# Ejercicios de control de flujo en Dart
 
 1) Tienes una lista de números [3, -1, 5, -7, 8]. **¡IMPORTANTE!** A priori no conoces el número de elementos de la lista. Recórrela e imprímelos.
 
