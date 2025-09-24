@@ -6,13 +6,13 @@
 
 ## Contenido
 - [Preparación](#preparación)
-- [Conceptos (breve + fuentes)](#conceptos-breve--fuentes)
-- [Práctica guiada (todo en tu `$DAM`)](#práctica-guiada-todo-en-tu-dam)
-    - [PIDs básicos](#pids-básicos)
-    - [Servicios **de usuario** con systemd](#servicios-de-usuario-con-systemd)
-    - [Observación de procesos sin root](#observación-de-procesos-sin-root)
-    - [Estados y jerarquía (sin root)](#estados-y-jerarquía-sin-root)
-    - [Limpieza (solo tu usuario)](#limpieza-solo-tu-usuario)
+- [Conceptos (breve + fuentes)](#1---conceptos-breve--fuentes)
+- [Práctica guiada (todo en tu `$DAM`)](#2---práctica-guiada-todo-en-tu-dam)
+    - [PIDs básicos](#21---pids-básicos)
+    - [Servicios **de usuario** con systemd](#22---servicios-de-usuario-con-systemd)
+    - [Observación de procesos sin root](#23---observación-de-procesos-sin-root)
+    - [Estados y jerarquía (sin root)](#24---estados-y-jerarquía-sin-root)
+    - [Limpieza (solo tu usuario)](#25---limpieza-solo-tu-usuario)
 - [¿Qué estás prácticando?](#qué-estás-prácticando)
 
 ## Preparación
@@ -49,8 +49,9 @@ La salida muestra que está instalada la versión `255.4-1ubuntu8.6` de `systemd
 
 Esto confirma que el *user systemd* funciona correctamente.
 
+---
 
-## Conceptos (breve + fuentes)
+## 1 - Conceptos (breve + fuentes)
 
 1) ¿Qué es **systemd** y en qué se diferencia de SysV init?  
 
@@ -98,12 +99,13 @@ _Fuentes:_
 
 _Fuentes:_ [journalctl](https://atareao.es/tutorial/trabajando-con-systemd/journalctl-y-logs-en-systemd/)
 
+---
 
-## Práctica guiada (todo en tu `$DAM`)
+## 2 - Práctica guiada (todo en tu `$DAM`)
 
 > Si un comando pide permisos que no tienes, usa la **versión `--user`** o consulta el **ayuda** con `--help` para alternativas.
 
-### PIDs básicos
+### 2.1 - PIDs básicos
 
 **1.** PID de tu shell y su PPID.
 
@@ -136,8 +138,9 @@ pidof systemd || pgrep -u "$USER" -x systemd
 
 **Respuesta:** Al  obtener el PID con ese comando, indica que el proceso systemd --user está en ejecución con el PID 3323.
 
+---
 
-### Servicios **de usuario** con systemd
+### 2.2 - Servicios **de usuario** con systemd
 
 Vamos a crear un servicio sencillo y un timer **en tu carpeta** `~/.config/systemd/user` o en `$DAM/units` (usaremos la primera para que `systemctl --user` lo encuentre).
 
@@ -145,11 +148,13 @@ Vamos a crear un servicio sencillo y un timer **en tu carpeta** `~/.config/syste
 
 ```bash
 mkdir -p ~/.config/systemd/user "$DAM"/{bin,logs}
+
 cat << 'EOF' > "$DAM/bin/fecha_log.sh"
 #!/usr/bin/env bash
 mkdir -p "$HOME/dam/logs"
 echo "$(date --iso-8601=seconds) :: hello from user timer" >> "$HOME/dam/logs/fecha.log"
 EOF
+
 chmod +x "$DAM/bin/fecha_log.sh"
 ```
 
@@ -172,7 +177,11 @@ systemctl --user status fecha-log.service --no-pager -l | sed -n '1,10p'
 **Salida (pega un extracto):**
 
 ```text
+○ fecha-log.service - Escribe fecha en $HOME/dam/logs/fecha.log
+     Loaded: loaded (/home/dam/.config/systemd/user/fecha-log.service; static)
+     Active: inactive (dead)
 
+sep 24 16:55:38 a108pc29 systemd[3665]: Started fecha-log.service - Escribe fecha en $HOME/dam/logs/fecha.log.
 ```
 **Pregunta:** ¿Se creó/actualizó `~/dam/logs/fecha.log`? Muestra las últimas líneas:
 
@@ -183,14 +192,12 @@ tail -n 5 "$DAM/logs/fecha.log"
 **Salida:**
 
 ```text
-
+2025-09-24T16:55:38+01:00 :: hello from user timer
 ```
 
 **Reflexiona la salida:**
 
-```text
-
-```
+La salida muestra que el servicio `fecha-log.service` se inició correctamente, pero su estado indica que está inactivo (dead). Esto sugiere que el script `fecha_log.sh` se ejecutó una sola vez y terminó, sin mantener un proceso en ejecución. 
 
 ---
 
@@ -218,11 +225,15 @@ systemctl --user list-timers --all | grep fecha-log || true
 **Salida (recorta):**
 
 ```text
+systemctl --user enable --now fecha-log.timer
+Created symlink /home/dam/.config/systemd/user/timers.target.wants/fecha-log.timer → /home/dam/.config/systemd/user/fecha-log.timer.
 
+systemctl --user list-timers --all | grep fecha-log || true
+Wed 2025-09-24 16:59:00 WEST   6s -                                       - fecha-log.timer                fecha-log.service
 ```
 **Pregunta:** ¿Qué diferencia hay entre `enable` y `start` cuando usas `systemctl --user`?  
 
-**Respuesta:**
+**Respuesta:** `start` inicia el servicio/timer solo en ese momento, sin habilitar su inicio automático futuro, en cambio, `enable` habilita y también inicia inmediatamente el servicio/timer, asegurando que se active automáticamente en futuras sesiones.
 
 ---
 
@@ -235,15 +246,26 @@ journalctl --user -u fecha-log.service -n 10 --no-pager
 **Salida:**
 
 ```text
-
+sep 24 17:02:31 a108pc29 systemd[3665]: Started fecha-log.service - Escribe fecha en $HOME/dam/logs/fecha.log.
+sep 24 17:03:31 a108pc29 systemd[3665]: Started fecha-log.service - Escribe fecha en $HOME/dam/logs/fecha.log.
+sep 24 17:04:31 a108pc29 systemd[3665]: Started fecha-log.service - Escribe fecha en $HOME/dam/logs/fecha.log.
+sep 24 17:05:31 a108pc29 systemd[3665]: Started fecha-log.service - Escribe fecha en $HOME/dam/logs/fecha.log.
+sep 24 17:06:31 a108pc29 systemd[3665]: Started fecha-log.service - Escribe fecha en $HOME/dam/logs/fecha.log.
+sep 24 17:07:31 a108pc29 systemd[3665]: Started fecha-log.service - Escribe fecha en $HOME/dam/logs/fecha.log.
+sep 24 17:08:31 a108pc29 systemd[3665]: Started fecha-log.service - Escribe fecha en $HOME/dam/logs/fecha.log.
+sep 24 17:09:31 a108pc29 systemd[3665]: Started fecha-log.service - Escribe fecha en $HOME/dam/logs/fecha.log.
+sep 24 17:10:31 a108pc29 systemd[3665]: Started fecha-log.service - Escribe fecha en $HOME/dam/logs/fecha.log.
+sep 24 17:11:31 a108pc29 systemd[3665]: Started fecha-log.service - Escribe fecha en $HOME/dam/logs/fecha.log.
 ```
 **Pregunta:** ¿Ves ejecuciones activadas por el timer? ¿Cuándo fue la última?  
 
-**Respuesta:**
+**Respuesta:** No se ven ejecuciones activadas explícitamente por el timer en estos logs. Solo se muestran inicios del servicio, pero no la causa (por ejemplo, un disparo del timer).  
+
+La última línea muestra la última vez que se inició el servicio: el 24 de septiembre a las 17:11:31.  
 
 ---
 
-### Observación de procesos sin root
+### 2.3 - Observación de procesos sin root
 
 **1.** Puertos en escucha (lo que puedas ver como usuario).
 
@@ -314,7 +336,7 @@ strace -p "$pid" -e trace=nanosleep -tt -c -f 2>&1 | sed -n '1,10p'
 
 ---
 
-### Estados y jerarquía (sin root)
+### 2.4 - Estados y jerarquía (sin root)
 
 **1.** Árbol de procesos con PIDs.
 
@@ -401,7 +423,7 @@ ps -el | grep ' Z '
 
 ---
 
-### Limpieza (solo tu usuario)
+### 2.5 - Limpieza (solo tu usuario)
 
 Detén y deshabilita tu **timer/servicio de usuario** y borra artefactos si quieres.
 
