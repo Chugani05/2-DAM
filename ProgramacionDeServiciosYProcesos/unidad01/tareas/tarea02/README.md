@@ -484,8 +484,13 @@ ps -el | grep ' Z '
 **Salida (recorta):**
 
 ```text
+gcc "$DAM/bin/zombie.c" -o "$DAM/bin/zombie" && "$DAM/bin/zombie" &
+[1] 129931
 
+ps -el | grep ' Z '
+1 Z  1001  129944  129943  0  80   0 -     0 -      pts/0    00:00:00 zombie
 ```
+
 **Pregunta:** ¿Por qué el estado `Z` y qué lo limpia finalmente?  
 
 **Respuesta:** El estado `Z` significa que el hijo terminó pero su padre aún no llamó a `wait()`. El zombie se limpia automáticamente cuando el padre finaliza y `systemd` adopta al hijo y hace el `wait()`.
@@ -502,6 +507,31 @@ systemctl --user stop fecha-log.service
 rm -f ~/.config/systemd/user/fecha-log.{service,timer}
 systemctl --user daemon-reload
 rm -rf "$DAM/bin" "$DAM/logs" "$DAM/units"
+```
+
+**Salida**
+
+```text
+systemctl --user disable --now fecha-log.timer
+Removed "/home/dam/.config/systemd/user/timers.target.wants/fecha-log.timer".
+[1]+  Hecho                   gcc "$DAM/bin/zombie.c" -o "$DAM/bin/zombie" && "$DAM/bin/zombie"
+
+systemctl --user stop fecha-log.service
+
+rm -f ~/.config/systemd/user/fecha-log.{service,timer}
+'/home/dam/.config/systemd/user/fecha-log.service' borrado
+'/home/dam/.config/systemd/user/fecha-log.timer' borrado
+
+systemctl --user daemon-reload
+
+rm -rf "$DAM/bin" "$DAM/logs" "$DAM/units"
+'/home/dam/dam/bin/zombie.c' borrado
+'/home/dam/dam/bin/fecha_log.sh' borrado
+'/home/dam/dam/bin/zombie' borrado
+removed directory '/home/dam/dam/bin'
+'/home/dam/dam/logs/fecha.log' borrado
+removed directory '/home/dam/dam/logs'
+removed directory '/home/dam/dam/units'
 ```
 
 ## ¿Qué estás prácticando?
