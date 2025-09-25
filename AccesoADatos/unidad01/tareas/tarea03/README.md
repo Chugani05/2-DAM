@@ -6,6 +6,24 @@
 
 ## Contenido
 - [Hola fichero (crear y leer)](#1-hola-fichero-crear-y-leer)
+- [Guardar números en un fichero](#2-guardar-números-en-un-fichero)
+- [Contar palabras en un fichero](#3-contar-palabras-en-un-fichero)
+- [Escribir y leer array en fichero](#4-escribir-y-leer-array-en-fichero)
+- [Copiar contenido de un fichero a otro](#5-copiar-contenido-de-un-fichero-a-otro)
+- [Invertir el contenido de un fichero](#6-invertir-el-contenido-de-un-fichero)
+- [Calcular suma desde fichero](#7-calcular-suma-desde-fichero)
+- [Crear fichero de multiplicaciones](#8-crear-fichero-de-multiplicaciones)
+- [Registrar entradas de usuario](#9-registrar-entradas-de-usuario)
+- [Leer JSON desde fichero](#10-leer-json-desde-fichero)
+- [Diario personal secreto](#11-diario-personal-secreto)
+- [Ranking de videojuegos](#12-ranking-de-videojuegos)
+- [Canción aleatoria](#13-canción-aleatoria)
+- [Generador de excusas divertidas](#14-generador-de-excusas-divertidas)
+- [Lista de chistes (rotativos)](#15-lista-de-chistes-rotativos)
+- [Adivina la palabra](#16-adivina-la-palabra)
+- [Generador de nombres para superhéroes](#17-generador-de-nombres-para-superhéroes)
+- [Encuesta de comidas favoritas](#18-encuesta-de-comidas-favoritas)
+- [Simulador de tweets](#19-simulador-de-tweets)
 - [Historias locas (Mad Libs)](#20-historias-locas-mad-libs)
 
 
@@ -19,6 +37,11 @@
 ```code
 datos.txt
 Hola Mundo desde PHP
+```
+
+**Solución**
+
+```php
 ```
 
 ---
