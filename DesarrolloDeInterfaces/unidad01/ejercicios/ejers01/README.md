@@ -1,5 +1,9 @@
 # Ejercicios
 
+<div align=center>
+    <img src="../../../../extras/vinyl.gif" alt="vinyl" width="80%">
+</div>
+
 ## VARIABLES Y TIPOS BÁSICOS
 
 1) Declara una variable edad como `int` y otra altura como `double`. Imprime ambos valores en una sola frase.

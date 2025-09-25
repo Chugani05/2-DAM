@@ -1,5 +1,9 @@
 # Ejercicios - Variables
 
+<div align=center>
+    <img src="../../../../extras/vinyl.gif" alt="vinyl" width="80%">
+</div>
+
 1) Declara variables de tipo `int`, `double` y `num`. Convierte un `int` a `String` y parsea `'3.14'` a `double`.
 
 ```dart

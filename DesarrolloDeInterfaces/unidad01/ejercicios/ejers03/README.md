@@ -1,5 +1,9 @@
 # Ejercicios de funciones en Dart
 
+<div align=center>
+    <img src="../../../../extras/vinyl.gif" alt="vinyl" width="80%">
+</div>
+
 1. Crea una función que calcule el área de un rectángulo a partir de su base y altura, y la muestre en consola.
 
 2. Haz una función que muestre un saludo en consola. El saludo debe poder llevar opcionalmente un apellido.
