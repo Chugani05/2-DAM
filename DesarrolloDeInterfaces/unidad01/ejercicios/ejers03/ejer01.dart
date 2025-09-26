@@ -1,5 +1,4 @@
-// Crea una función que calcule el área de un rectángulo
-// a partir de su base y altura, y la muestre en consola.
+// Calcular y mostrar área de rectángulo
 
 void main() {
   double base = 5.0;

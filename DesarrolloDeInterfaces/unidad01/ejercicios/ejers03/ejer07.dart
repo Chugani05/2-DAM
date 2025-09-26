@@ -1,5 +1,4 @@
-// Dada una lista de nombres, usa una función anónima 
-// dentro de forEach para mostrar cada nombre en mayúsculas.
+// Mostrar nombres en mayúsculas con forEach
 
 void main() {
   List<String>names = ["RashI", "Jesús", "nora", "EDdie", "Antón"];

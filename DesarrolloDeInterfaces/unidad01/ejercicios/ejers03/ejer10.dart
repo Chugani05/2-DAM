@@ -1,4 +1,4 @@
-// Simula el comportamiento de un botón.
+// Simulación de botón con callback
 
 void main() {
   void onPressed(Function callback) {

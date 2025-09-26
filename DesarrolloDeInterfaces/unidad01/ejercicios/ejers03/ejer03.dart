@@ -1,5 +1,4 @@
-// Define una función que devuelva 
-// el mayor de tres números enteros.
+// Encontrar el mayor de tres números
 
 void main() {
   List<int>values = [7, 3, 9];

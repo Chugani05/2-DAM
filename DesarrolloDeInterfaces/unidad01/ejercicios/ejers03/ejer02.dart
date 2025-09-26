@@ -1,5 +1,4 @@
-// Haz una función que muestre un saludo en consola. 
-// El saludo debe poder llevar opcionalmente un apellido.
+// Función con saludo y opción de apellido
 
 void main() {
   void greet([String? lastName]) {

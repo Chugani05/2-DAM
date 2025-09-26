@@ -1,5 +1,4 @@
-// Crea una función que reciba una lista de números
-// y devuelva la suma de todos ellos.
+// Sumar elementos de una lista
 
 void main() {
   List<int>values = [7, 13, 9, 24, 5];

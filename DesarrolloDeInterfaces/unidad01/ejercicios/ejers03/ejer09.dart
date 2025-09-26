@@ -1,6 +1,4 @@
-// Crea una función que devuelva otra función (closure).
-// La función devuelta debe multiplicar por un factor fijo
-// el número que reciba.
+// Devolver una función closure
 
 void main() {
   Function multiplier(int factor) {
