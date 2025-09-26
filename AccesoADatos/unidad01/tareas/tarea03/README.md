@@ -42,6 +42,11 @@ Hola Mundo desde PHP
 **Solución**
 
 ```php
+<?php
+$filename = "files/data.txt";
+file_put_contents($filename, "Hola Mundo desde PHP");
+echo file_get_contents($filename);
+?>
 ```
 
 ---
@@ -62,6 +67,23 @@ numeros.txt
 10
 ```
 
+**Solución**
+
+```php
+<?php
+$file = fopen("files/numbers.txt", "w");
+
+for ($i = 1; $i <= 10; $i++) {
+    fwrite($file, "$i\n");
+}
+
+fclose($file);
+foreach (file("files/numbers.txt") as $num) {
+    print $num;
+}
+?>
+```
+
 ---
 
 ### 3) Contar palabras en un fichero
@@ -74,6 +96,16 @@ numeros.txt
 ```code
 texto.txt
 PHP es muy divertido y potente.
+```
+
+**Solución**
+
+```php
+<?php
+$filename = "files/text.txt";
+file_put_contents($filename, "Una frase super larga para hacer el conteo de palabras.");
+echo str_word_count(file_get_contents($filename));
+?>
 ```
 
 ---
@@ -92,6 +124,30 @@ Luis
 Marta
 Carlos
 Julia
+```
+
+**Solución**
+
+```php
+<?php
+$names = ["RJ", "Peter", "Eve", "Sage", "Milo"];
+
+$file = fopen("files/names.txt", "w");
+foreach ($names as $name) {
+        fwrite($file, "$name\n");
+    }
+    fclose($file);
+
+$file = fopen("files/names.txt", "r");
+if ($file) {
+    $counter = 1;
+    while (($line = fgets($file)) !== false) {
+        echo "{$counter}. " . $line;
+        $counter++;
+    }
+    fclose($file);
+}
+?>
 ```
 
 ---
@@ -115,6 +171,12 @@ copia.txt
 Este es el archivo original.
 ```
 
+**Solución**
+
+```php
+
+```
+
 ---
 
 ### 6) Invertir el contenido de un fichero
@@ -136,6 +198,12 @@ frase_invertida.txt
 PHP aloH
 ```
 
+**Solución**
+
+```php
+
+```
+
 ---
 
 ### 7) Calcular suma desde fichero
@@ -148,6 +216,12 @@ PHP aloH
 ```code
 datos_numericos.txt
 10,20,30,40
+```
+
+**Solución**
+
+```php
+
 ```
 
 ---
@@ -167,6 +241,12 @@ tabla5.txt
 5 x 10 = 50
 ```
 
+**Solución**
+
+```php
+
+```
+
 ---
 
 ### 9) Registrar entradas de usuario
@@ -181,6 +261,12 @@ usuarios.txt
 Ana
 Pedro
 Lucía
+```
+
+**Solución**
+
+```php
+
 ```
 
 ---
@@ -200,6 +286,12 @@ datos.json
 ]
 ```
 
+**Solución**
+
+```php
+
+```
+
 ---
 
 ### 11) Diario personal secreto
@@ -212,6 +304,12 @@ datos.json
 diario.txt
 [2025-09-24 10:00] Hoy aprendí PHP con ficheros 😄
 [2025-09-24 12:00] Almorcé pizza mientras programaba.
+```
+
+**Solución**
+
+```php
+
 ```
 
 ---
@@ -229,6 +327,12 @@ Mario: 9
 Sonic: 8
 ```
 
+**Solución**
+
+```php
+
+```
+
 ---
 
 ### 13) Canción aleatoria
@@ -242,6 +346,12 @@ canciones.txt
 Hysteria
 Bohemian Rhapsody
 Africa
+```
+
+**Solución**
+
+```php
+
 ```
 
 ---
@@ -259,6 +369,12 @@ El Wi-Fi decidió tomarse el día libre.
 Me abdujeron los marcianos.
 ```
 
+**Solución**
+
+```php
+
+```
+
 ---
 
 ### 15) Lista de chistes (rotativos)
@@ -274,6 +390,12 @@ Ayer vi un bit triste… estaba des-bit-ido.
 Yo no sudo, compilo.
 ```
 
+**Solución**
+
+```php
+
+```
+
 ---
 
 ### 16) Adivina la palabra
@@ -287,6 +409,12 @@ palabras.txt
 manzana
 platano
 cereza
+```
+
+**Solución**
+
+```php
+
 ```
 
 ---
@@ -311,6 +439,12 @@ Tigre
 Lobo
 ```
 
+**Solución**
+
+```php
+
+```
+
 ---
 
 ### 18) Encuesta de comidas favoritas
@@ -327,6 +461,12 @@ pizza
 pasta
 ```
 
+**Solución**
+
+```php
+
+```
+
 ---
 
 ### 19) Simulador de tweets
@@ -339,6 +479,12 @@ pasta
 tweets.txt
 [2025-09-24 09:30] Aprendiendo PHP con ejercicios divertidos #php
 [2025-09-24 10:00] Otro día más programando 🚀
+```
+
+**Solución**
+
+```php
+
 ```
 
 ---
@@ -373,4 +519,10 @@ comidas.txt
 tacos
 ramen
 helado
+```
+
+**Solución**
+
+```php
+
 ```
