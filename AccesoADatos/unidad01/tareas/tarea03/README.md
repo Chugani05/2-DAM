@@ -274,29 +274,8 @@ tabla5.txt
 
 ---
 
-### 9) Registrar entradas de usuario
 
-**Enunciado:** Guarda los nombres recibidos en un formulario dentro de `usuarios.txt` (cada nombre en una línea). Luego muéstralos.  
-**Funciones sugeridas:** `fopen`, `fwrite`, `file`  
-
-**Ejemplo de fichero:**
-
-```code
-usuarios.txt
-Ana
-Pedro
-Lucía
-```
-
-**Solución**
-
-```php
-
-```
-
----
-
-### 10) Leer JSON desde fichero
+### 9) Leer JSON desde fichero
 
 **Enunciado:** Crea `datos.json` con información de personas (nombre y edad). Haz que el programa lo lea y muestre los datos.  
 **Funciones sugeridas:** `file_get_contents`, `json_decode`  
@@ -314,12 +293,19 @@ datos.json
 **Solución**
 
 ```php
-
+<?php
+$json_url = "files/data.json";
+$json = file_get_contents($json_url);
+$data = json_decode($json);
+foreach ($data as $person) {
+    echo "$person->name is $person->age old.\n";
+}
+?>
 ```
 
 ---
 
-### 11) Diario personal secreto
+### 10) Diario personal secreto
 
 **Enunciado:** Guarda entradas con fecha y hora en `diario.txt`. Luego muéstralas todas.  
 
@@ -339,7 +325,7 @@ diario.txt
 
 ---
 
-### 12) Ranking de videojuegos
+### 11) Ranking de videojuegos
 
 **Enunciado:** Guarda juegos con puntuaciones en `ranking.txt`, ordénalos y muestra el top 3.  
 
@@ -360,7 +346,7 @@ Sonic: 8
 
 ---
 
-### 13) Canción aleatoria
+### 12) Canción aleatoria
 
 **Enunciado:** Guarda títulos en `canciones.txt` y muestra uno al azar.  
 
@@ -381,7 +367,7 @@ Africa
 
 ---
 
-### 14) Generador de excusas divertidas
+### 13) Generador de excusas divertidas
 
 **Enunciado:** Lee excusas desde `excusas.txt` y muestra una aleatoria.  
 
@@ -402,7 +388,7 @@ Me abdujeron los marcianos.
 
 ---
 
-### 15) Lista de chistes (rotativos)
+### 14) Lista de chistes (rotativos)
 
 **Enunciado:** Muestra un chiste distinto en cada ejecución desde `chistes.txt`.  
 
@@ -423,7 +409,7 @@ Yo no sudo, compilo.
 
 ---
 
-### 16) Adivina la palabra
+### 15) Adivina la palabra
 
 **Enunciado:** Elige una palabra de `palabras.txt` y muestra solo 2 letras, el usuario debe adivinarla.  
 
@@ -444,7 +430,7 @@ cereza
 
 ---
 
-### 17) Generador de nombres para superhéroes
+### 16) Generador de nombres para superhéroes
 
 **Enunciado:** Combina palabras de `adjetivos.txt` y `animales.txt`.  
 
@@ -472,7 +458,7 @@ Lobo
 
 ---
 
-### 18) Encuesta de comidas favoritas
+### 17) Encuesta de comidas favoritas
 
 **Enunciado:** Guarda respuestas de usuarios en `comidas.txt` y genera ranking.  
 
@@ -494,7 +480,7 @@ pasta
 
 ---
 
-### 19) Simulador de tweets
+### 18) Simulador de tweets
 
 **Enunciado:** Guarda tweets en `tweets.txt` con fecha y hora, muestra los últimos 5.  
 
@@ -514,7 +500,7 @@ tweets.txt
 
 ---
 
-### 20) Historias locas (Mad Libs)
+### 19) Historias locas (Mad Libs)
 
 **Enunciado:** Reemplaza placeholders en `plantilla.txt` con palabras aleatorias de otros ficheros.  
 
