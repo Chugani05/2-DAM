@@ -5,7 +5,8 @@ for ($i = 1; $i <= 10; $i++) {
     fwrite($file, "$i\n");
 }
 
-fclose($file);
+fclose(stream: $file);
+
 foreach (file("files/numbers.txt") as $num) {
     print $num;
 }

@@ -134,9 +134,9 @@ $names = ["RJ", "Peter", "Eve", "Sage", "Milo"];
 
 $file = fopen("files/names.txt", "w");
 foreach ($names as $name) {
-        fwrite($file, "$name\n");
-    }
-    fclose($file);
+    fwrite($file, "$name\n");
+}
+fclose($file);
 
 $file = fopen("files/names.txt", "r");
 if ($file) {
@@ -174,7 +174,15 @@ Este es el archivo original.
 **Solución**
 
 ```php
+<?php
+$file = "files/origin.txt";
+file_put_contents($file, "Este es un mensaje proporcionado por el archivo original.");
+echo file_get_contents($file) . "\n";
 
+$newfile = "files/copy.txt";
+copy($file, $newfile);
+echo file_get_contents($newfile) . "\n";
+?>
 ```
 
 ---
@@ -201,7 +209,18 @@ PHP aloH
 **Solución**
 
 ```php
+<?php
+$file = "files/phrase.txt";
+file_put_contents($file, "Vive el momento y no lo desaproveches.");
+$phrase = file_get_contents($file);
+echo $phrase ."\n";
 
+$invertedPhrase = strrev($phrase);
+
+$newfile = "files/inverted_phrase.txt";
+file_put_contents($newfile, $invertedPhrase);
+echo file_get_contents($newfile) . "\n";
+?>
 ```
 
 ---
@@ -221,7 +240,13 @@ datos_numericos.txt
 **Solución**
 
 ```php
-
+<?php
+$filename = "files/numeric_data.txt";
+file_put_contents($filename, "10,20,30,40,50");
+$values = explode(",", file_get_contents($filename));
+$sum = array_sum($values);
+echo "The sum of " . implode(" + ", $values) . " is $sum"; 
+?>
 ```
 
 ---
