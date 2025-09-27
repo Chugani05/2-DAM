@@ -1,13 +1,16 @@
 <?php
-$file = fopen("files/numbers.txt", "w");
-
-for ($i = 1; $i <= 10; $i++) {
-    fwrite($file, "$i\n");
+function generateRange(String $filename, int $n = 10): bool {
+    $file = fopen($filename, "w");
+    
+    for ($i = 1; $i <= $n; $i++) {
+        fwrite($file, "$i\n");
+    }
+    return fclose($file);
 }
 
-fclose(stream: $file);
-
-foreach (file("files/numbers.txt") as $num) {
+$filename = "files/numbers.txt";
+generateRange( $filename);
+foreach (file($filename) as $num) {
     print $num;
 }
 ?>

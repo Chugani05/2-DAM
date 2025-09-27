@@ -1,14 +1,11 @@
 <?php
-$filename = "files/adjectives.txt";
-$line = file($filename);
-$randomAdjective = array_rand($line);
-$adjective = $line[$randomAdjective];
+function getRandomWord(String $filename): String {
+    $words = file($filename);
+    $randomIndex = array_rand($words);
+    return trim($words[$randomIndex]);
+}
 
-$filename = "files/animals.txt";
-$line = file($filename);
-$randomAnimal = array_rand($line);
-$animal = $line[$randomAnimal];
-
+$adjective = getRandomWord("files/adjectives.txt");
+$animal = getRandomWord("files/animals.txt");
 echo "$adjective $animal"
-
 ?>

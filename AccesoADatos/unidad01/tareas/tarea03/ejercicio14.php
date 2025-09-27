@@ -1,13 +1,17 @@
 <?php
-$filename = "files/jokes.txt";
-$file = fopen($filename, "r");
+function getLines(String $filename): bool {
+    if (!$file = fopen($filename, "r")) {
+        return false;
+    }
 
-if ($file !== false) {
     $line = fgets($file);
     $counter = 1;
     if ($line !== false) {
         echo $line;
     }
-    fclose($file);
+    return fclose($file);
 }
+
+$filename = "files/jokes.txt";
+getLines($filename)
 ?>

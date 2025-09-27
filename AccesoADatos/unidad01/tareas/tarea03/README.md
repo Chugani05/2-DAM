@@ -71,14 +71,18 @@ numeros.txt
 
 ```php
 <?php
-$file = fopen("files/numbers.txt", "w");
-
-for ($i = 1; $i <= 10; $i++) {
-    fwrite($file, "$i\n");
+function generateRange(String $filename, int $n = 10): bool {
+    $file = fopen($filename, "w");
+    
+    for ($i = 1; $i <= $n; $i++) {
+        fwrite($file, "$i\n");
+    }
+    return fclose($file);
 }
 
-fclose($file);
-foreach (file("files/numbers.txt") as $num) {
+$filename = "files/numbers.txt";
+generateRange( $filename);
+foreach (file($filename) as $num) {
     print $num;
 }
 ?>
@@ -130,23 +134,32 @@ Julia
 
 ```php
 <?php
-$names = ["RJ", "Peter", "Eve", "Sage", "Milo"];
-
-$file = fopen("files/names.txt", "w");
-foreach ($names as $name) {
-    fwrite($file, "$name\n");
+function writeNames(String $filename, array $names): bool {
+    $file = fopen($filename, "w");
+    
+    foreach ($names as $name) {
+        fwrite($file, "$name\n");
+    }
+    return fclose($file);
 }
-fclose($file);
 
-$file = fopen("files/names.txt", "r");
-if ($file) {
+function showNames(String $filename): bool {
+    if (!$file = fopen($filename, "r")) {
+        return false;
+    }
+
     $counter = 1;
     while (($line = fgets($file)) !== false) {
         echo "{$counter}. " . $line;
         $counter++;
     }
-    fclose($file);
+    return fclose($file);
 }
+
+$names = ["RJ", "Peter", "Eve", "Sage", "Milo"];
+$filename = "files/names.txt";
+writeNames($filename, $names);
+showNames($filename);
 ?>
 ```
 
@@ -269,7 +282,24 @@ tabla5.txt
 **Solución**
 
 ```php
+<?php
+function generateTables(String $filename, int $multiplicand, int $limit = 10): bool {
+    $file = fopen($filename, "w");
 
+    for ($i = 1; $i <= $limit; $i++) {
+        $result = $multiplicand * $i;
+        fwrite ($file, "$multiplicand x $i = $result\n");
+    }
+
+    return fclose($file);
+}
+
+$filename = "files/5table.txt";
+generateTables($filename, 5);
+foreach (file($filename) as $line) {
+    print $line;
+}
+?>
 ```
 
 ---
@@ -341,7 +371,25 @@ Sonic: 8
 **Solución**
 
 ```php
+<?php
+function addGame (String $filename, $games): bool {
+    $file = fopen($filename,"w");
 
+    foreach ($games as $game) {
+        fwrite($file, "$game\n");
+    }
+
+    return fclose($file);
+}
+
+$games = ["Papers Please"=>6, "Inscryption"=>8, "Buckshot Roulette"=>7, "Stardew Valley"=>10];
+$filename = "files/ranking.txt";
+addGame($filename, $games);
+
+arsort($games);
+$topThreeRanking = array_slice($games, 0, 3);
+print_r($topThreeRanking);
+?>
 ```
 
 ---
@@ -362,7 +410,25 @@ Africa
 **Solución**
 
 ```php
+<?php
+function writeSongs(String $filename, array $songs): bool {
+    $file = fopen($filename,"w");
 
+    foreach ($songs as $song) {
+        fwrite($file, "$song\n");
+    }
+
+    return fclose($file);
+}
+
+$songs = ["Ma Meilleure Ennemie", "To Ashes and Blood", "Come Play", "Renagede", "Sucker", "Remember Me"];
+$filename = "files/songs.txt";
+writeSongs($filename, $songs);
+
+$line = file($filename);
+$randomIndex = array_rand($line);
+echo $line[$randomIndex];
+?>
 ```
 
 ---
@@ -386,8 +452,8 @@ Me abdujeron los marcianos.
 <?php
 $filename = "files/excuses.txt";
 $line = file($filename);
-$randomLine = array_rand($line);
-echo $line[$randomLine];
+$randomIndex = array_rand($line);
+echo $line[$randomIndex];
 ?>
 ```
 
@@ -409,7 +475,25 @@ Yo no sudo, compilo.
 **Solución**
 
 ```php
+// not completed
 
+<?php
+function getLines(String $filename): bool {
+    if (!$file = fopen($filename, "r")) {
+        return false;
+    }
+
+    $line = fgets($file);
+    $counter = 1;
+    if ($line !== false) {
+        echo $line;
+    }
+    return fclose($file);
+}
+
+$filename = "files/jokes.txt";
+getLines($filename)
+?>
 ```
 
 ---
@@ -458,7 +542,17 @@ Lobo
 **Solución**
 
 ```php
+<?php
+function getRandomWord(String $filename): String {
+    $words = file($filename);
+    $randomIndex = array_rand($words);
+    return trim($words[$randomIndex]);
+}
 
+$adjective = getRandomWord("files/adjectives.txt");
+$animal = getRandomWord("files/animals.txt");
+echo "$adjective $animal"
+?>
 ```
 
 ---
@@ -480,7 +574,27 @@ pasta
 **Solución**
 
 ```php
+<?php
+function addFood(String $filename): bool  {
+    $file = fopen($filename,"a");
+    $foods = readline("Insert your favorite food: ");
+    fwrite($file, "$foods\n");
+    return fclose( $file);
+}
 
+function countValues(String $filename): array {
+    $values = array_count_values(file($filename));
+    arsort($values);
+    return $values;
+}
+
+$filename = "files/foods.txt";
+addFood($filename);
+
+foreach (countValues($filename) as $food => $ranking) {
+    echo trim($food) . ": $ranking\n";
+}
+?>
 ```
 
 ---
