@@ -1,4 +1,4 @@
-# Tarea 04 - Uso de elementos funciones y archivos en php 2
+# Tarea 04 - Uso de elementos, bucles, funciones, y archivos en php
 
 <div align=center>
     <img src="../../../../extras/vinyl.gif" alt="vinyl" width="80%">
