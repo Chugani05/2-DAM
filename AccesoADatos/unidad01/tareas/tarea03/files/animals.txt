@@ -1,6 +1,8 @@
-Tiger
-Eagle
-Wolf
-Turtle
-Butterfly
-Giraffe
+tigre
+águila
+lobo
+tortuga
+mariposa
+jirafa
+dragón
+elefante

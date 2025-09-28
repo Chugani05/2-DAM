@@ -5,11 +5,14 @@ arepa
 tortilla de papas
 sushi
 pasta
+tacos
+ramen
 arepa
 tortilla de papas
 empanada
 arroz frito
 butter chicken
+helado
 naan
 pizza
 butter chicken
