@@ -1,8 +1,7 @@
-
 # Retos de cifrado
 
 <div align="center">
-    <img src="../../../../extras/vinyl.gifgif" alt="vinyl" width="80%">
+    <img src="../../../../extras/vinyl.gif" alt="vinyl" width="80%">
 </div>
 
 ## Contenidos
@@ -39,7 +38,11 @@ String decodeAscii(String code) {
 }
 
 void main() {
-  print(decodeAscii("82 118 102 33 109 98 33 103 118 102 115 123 98 33 117 102 33 98 100 112 110 113 98 242 102"));
+  String secretMessage = "82 118 102 33 109 98 33 103 118 102 115 123 98 33 117 102 33 98 100 112 110 113 98 242 102";
+
+  String originalMessage = decodeAscii(secretMessage);
+
+  print("Decoded message: $originalMessage");
 }
 ```
 
@@ -54,7 +57,7 @@ Luego responde a la siguiente pregunta:
 **¿Cuál es el mensaje original?**
 
 ```text
-
+Wingardium Leviosa
 ```
 
 Pistas:
@@ -66,7 +69,18 @@ Pistas:
 Mensaje secreto: `Zlqjduglxp#Ohylrvd`
 
 ```dart
+String decodeCesar(String text, int shift) {
+  List<int> decoded = text.codeUnits.map((c) => c - shift).toList();
+  return String.fromCharCodes(decoded);
+}
 
+void main() {
+  String secretMessage = "Zlqjduglxp#Ohylrvd";
+
+  String originalMessage = decodeCesar(secretMessage, 3);
+
+  print("Decoded message: $originalMessage");
+}
 ```
 
 ---
@@ -80,7 +94,7 @@ Luego responde a la siguiente pregunta:
 **¿Cuál es el mensaje original?**
 
 ```text
-
+TOC TOC TOC, PENNY
 ```
 
 Pistas:
@@ -99,5 +113,45 @@ Mensaje secreto: `- --- -.-. / - --- -.-. / - --- -.-. --..-- / .--. . -. -. -.-
 Si necesitas ayuda con los códigos Dart, puedo asistirte en crear los ejemplos específicos.
 
 ```dart
+void main() {
+  String secretMessage = "- --- -.-. / - --- -.-. / - --- -.-. --..-- / .--. . -. -. -.--";
 
+  Map<String, String> morseDict = {
+    ".-": "A",
+    "-...": "B",
+    "-.-.": "C",
+    "-..": "D",
+    ".": "E",
+    "..-.": "F",
+    "--.": "G",
+    "....": "H",
+    "..": "I",
+    ".---": "J",
+    "-.-": "K",
+    ".-..": "L",
+    "--": "M",
+    "-.": "N",
+    "---": "O",
+    ".--.": "P",
+    "--.-": "Q",
+    ".-.": "R",
+    "...": "S",
+    "-": "T",
+    "..-": "U",
+    "...-": "V",
+    ".--": "W",
+    "-..-": "X",
+    "-.--": "Y",
+    "--..": "Z",
+    "--..--": ",",
+    "/": " "
+  };
+
+  String originalMessage = secretMessage
+      .split(" ")
+      .map((symbol) => morseDict[symbol] ?? "")
+      .join();
+
+  print("Decoded message: $originalMessage");
+}
 ```
