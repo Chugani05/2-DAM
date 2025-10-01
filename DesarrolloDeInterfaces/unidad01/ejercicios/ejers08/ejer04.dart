@@ -10,5 +10,11 @@ void main() {
     abrirArchivo();
   } 
   // TODO: Captura el error
+  catch (e) {
+    print("Error: $e");
+  } 
   // TODO: Añade un bloque finally que muestre "📕 Archivo cerrado"
+  finally {
+    print("📕 Archivo cerrado");
+  }
 }

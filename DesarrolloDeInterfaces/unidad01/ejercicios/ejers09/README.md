@@ -22,7 +22,26 @@ Crea una función `toIntSeguro(String valor)` que:
 - En `main`, prueba con `["123", "abc", "45"]` y atrápalo con `try/catch`.
 
 ```dart
+int toIntSeguro(String valor) {
+  try {
+    return int.parse(valor);
+  } catch (e) {
+    throw FormatException("Valor inválido: $valor");
+  }
+}
 
+void main() {
+  List<String> valores = ["123", "abc", "45"];
+
+  for (var valor in valores) {
+    try {
+      int numero = toIntSeguro(valor);
+      print("Conversión exitosa: $valor -> $numero");
+    } on FormatException catch (e) {
+      print("Error: ${e.message}");
+    }
+  }
+}
 ```
 
 ---
@@ -38,7 +57,36 @@ Crea una función `sumarLista(List<dynamic> datos)` que:
 Ejemplo de entrada: `[10, 20, "hola", 5]`.
 
 ```dart
+class ElementoNoEnteroException implements Exception {
+  final dynamic elemento;
+  ElementoNoEnteroException(this.elemento);
 
+  @override
+  String toString() => 'Elemento no entero: $elemento';
+}
+
+int sumarLista(List<dynamic> datos) {
+  int suma = 0;
+  for (var elemento in datos) {
+    if (elemento is int) {
+      suma += elemento;
+    } else {
+      throw ElementoNoEnteroException(elemento);
+    }
+  }
+  return suma;
+}
+
+void main() {
+  List<dynamic> datos = [10, 20, "hola", 5];
+
+  try {
+    int resultado = sumarLista(datos);
+    print("Suma total: $resultado");
+  } on ElementoNoEnteroException catch (e) {
+    print("Error: $e");
+  }
+}
 ```
 
 ---
@@ -52,7 +100,27 @@ Crea una función `multiplicar(int? a, int? b)` que:
 - Maneja ambos casos en `main` con bloques `on ArgumentError` y `catch`.
 
 ```dart
+int multiplicar(int? a, int? b) {
+  if (a == null || b == null) {
+    throw ArgumentError("Los argumentos no pueden ser nulos");
+  }
+  if (a < 0 || b < 0) {
+    throw Exception("Los números no pueden ser negativos");
+  }
+  return a * b;
+}
 
+void main() {
+  try {
+    print(multiplicar(5, 3));
+    print(multiplicar(null, 2));
+    print(multiplicar(4, -2));
+  } on ArgumentError catch (e) {
+    print("ArgumentError: ${e.message}");
+  } catch (e) {
+    print("Error: $e");
+  }
+}
 ```
 
 ---
@@ -67,7 +135,41 @@ Crea una función `conectar()` que:
 - Maneja el error en `main`.
 
 ```dart
+import 'dart:math';
 
+Future<void> conectar() async {
+  final random = Random();
+  if (random.nextBool()) {
+    throw Exception("Fallo de red");
+  }
+}
+
+Future<void> intentarConectar() async {
+  int intentos = 0;
+  const maxIntentos = 3;
+
+  while (intentos < maxIntentos) {
+    try {
+      await conectar();
+      print("Conexión exitosa");
+      return;
+    } catch (e) {
+      intentos++;
+      print("Intento ${intentos}: Error - $e");
+      if (intentos >= maxIntentos) {
+        throw Exception("Conexión fallida tras $intentos intentos");
+      }
+    }
+  }
+}
+
+void main() async {
+  try {
+    await intentarConectar();
+  } catch (e) {
+    print("Error final: $e");
+  }
+}
 ```
 
 ---
@@ -81,5 +183,19 @@ Crea una función `Future<String> cargarArchivo(String nombre)` que:
 - En `main`, llama a `cargarArchivo("datos.txt")` y maneja el error con `.catchError()` en lugar de `try/catch`.
 
 ```dart
+Future<String> cargarArchivo(String nombre) {
+  if (nombre == "config.txt") {
+    return Future.value("Archivo cargado");
+  } else {
+    return Future.error("Archivo no encontrado");
+  }
+}
 
+void main() {
+  cargarArchivo("datos.txt").then((mensaje) {
+    print(mensaje);
+  }).catchError((e) {
+    print("Error: $e");
+  });
+}
 ```

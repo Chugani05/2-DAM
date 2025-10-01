@@ -6,4 +6,7 @@ void main() {
     print(numero);
   } 
   // TODO: Usa on FormatException y muestra un mensaje claro
+  on FormatException catch (e) {
+    print("Error: formato inválido");
+  }
 }
