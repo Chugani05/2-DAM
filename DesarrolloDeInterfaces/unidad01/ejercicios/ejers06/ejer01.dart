@@ -1,3 +1,5 @@
+// Cifrado ASCII Shift (+1)
+
 String decodeAscii(String code) {
   List<String> parts = code.split(' ');
   String result = parts.map((n) => String.fromCharCode(int.parse(n) - 1)).join('');

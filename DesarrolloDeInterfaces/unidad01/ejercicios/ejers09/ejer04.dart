@@ -1,0 +1,2 @@
+// Reintentos en conexión simulada
+
