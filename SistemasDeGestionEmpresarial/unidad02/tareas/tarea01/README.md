@@ -1,4 +1,4 @@
-# Tarea 02 - Comparativa de modalidades de instalación de un ERP
+# Tarea 01 - Comparativa de modalidades de instalación de un ERP
 
 <div align=center>
     <img src="../../../../extras/vinyl.gif" alt="vinyl" width="80%">
