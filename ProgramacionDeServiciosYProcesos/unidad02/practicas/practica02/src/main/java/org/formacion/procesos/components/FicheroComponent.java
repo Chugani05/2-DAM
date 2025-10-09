@@ -1,6 +1,7 @@
 package org.formacion.procesos.components;
 
-import org.formacion.procesos.repository.IFicheroRepository;
+import org.formacion.procesos.components.interfaces.IFicheroComponent;
+import org.formacion.procesos.repository.interfaces.IAlmacenamientoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -10,11 +11,11 @@ public class FicheroComponent implements IFicheroComponent {
 
     @Autowired
     @Qualifier("ficheroRepository")
-    IFicheroRepository ficheroRepository;
+    IAlmacenamientoRepository ficheroRepository;
 
     @Autowired
     @Qualifier("baseDatosRepository")
-    IFicheroRepository bbddRepository;
+    IAlmacenamientoRepository bbddRepository;
 
     @Override
     public String mensaje() {
