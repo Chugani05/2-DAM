@@ -1,6 +1,6 @@
 package org.formacion.procesos;
 
-import org.formacion.procesos.servicios.RunnerService;
+import org.formacion.procesos.controllers.RunnerController;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,7 +25,7 @@ public class ProcesosServiciosApplication {
     }
      */    
     @Bean
-    CommandLineRunner demo(RunnerService procesos) {
+    CommandLineRunner demo(RunnerController procesos) {
         return args -> {
             System.out.println("Iniciando proceso al arrancar la aplicación...");
 
