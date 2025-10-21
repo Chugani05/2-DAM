@@ -1,20 +1,34 @@
 package org.formacion.procesos.services.abstracts;
 
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.formacion.procesos.domain.ProcessType;
 import org.formacion.procesos.repositories.interfaces.CrudInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class ComandoServiceAbstract {
-    String comando;
-    List<String> parametros;
-    ProcessType tipo;
+    private String comando;
+    private ProcessType tipo;
+    
+    private String regExp;
 
 
     @Autowired
     CrudInterface fileRepository;
     
+
+
+    public String getRegExp() {
+        return regExp;
+    }
+
+
+
+    public void setRegExp(String regExp) {
+        this.regExp = regExp;
+    }
+
 
 
     public String getComando() {
@@ -25,18 +39,6 @@ public abstract class ComandoServiceAbstract {
 
     public void setComando(String comando) {
         this.comando = comando;
-    }
-
-
-
-    public List<String> getParametros() {
-        return parametros;
-    }
-
-
-
-    public void setParametros(List<String> parametros) {
-        this.parametros = parametros;
     }
 
 
@@ -57,7 +59,7 @@ public abstract class ComandoServiceAbstract {
 
 
     public void procesarLinea(String linea) {
-        String[] arrayComando = linea.split(" ");
+        String[] arrayComando = linea.split("\s*");
         this.setComando(arrayComando[0]);
         System.out.println("Comando:"+this.getComando());
         if (!validar(arrayComando)) {
@@ -65,7 +67,6 @@ public abstract class ComandoServiceAbstract {
         }
 
         Process proceso;
-        // linea = ps aux | grep java 
         try {
             proceso = new ProcessBuilder("sh", "-c", linea +" > mis_procesos.txt")
             .start();
@@ -73,7 +74,6 @@ public abstract class ComandoServiceAbstract {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        imprimeMensaje();    
     }
 
 
@@ -88,12 +88,21 @@ public abstract class ComandoServiceAbstract {
     }
 
 
-    
-    public abstract void imprimeMensaje();
 
+    public boolean validar(String[] arrayComando) {
+        if (!validarComando()) {
+            return false;
+        }
+        String parametro = arrayComando[1];
 
-
-    public abstract boolean validar(String[] arrayComando);
+        Pattern pattern = Pattern.compile(regExp);
+        Matcher matcher = pattern.matcher(parametro);
+        if (!matcher.find()) {
+            System.out.println("No cumple");
+            return false;
+        }
+        return true;
+    }
 
 
 
