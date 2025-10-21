@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.docencia.files.model.Note;
 
-public interface IFileNoteRepository {
+public interface INoteRepository {
     public boolean exists(String id);
     public Note findById(String id);
     public List<Note> findAll();

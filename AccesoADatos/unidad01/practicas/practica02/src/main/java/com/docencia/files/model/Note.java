@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 
 /**
  * Clase Note que almacena informacion.
- * @author JesusLugo2002
+ * @author Chugani05
  */
 public class Note {
     

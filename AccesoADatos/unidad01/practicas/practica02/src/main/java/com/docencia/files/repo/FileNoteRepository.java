@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import com.docencia.files.model.Note;
 
-public class FileNoteRepository implements IFileNoteRepository {
+public class FileNoteRepository implements INoteRepository {
 
     private String filePath;
     
