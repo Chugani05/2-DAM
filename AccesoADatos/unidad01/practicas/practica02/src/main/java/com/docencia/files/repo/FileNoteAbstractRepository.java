@@ -7,14 +7,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.docencia.files.model.Note;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-
 public class FileNoteAbstractRepository implements INoteRepository {
     
     private String nameFile;
@@ -25,11 +24,11 @@ public class FileNoteAbstractRepository implements INoteRepository {
 
     public FileNoteAbstractRepository(String nameFile, ObjectMapper mapper) {
         this.nameFile = nameFile;
-        path = verifyFile();
+        this.path = verifyFile();
         this.mapper = mapper;
     }
 
-/**
+    /**
      * Si existe y no es un directorio
      * Si no existe lo creo
      * 
@@ -57,11 +56,10 @@ public class FileNoteAbstractRepository implements INoteRepository {
     public List<Note> findAll() {
         lock.readLock().lock();
         try {
-            
-        } catch (Exception e) {
-            // TODO: handle exception
+            return Collections.unmodifiableList(readAllInternal());
+        } finally {
+            lock.readLock().unlock();
         }
-        return null;
     }
 
     @Override
@@ -77,13 +75,12 @@ public class FileNoteAbstractRepository implements INoteRepository {
     }
 
     private List<Note> readAllInternal() {
-        XmlMapper xmlMapper = new XmlMapper();
         try {
             if (!Files.exists(path) || Files.size(path) == 0) return new ArrayList<>();
-            Note[] arrayNotes = xmlMapper.readValue(Files.readAllBytes(path), Note[].class);
+            Note[] arrayNotes = mapper.readValue(Files.readAllBytes(path), Note[].class);
             return new ArrayList<>(Arrays.asList(arrayNotes));
         } catch (Exception e) {
-            throw new RuntimeException("Eror reading JSON", e);
+            throw new RuntimeException("Error reading File", e);
         }
     }
 }
