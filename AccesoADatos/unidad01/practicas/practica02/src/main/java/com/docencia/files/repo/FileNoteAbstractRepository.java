@@ -1,36 +1,35 @@
 package com.docencia.files.repo;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.docencia.files.model.Note;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-public class FileNoteRepository implements INoteRepository {
-
-    private String filePath;
+public class FileNoteAbstractRepository implements INoteRepository {
+    
+    private String nameFile;
     private Path path;
-    private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
-    public FileNoteRepository() {
-        this.filePath = "note-repository.txt";
-        try {
-            path = verifyFile();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+    ObjectMapper mapper;
+
+    public FileNoteAbstractRepository(String nameFile, ObjectMapper mapper) {
+        this.nameFile = nameFile;
+        path = verifyFile();
+        this.mapper = mapper;
     }
-    /**
+
+/**
      * Si existe y no es un directorio
      * Si no existe lo creo
      * 
@@ -38,7 +37,7 @@ public class FileNoteRepository implements INoteRepository {
      */
     private Path verifyFile()  {
         URL resourceUrl;
-        resourceUrl = getClass().getClassLoader().getResource(filePath);
+        resourceUrl = getClass().getClassLoader().getResource(nameFile);
         return Paths.get(resourceUrl.getPath());
     }
 
@@ -87,5 +86,4 @@ public class FileNoteRepository implements INoteRepository {
             throw new RuntimeException("Eror reading JSON", e);
         }
     }
-    
 }
