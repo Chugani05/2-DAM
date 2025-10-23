@@ -16,6 +16,15 @@ public abstract class ComandoServiceAbstract {
 
     @Autowired
     CrudInterface fileRepository;
+
+
+    public CrudInterface getFileRepository() {
+        return fileRepository
+    }
+
+    public void setFileRepository(CrudInterface fileRepository) {
+        this.fileRepository
+    }
     
 
 
@@ -31,14 +40,14 @@ public abstract class ComandoServiceAbstract {
 
 
 
-    public String getComando() {
-        return comando;
+    public void setComando(String comando) {
+        this.comando = comando;
     }
 
 
 
-    public void setComando(String comando) {
-        this.comando = comando;
+    public String getComando() {
+        return comando;
     }
 
 
