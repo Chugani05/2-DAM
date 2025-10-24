@@ -5,23 +5,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.docencia.files.model.Note;
-import com.docencia.files.service.XmlServiceNote;
+import com.docencia.files.service.JsonServiceNote;
 
-class XmlServiceNoteTest {
+class JsonServiceNoteTest {
 
-    XmlServiceNote xmlServiceNote;
+    JsonServiceNote jsonServiceNote;
     Note note;
 
     @BeforeEach
     void beforeEach() {
-        xmlServiceNote = new XmlServiceNote();
+        jsonServiceNote = new JsonServiceNote();
         note = new Note("1", "Titulo", "Contenido");
     }
 
     @Test
     void serializeNote() {
-        String noteStr = xmlServiceNote.noteToString(note);
-        Note noteTest = xmlServiceNote.stringToNote(noteStr);
+        String noteStr = jsonServiceNote.noteToString(note);
+        Note noteTest = jsonServiceNote.stringToNote(noteStr);
         Assertions.assertEquals(note, noteTest, "The objects need to be equals!");
     }
 }

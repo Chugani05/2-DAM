@@ -25,7 +25,23 @@ public class Note {
      * Default constructor
      */
     public Note() {}
-     
+
+    /**
+     * 
+     * 
+     * @param id
+     */
+    public Note(String id) {
+        this.id = id;
+    }
+    
+    /**
+     * Constructor con parametros de la clase
+     * 
+     * @param id
+     * @param title
+     * @param content
+     */
     public Note(String id, String title, String content) {
         this.id = id;
         this.title = title;
