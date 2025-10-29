@@ -116,15 +116,42 @@ class MyApp extends StatelessWidget {
       )
     );
 
+    final mainImage = Image.asset(
+      'assets/images/pavlova.jpg',
+      fit: BoxFit.cover,
+    );
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Strawberry Pavlova Recipe'),
           centerTitle: true,
         ),
-        body: Column(children: [
-          leftColumn
-        ],),
+        body: Center(
+          child: Container(
+            margin: const EdgeInsets.fromLTRB(0, 40, 0, 30),
+            height: 600,
+            child: Card(
+              elevation: 8,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 440,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: leftColumn,
+                    ),
+                  ),
+                  Expanded(child: mainImage),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );                                                                                                                                        
   }
