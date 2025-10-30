@@ -4,13 +4,27 @@ import java.util.Scanner;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
+
+import pgv.tarea02.proc_cli_application.services.impl.LsofServiceImpl;
+import pgv.tarea02.proc_cli_application.services.impl.PsHeadServiceImpl;
+import pgv.tarea02.proc_cli_application.services.impl.TopServiceImpl;
 
 @Controller
 public class CliController implements CommandLineRunner{
 
     private static Logger logger = LoggerFactory.getLogger(CliController.class);
+
+    @Autowired
+    LsofServiceImpl lsofService;
+
+    @Autowired
+    PsHeadServiceImpl psHeadService;
+
+    @Autowired
+    TopServiceImpl topService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -25,14 +39,11 @@ public class CliController implements CommandLineRunner{
         scanner.close();
         
         if (command.startsWith("ps")) {
-            // PsHeadService.java
-            logger.info("Executing ps service");
+            psHeadService.processCommand(command);
         } else if (command.startsWith("lsof")) {
-            // LsofService.java
-            logger.info("Executing lsof service");
+            lsofService.processCommand(command);
         } else if (command.startsWith("top")) {
-            // TopService.java
-            logger.info("Executing top service");
+            topService.processCommand(command);
         } else {
             logger.info("Undefined command");
         }
