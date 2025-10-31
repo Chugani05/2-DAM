@@ -1,0 +1,13 @@
+com/docencia/repo/file/FileNoteXmlRepository.class
+com/docencia/service/XmlServiceNote.class
+com/docencia/repo/file/FileNoteJsonRepository.class
+com/docencia/repo/INoteRepository.class
+com/docencia/repo/file/FileNoteAbstractRepository.class
+com/docencia/repo/file/FileNoteRepository.class
+com/docencia/repo/jpa/ISqliteNoteRepository.class
+com/docencia/repo/jpa/NoteJpaRepository.class
+com/docencia/model/Note.class
+com/docencia/service/ServiceNoteAbstract.class
+com/docencia/service/IServiceNote.class
+com/docencia/Main.class
+com/docencia/service/JsonServiceNote.class

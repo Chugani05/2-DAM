@@ -9,14 +9,14 @@ import jakarta.validation.constraints.Size;
 import java.util.Objects;
 
 /**
- * Clase note que almacena informacion
- * @author jpexposito
+ * Note class that stores information
+ * @author chugani05
  * @version 1.0.0
  */
 @Entity
 @Table(name = "notes")
 public class Note {
-    
+
     @Id
     @Column(name = "id", length = 64)
     @NotBlank
@@ -42,10 +42,10 @@ public class Note {
     }
 
     /**
-     * Constructor con parametros de la clase
-     * @param id Identificador de la nota
-     * @param titulo Titulo de la nota
-     * @param content Contenido de la nota
+     * Constructor with class parameters
+     * @param id Note identifier
+     * @param titulo Title of the note
+     * @param content Note content
      */
     public Note(String id, String titulo, String content) {
         this.id = id;

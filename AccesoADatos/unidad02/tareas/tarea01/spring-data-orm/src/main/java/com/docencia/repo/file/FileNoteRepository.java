@@ -29,8 +29,8 @@ public class FileNoteRepository extends FileNoteAbstractRepository {
     }
 
     /**
-     * Si existe y no es un directorio
-     * Si no existe lo creo
+     * If it exists and is not a directory
+    * If it doesn't exist, I create it
      * 
      * @throws IOException
      */
