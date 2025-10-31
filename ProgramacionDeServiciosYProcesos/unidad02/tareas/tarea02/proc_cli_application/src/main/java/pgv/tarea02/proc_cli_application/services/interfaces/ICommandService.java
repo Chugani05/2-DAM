@@ -11,5 +11,5 @@ public interface ICommandService {
     public boolean executeCommand();
 
 
-    public void printOutput();
+    public void printOutput(Process process);
 }

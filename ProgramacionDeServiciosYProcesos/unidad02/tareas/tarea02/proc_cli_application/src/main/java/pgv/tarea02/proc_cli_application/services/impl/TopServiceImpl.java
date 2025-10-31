@@ -10,6 +10,6 @@ public class TopServiceImpl extends CommandServiceAbstract{
 
     public TopServiceImpl() {
         setType(Job.TOP);
-        setRegex("^(-n1b)$");
+        setRegex("^(-n\\s*1\\s+-b)$");
     }
 }

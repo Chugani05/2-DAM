@@ -1,5 +1,8 @@
 package pgv.tarea02.proc_cli_application.services.abstracts;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,7 +16,6 @@ import pgv.tarea02.proc_cli_application.services.interfaces.ICommandService;
 public abstract class CommandServiceAbstract implements ICommandService {
 
     private static Logger logger = LoggerFactory.getLogger(CommandServiceAbstract.class);
-
 
     private String command;
     private Job type;
@@ -51,7 +53,8 @@ public abstract class CommandServiceAbstract implements ICommandService {
             logger.error("Invalid command");
             return;
         }
-        logger.info("Executing " + getType() + " service: " + command);
+        this.setCommand(command);
+        this.executeCommand();
     }
 
     public boolean validate(String command) {
@@ -70,12 +73,30 @@ public abstract class CommandServiceAbstract implements ICommandService {
     }
 
     public boolean executeCommand() {
-        // TODO Auto-generated method stub
-        return false;
+        ProcessBuilder processBuilder = new ProcessBuilder("sh", "-c", this.getCommand());
+        processBuilder.redirectErrorStream(false);
+        try {
+            Process process = processBuilder.start();
+            logger.info("Executing " + getType() + " service: " + command);
+            printOutput(process);
+        } catch (Exception e) {
+            logger.error("Something happend while executing process!!", e);
+            return false;
+        }
+        return true;
     }
 
-    public void printOutput() {
-        // TODO Auto-generated method stub
-        
+    public void printOutput(Process process) {
+        try (var bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+            bufferedReader.lines().forEach(line -> System.out.println("[OUT] " + line));
+        } catch (IOException e) {
+            logger.error("Something happend while printing standard output!!", e);
+        }
+
+        try (var bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()))) {
+            bufferedReader.lines().forEach(line -> System.out.println("[ERR] " + line));
+        } catch (IOException e) {
+            logger.error("Something happend while printing error output!!", e);
+        }
     }
 }

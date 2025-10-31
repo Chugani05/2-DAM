@@ -32,20 +32,29 @@ public class CliController implements CommandLineRunner{
         System.out.println("=== Lanzador de Procesos (CLI) Linux ===\r\n" + //
                         "Comandos:\r\n" + //
                         "  lsof -i\r\n" + //
-                        "  top -n1b\r\n" + //
+                        "  top -n1 -b\r\n" + //
                         "  ps aux | head \n");
         String command = scanner.nextLine().toLowerCase().trim();
         logger.info(command);
         scanner.close();
         
+        runService(command);
+    }
+
+    public boolean runService(String command) {
         if (command.startsWith("ps")) {
             psHeadService.processCommand(command);
-        } else if (command.startsWith("lsof")) {
-            lsofService.processCommand(command);
-        } else if (command.startsWith("top")) {
-            topService.processCommand(command);
-        } else {
-            logger.info("Undefined command");
+            return true;
         }
+        if (command.startsWith("lsof")) {
+            lsofService.processCommand(command);
+            return true;
+        }
+        if (command.startsWith("top")) {
+            topService.processCommand(command);
+            return true;
+        } 
+        logger.info("Undefined command");
+        return false;
     }
 }
