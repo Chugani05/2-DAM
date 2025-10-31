@@ -1,5 +1,9 @@
 package pgv.tarea02.proc_cli_application.services.abstracts;
 
+import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +17,7 @@ public abstract class CommandServiceAbstract implements ICommandService {
 
     private String command;
     private Job type;
+    private String regex;
 
     public String getCommand() {
         return command;
@@ -33,6 +38,14 @@ public abstract class CommandServiceAbstract implements ICommandService {
         this.type = type;
     }
 
+    public String getRegex() {
+        return regex;
+    }
+
+    public void setRegex(String regex) {
+        this.regex = regex;
+    }
+
     public void processCommand(String command) {
         if (!validate(command)) {
             logger.error("Invalid command");
@@ -42,12 +55,18 @@ public abstract class CommandServiceAbstract implements ICommandService {
     }
 
     public boolean validate(String command) {
-        String word = command.split("\\s+")[0];
-        if (!word.equals(getType().toLowerCase())) {
+        String[] segments = command.split("\\s+");
+        if (!segments[0].equals(getType().toLowerCase())) {
             return false;
         }
-        if ()
-        return true;
+        String parametersLine = "";
+        if (segments.length > 1) {
+            String[] parameters = Arrays.copyOfRange(segments, 1, segments.length);
+            parametersLine = String.join(" ", parameters);
+        }
+        Pattern pattern = Pattern.compile(getRegex());
+        Matcher matcher = pattern.matcher(parametersLine.trim());
+        return matcher.matches();
     }
 
     public boolean executeCommand() {

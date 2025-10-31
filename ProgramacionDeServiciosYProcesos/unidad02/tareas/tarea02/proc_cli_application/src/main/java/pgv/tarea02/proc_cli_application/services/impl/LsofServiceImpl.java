@@ -9,6 +9,7 @@ import pgv.tarea02.proc_cli_application.services.abstracts.CommandServiceAbstrac
 public class LsofServiceImpl extends CommandServiceAbstract{
 
     public LsofServiceImpl() {
-        setType(Job.LSOF); 
+        setType(Job.LSOF);
+        setRegex("^(-i)?$");
     }
 }

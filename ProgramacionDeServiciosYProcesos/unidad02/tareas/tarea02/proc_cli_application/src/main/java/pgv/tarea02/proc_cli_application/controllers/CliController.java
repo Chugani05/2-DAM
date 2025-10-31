@@ -32,7 +32,7 @@ public class CliController implements CommandLineRunner{
         System.out.println("=== Lanzador de Procesos (CLI) Linux ===\r\n" + //
                         "Comandos:\r\n" + //
                         "  lsof -i\r\n" + //
-                        "  top\r\n" + //
+                        "  top -n1b\r\n" + //
                         "  ps aux | head \n");
         String command = scanner.nextLine().toLowerCase().trim();
         logger.info(command);

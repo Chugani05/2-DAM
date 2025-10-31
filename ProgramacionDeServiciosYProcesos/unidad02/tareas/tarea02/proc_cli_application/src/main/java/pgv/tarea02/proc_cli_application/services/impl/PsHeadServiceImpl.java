@@ -10,5 +10,6 @@ public class PsHeadServiceImpl extends CommandServiceAbstract{
 
     public PsHeadServiceImpl() {
         setType(Job.PS);
+        setRegex("^(aux\\s+\\|\\s+head)$");
     }
 }
