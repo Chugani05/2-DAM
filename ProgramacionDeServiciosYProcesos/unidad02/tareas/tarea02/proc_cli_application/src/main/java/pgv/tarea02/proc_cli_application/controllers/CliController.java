@@ -12,6 +12,11 @@ import pgv.tarea02.proc_cli_application.services.impl.LsofServiceImpl;
 import pgv.tarea02.proc_cli_application.services.impl.PsHeadServiceImpl;
 import pgv.tarea02.proc_cli_application.services.impl.TopServiceImpl;
 
+/**
+ * Class CliController
+ * @author chugani05
+ * Controller responsible for handling user input.
+ */
 @Controller
 public class CliController implements CommandLineRunner{
 
@@ -26,6 +31,9 @@ public class CliController implements CommandLineRunner{
     @Autowired
     TopServiceImpl topService;
 
+    /**
+     * Entry point of the application where the user is shown the available command options and asked to choose one.
+     */
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
@@ -41,6 +49,11 @@ public class CliController implements CommandLineRunner{
         runService(command);
     }
 
+    /**
+     * Receives a command and executes the corresponding service.
+     * @param command Command input by the user.
+     * @return It returns true if command matches, and false otherwise.
+     */
     public boolean runService(String command) {
         if (command.startsWith("ps")) {
             psHeadService.processCommand(command);

@@ -17,6 +17,11 @@ import org.springframework.stereotype.Repository;
 import pgv.tarea02.proc_cli_application.repositories.interfaces.JobRepository;
 import pgv.tarea02.proc_cli_application.services.abstracts.CommandServiceAbstract;
 
+/**
+ * Class FileJobRepository
+ * @author chugani05
+ * Repository in charge of writing logs with the standard and error outputs.
+ */
 @Repository
 public class FileJobRepository implements JobRepository {
 

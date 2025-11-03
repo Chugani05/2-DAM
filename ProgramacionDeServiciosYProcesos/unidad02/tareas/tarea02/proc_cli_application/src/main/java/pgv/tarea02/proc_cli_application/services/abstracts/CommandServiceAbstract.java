@@ -16,6 +16,11 @@ import pgv.tarea02.proc_cli_application.domain.Job;
 import pgv.tarea02.proc_cli_application.repositories.file.FileJobRepository;
 import pgv.tarea02.proc_cli_application.services.interfaces.ICommandService;
 
+/**
+ * Class CommandServiceAbstract
+ * @author chugani05
+ * It's the class that handles the storage and the printing of the results.  
+ */
 public abstract class CommandServiceAbstract implements ICommandService {
 
     private static Logger logger = LoggerFactory.getLogger(CommandServiceAbstract.class);
