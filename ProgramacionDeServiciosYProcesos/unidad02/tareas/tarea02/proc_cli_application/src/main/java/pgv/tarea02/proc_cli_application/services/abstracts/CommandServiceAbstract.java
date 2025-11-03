@@ -24,8 +24,12 @@ public abstract class CommandServiceAbstract implements ICommandService {
     private Job type;
     private String regex;
 
-    @Autowired
     FileJobRepository fileJobRepository;
+    
+    @Autowired
+    public void setFileJobRepository(FileJobRepository fileJobRepository) {
+        this.fileJobRepository = fileJobRepository;
+    }
 
     public String getCommand() {
         return command;

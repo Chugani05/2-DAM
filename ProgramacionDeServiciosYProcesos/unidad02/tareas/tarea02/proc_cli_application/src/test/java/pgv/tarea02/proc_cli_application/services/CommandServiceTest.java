@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import pgv.tarea02.proc_cli_application.domain.Job;
+import pgv.tarea02.proc_cli_application.repositories.file.FileJobRepository;
 import pgv.tarea02.proc_cli_application.services.impl.LsofServiceImpl;
 
 public class CommandServiceTest {
@@ -14,6 +15,7 @@ public class CommandServiceTest {
     @BeforeAll
     static void beforeAll() {
         lsofServiceImpl = new LsofServiceImpl();
+        lsofServiceImpl.setFileJobRepository(new FileJobRepository());
     }
 
     @Test
