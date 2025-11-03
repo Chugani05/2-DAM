@@ -4,13 +4,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import pgv.tarea02.proc_cli_application.domain.Job;
+import pgv.tarea02.proc_cli_application.repositories.file.FileJobRepository;
 import pgv.tarea02.proc_cli_application.services.interfaces.ICommandService;
 
 public abstract class CommandServiceAbstract implements ICommandService {
@@ -20,6 +23,9 @@ public abstract class CommandServiceAbstract implements ICommandService {
     private String command;
     private Job type;
     private String regex;
+
+    @Autowired
+    FileJobRepository fileJobRepository;
 
     public String getCommand() {
         return command;
@@ -87,16 +93,23 @@ public abstract class CommandServiceAbstract implements ICommandService {
     }
 
     public void printOutput(Process process) {
+        List<String> stdOutput = null;
+        List<String> errorOutput = null;
+
         try (var bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
-            bufferedReader.lines().forEach(line -> System.out.println("[OUT] " + line));
+            stdOutput = bufferedReader.lines().map(line -> "[OUT] " + line).toList();
+            stdOutput.forEach(System.out::println);
         } catch (IOException e) {
             logger.error("Something happend while printing standard output!!", e);
         }
 
         try (var bufferedReader = new BufferedReader(new InputStreamReader(process.getErrorStream()))) {
-            bufferedReader.lines().forEach(line -> System.out.println("[ERR] " + line));
+            errorOutput = bufferedReader.lines().map(line -> "[ERR] " + line).toList();
+            errorOutput.forEach(System.out::println);
         } catch (IOException e) {
             logger.error("Something happend while printing error output!!", e);
         }
+
+        fileJobRepository.writeFile(getType().toLowerCase(), stdOutput, errorOutput);
     }
 }

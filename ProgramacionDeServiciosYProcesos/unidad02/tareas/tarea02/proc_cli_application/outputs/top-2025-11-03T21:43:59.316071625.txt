@@ -1,0 +1,67 @@
+[OUT] top - 21:43:59 up  2:41,  1 user,  load average: 1.81, 0.67, 0.31
+[OUT] Tasks:  60 total,   1 running,  59 sleeping,   0 stopped,   0 zombie
+[OUT] %Cpu(s):  0.8 us,  1.5 sy,  0.0 ni, 97.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st 
+[OUT] MiB Mem :   7805.2 total,   1750.8 free,   5276.7 used,    972.7 buff/cache     
+[OUT] MiB Swap:   2048.0 total,   2002.5 free,     45.5 used.   2528.5 avail Mem 
+[OUT] 
+[OUT]     PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+[OUT]   60262 chugani   20   0 4547188  34928  20080 S  36.4   0.4   0:00.04 jcmd
+[OUT]   29392 chugani   20   0   53.1g 891260  62848 S   9.1  11.2   4:29.10 node
+[OUT]       1 root      20   0   21720   9428   6484 S   0.0   0.1   0:01.03 systemd
+[OUT]       2 root      20   0    3072   1792   1664 S   0.0   0.0   0:00.09 init-sy+
+[OUT]       6 root      20   0    3120   2252   1920 S   0.0   0.0   0:02.87 init
+[OUT]      42 root      19  -1   50360   8960   8064 S   0.0   0.1   0:00.45 systemd+
+[OUT]      90 root      20   0   25140   4992   3712 S   0.0   0.1   0:03.18 systemd+
+[OUT]     158 systemd+  20   0   21456   7680   5632 S   0.0   0.1   0:00.15 systemd+
+[OUT]     159 systemd+  20   0   91024   5248   4480 S   0.0   0.1   0:00.41 systemd+
+[OUT]     169 root      20   0    4236   2432   2304 S   0.0   0.0   0:00.02 cron
+[OUT]     170 message+  20   0    9636   4224   3840 S   0.0   0.1   0:00.13 dbus-da+
+[OUT]     177 root      20   0   17964   5376   4480 S   0.0   0.1   0:00.10 systemd+
+[OUT]     185 root      20   0    3160   1920   1792 S   0.0   0.0   0:00.00 agetty
+[OUT]     196 syslog    20   0  222508   4736   3840 S   0.0   0.1   0:00.12 rsyslogd
+[OUT]     201 root      20   0 2173456  18176   6016 S   0.0   0.2   0:16.79 contain+
+[OUT]     203 root      20   0    3116   1792   1664 S   0.0   0.0   0:00.00 agetty
+[OUT]     210 root      20   0  107028  13696   5248 S   0.0   0.2   0:00.14 unatten+
+[OUT]     279 root      20   0 2197588  26812   8320 S   0.0   0.3   0:02.85 dockerd
+[OUT]     567 root      20   0    3080    896    896 S   0.0   0.0   0:00.00 Session+
+[OUT]     568 root      20   0    3096   1152   1024 S   0.0   0.0   0:00.02 Relay(5+
+[OUT]     570 chugani   20   0    6332   3584   3200 S   0.0   0.0   0:00.13 bash
+[OUT]     572 root      20   0    6820   2816   2560 S   0.0   0.0   0:00.01 login
+[OUT]     631 chugani   20   0   20124   6912   5248 S   0.0   0.1   0:00.13 systemd
+[OUT]     632 chugani   20   0   21152   2156   1536 S   0.0   0.0   0:00.00 (sd-pam)
+[OUT]     658 chugani   20   0    6072   4096   2432 S   0.0   0.1   0:00.02 bash
+[OUT]     796 root      20   0    3076   1028    896 S   0.0   0.0   0:00.00 Session+
+[OUT]     797 root      20   0    3092   1032    896 S   0.0   0.0   0:00.01 Relay(7+
+[OUT]     798 chugani   20   0    2800   1536   1536 S   0.0   0.0   0:00.00 sh
+[OUT]     799 chugani   20   0    2800   1664   1664 S   0.0   0.0   0:00.00 sh
+[OUT]     805 chugani   20   0    2800   1664   1664 S   0.0   0.0   0:00.00 sh
+[OUT]     809 chugani   20   0   11.3g 133136  27136 S   0.0   1.7   1:27.04 node
+[OUT]    3939 chugani   20   0 1162044  60792  19712 S   0.0   0.8   0:15.88 node
+[OUT]    4235 chugani   20   0   16.4g   1.3g  16964 S   0.0  17.7   5:19.14 java
+[OUT]   15599 root      20   0    3080    896    896 S   0.0   0.0   0:00.00 Session+
+[OUT]   15601 root      20   0    3096   1024   1024 S   0.0   0.0   0:00.00 Relay(1+
+[OUT]   15604 chugani   20   0    6204   5120   3456 S   0.0   0.1   0:00.04 bash
+[OUT]   28238 root      20   0    3080    896    896 S   0.0   0.0   0:00.00 Session+
+[OUT]   28239 root      20   0    3096    896    896 S   0.0   0.0   0:00.15 Relay(2+
+[OUT]   28240 chugani   20   0    6336   5376   3584 S   0.0   0.1   0:00.48 bash
+[OUT]   29358 root      20   0    3088    896    896 S   0.0   0.0   0:00.00 Session+
+[OUT]   29359 root      20   0    3088   1024   1024 S   0.0   0.0   0:01.78 Relay(2+
+[OUT]   29360 chugani   20   0 1025516  65928  41600 S   0.0   0.8   0:06.27 node
+[OUT]   29367 root      20   0    3088    896    896 S   0.0   0.0   0:00.00 Session+
+[OUT]   29368 root      20   0    3088    896    896 S   0.0   0.0   0:09.86 Relay(2+
+[OUT]   29369 chugani   20   0 1019336  60380  41728 S   0.0   0.8   0:26.75 node
+[OUT]   29375 chugani   20   0 1394508  61600  46208 S   0.0   0.8   0:03.97 node
+[OUT]   29436 root      20   0    3076    896    896 S   0.0   0.0   0:00.00 Session+
+[OUT]   29437 root      20   0    3092   1024   1024 S   0.0   0.0   0:00.01 Relay(2+
+[OUT]   29438 chugani   20   0    2800   1536   1536 S   0.0   0.0   0:00.00 sh
+[OUT]   29439 chugani   20   0    2800   1664   1664 S   0.0   0.0   0:00.01 sh
+[OUT]   29449 chugani   20   0 1012864  50568  42752 S   0.0   0.6   0:00.31 node
+[OUT]   29482 chugani   20   0    2800   1664   1664 S   0.0   0.0   0:00.00 sh
+[OUT]   29620 chugani   20   0   11.0g  72088  45952 S   0.0   0.9   0:01.32 node
+[OUT]   29881 chugani   20   0 9444452   2.0g 158840 S   0.0  26.3  15:22.31 java
+[OUT]   34070 chugani   20   0    6328   5248   3456 S   0.0   0.1   0:00.11 bash
+[OUT]   57164 root      20   0 1756620  12928  10880 S   0.0   0.2   0:00.04 wsl-pro+
+[OUT]   60024 chugani   20   0 5989296 264904  33628 S   0.0   3.3   0:16.27 java
+[OUT]   60126 chugani   20   0 4993400 100136  21032 S   0.0   1.3   0:02.45 java
+[OUT]   60256 chugani   20   0    2804   1536   1536 S   0.0   0.0   0:00.00 sh
+[OUT]   60257 chugani   20   0    9288   5120   3072 R   0.0   0.1   0:00.00 top
