@@ -12,7 +12,7 @@ public interface IRoomRepository extends IEntityRepository{
      * @param id Room ID.
      * @return It returns true if created, and false otherwise.
      */
-    Room findById(int id);
+    Room findById(String id);
 
     /**
      * Retrieves the list of rooms.

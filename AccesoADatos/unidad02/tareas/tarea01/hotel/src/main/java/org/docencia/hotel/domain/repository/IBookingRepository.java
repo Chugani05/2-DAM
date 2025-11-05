@@ -12,7 +12,7 @@ public interface IBookingRepository  extends IEntityRepository{
      * @param id Booking ID.
      * @return It returns true if created, and false otherwise.
      */
-    public Booking findById(int id);
+    public Booking findById(String id);
 
     /**
      * Retrieves the list of bookings.

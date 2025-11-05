@@ -19,7 +19,8 @@ public class Room {
 
     @Id
     @Column(name = "id", nullable = false)
-    private int id;
+    @NotBlank
+    private String id;
 
     @Column(name = "room_number", nullable = false)
     private int roomNumber;
@@ -46,7 +47,7 @@ public class Room {
     public Room() {
     }
 
-    public Room(int id, int roomNumber, @NotBlank String roomType, int pricePerNight, Hotel hotel, List<Room> bookings,
+    public Room(String id, int roomNumber, @NotBlank String roomType, int pricePerNight, Hotel hotel, List<Room> bookings,
             Room room) {
         this.id = id;
         this.roomNumber = roomNumber;
@@ -58,11 +59,11 @@ public class Room {
     }
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

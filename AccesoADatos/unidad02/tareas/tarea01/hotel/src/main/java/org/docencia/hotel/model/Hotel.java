@@ -16,7 +16,8 @@ public class Hotel {
 
     @Id
     @Column(name = "id", nullable = false)
-    private int id;
+    @NotBlank
+    private String id;
 
     @Column(name = "name", nullable = false)
     @NotBlank
@@ -33,7 +34,7 @@ public class Hotel {
     public Hotel() {
     }
 
-    public Hotel(int id, @NotBlank String name, @NotBlank String address, List<Hotel> rooms) {
+    public Hotel(String id, @NotBlank String name, @NotBlank String address, List<Hotel> rooms) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -41,11 +42,11 @@ public class Hotel {
     }
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

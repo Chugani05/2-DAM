@@ -6,12 +6,12 @@ public interface IEntityRepository {
      * @param id ID.
      * @return It returns true if created, and false otherwise.
      */
-    public boolean exists(int id);
+    public boolean exists(String id);
 
     /**
      * Delete by ID.
      * @param id ID.
      * @return It returns true if created, and false otherwise.
      */
-    public boolean delete(int id);
+    public boolean delete(String id);
 }

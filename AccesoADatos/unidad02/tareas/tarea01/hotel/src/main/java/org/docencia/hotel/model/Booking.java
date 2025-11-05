@@ -14,7 +14,8 @@ public class Booking {
 
     @Id
     @Column(name = "id", nullable = false)
-    private int id;
+    @NotBlank
+    private String id;
 
     @Column(name = "check_in", nullable = false)
     @NotBlank
@@ -32,7 +33,7 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(int id, @NotBlank String checkIn, @NotBlank String checkOut, Room room) {
+    public Booking(String id, @NotBlank String checkIn, @NotBlank String checkOut, Room room) {
         this.id = id;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -40,11 +41,11 @@ public class Booking {
     }
 
     
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -11,7 +11,7 @@ public interface IGuestRepository extends IEntityRepository{
      * @param id Guest ID.
      * @return It returns true if created, and false otherwise.
      */
-    public Guest findById(int id);
+    public Guest findById(String id);
 
     /**
      * Retrieves the list of guests.

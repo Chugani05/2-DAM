@@ -12,7 +12,8 @@ public class Guest {
 
     @Id
     @Column(name = "id", nullable = false)
-    private int id;
+    @NotBlank
+    private String id;
 
     @Column(name = "full_name", nullable = false)
     @NotBlank
@@ -30,7 +31,7 @@ public class Guest {
     public Guest() {
     }
 
-    public Guest(int id, @NotBlank String fullName, @NotBlank String email, @NotBlank String phoneNumber) {
+    public Guest(String id, @NotBlank String fullName, @NotBlank String email, @NotBlank String phoneNumber) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
@@ -38,11 +39,11 @@ public class Guest {
     }
 
     
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

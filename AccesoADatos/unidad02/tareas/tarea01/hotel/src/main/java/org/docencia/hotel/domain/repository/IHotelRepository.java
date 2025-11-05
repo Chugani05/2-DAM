@@ -11,7 +11,7 @@ public interface IHotelRepository extends IEntityRepository{
      * @param id Hotel ID.
      * @return It returns true if created, and false otherwise.
      */
-    Hotel findById(int id);
+    Hotel findById(String id);
 
     /**
      * Retrieves the list of hotel.
