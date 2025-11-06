@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.docencia.hotel.persistence.jpa.interfaces.CrudInterface;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import jakarta.transaction.Transactional;
 
+@Repository
 public abstract class JpaAbstractRepository<TYPE, ID> implements CrudInterface<TYPE, ID> {
 
     private JpaRepository<TYPE, ID> repository;

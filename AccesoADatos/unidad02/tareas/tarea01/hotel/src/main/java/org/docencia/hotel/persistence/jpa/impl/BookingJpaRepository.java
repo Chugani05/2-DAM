@@ -1,49 +1,25 @@
 package org.docencia.hotel.persistence.jpa.impl;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 
 import org.docencia.hotel.domain.repository.IBookingRepository;
 import org.docencia.hotel.model.Booking;
 import org.docencia.hotel.model.Room;
+import org.docencia.hotel.persistence.jpa.abstrats.JpaAbstractRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public class BookingJpaRepository implements IBookingRepository{
+@Repository
+public class BookingJpaRepository extends JpaAbstractRepository<Booking, String> implements IBookingRepository {
 
-    @Override
-    public boolean exists(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'exists'");
+    public BookingJpaRepository(JpaRepository<Booking, String> repository) {
+        super(repository);
     }
 
     @Override
-    public boolean delete(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-
-    @Override
-    public Booking findById(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
-    }
-
-    @Override
-    public ArrayList<Booking> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-    }
-
-    @Override
-    public Booking save(Booking Booking) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
-    }
-
-    @Override
-    public ArrayList<Booking> findRoomBookings(Room room, LocalDateTime checkIn, LocalDateTime checkOut) {
+    public List<Booking> findRoomBookings(Room room, LocalDateTime checkIn, LocalDateTime checkOut) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findRoomBookings'");
     }
-
-    
 }

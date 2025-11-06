@@ -1,6 +1,6 @@
 package org.docencia.hotel.domain.repository;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.docencia.hotel.model.Guest;
 
@@ -17,7 +17,7 @@ public interface IGuestRepository extends IEntityRepository{
      * Retrieves the list of guests.
      * @return List of all the guests.
      */
-    public ArrayList<Guest> findAll();
+    public List<Guest> findAll();
 
     /**
      * Creates or updates a guest depending on whether it already exists or not.

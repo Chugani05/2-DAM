@@ -1,47 +1,24 @@
 package org.docencia.hotel.persistence.jpa.impl;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.docencia.hotel.domain.repository.IRoomRepository;
 import org.docencia.hotel.model.Hotel;
 import org.docencia.hotel.model.Room;
+import org.docencia.hotel.persistence.jpa.abstrats.JpaAbstractRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public class RoomJpaRepository implements IRoomRepository{
+@Repository
+public class RoomJpaRepository extends JpaAbstractRepository<Room, String> implements IRoomRepository{
 
-    @Override
-    public boolean exists(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'exists'");
+    public RoomJpaRepository(JpaRepository<Room, String> repository) {
+        super(repository);
     }
 
     @Override
-    public boolean delete(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-
-    @Override
-    public Room findById(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
-    }
-
-    @Override
-    public ArrayList<Room> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-    }
-
-    @Override
-    public Room save(Room Room) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
-    }
-
-    @Override
-    public ArrayList<Room> getRoomsByHotel(Hotel hotel) {
+    public List<Room> getRoomsByHotel(Hotel hotel) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getRoomsByHotel'");
     }
-
 }
