@@ -1,5 +1,44 @@
 package org.docencia.hotel.persistence.jpa.abstrats;
 
-public abstract class JpaAbstractRepository {
+import java.util.List;
 
+import org.docencia.hotel.persistence.jpa.interfaces.CrudInterface;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import jakarta.transaction.Transactional;
+
+public abstract class JpaAbstractRepository<TYPE, ID> implements CrudInterface<TYPE, ID> {
+
+    private JpaRepository<TYPE, ID> repository;
+
+    public JpaAbstractRepository(JpaRepository<TYPE, ID> repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    @Transactional
+    public boolean delete(ID id) {
+        repository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public boolean exists(ID id) {
+        return repository.existsById(id);
+    }
+
+    @Override
+    public List<TYPE> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public TYPE findById(ID id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public TYPE save(TYPE entity) {
+        return repository.save(entity);
+    }
 }
