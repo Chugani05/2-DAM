@@ -24,5 +24,5 @@ public interface IGuestRepository extends IEntityRepository{
      * @param Guest The guest to save/update.
      * @return The saved/updated guest.
      */
-    public Guest save(Guest Guest);
+    public Guest save(Guest guest);
 }
