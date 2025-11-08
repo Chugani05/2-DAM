@@ -9,9 +9,9 @@ import org.docencia.hotel.persistence.jpa.interfaces.IHotelJpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class HotelJpaRepositor extends JpaAbstractRepository<Hotel, String> implements IHotelRepository{
+public class HotelJpaRepository extends JpaAbstractRepository<Hotel, String> implements IHotelRepository{
 
-    public HotelJpaRepositor(IHotelJpaRepository repository) {
+    public HotelJpaRepository(IHotelJpaRepository repository) {
         super(repository);
     }
 

@@ -11,7 +11,7 @@ import jakarta.transaction.Transactional;
 @Repository
 public abstract class JpaAbstractRepository<TYPE, ID> implements CrudInterface<TYPE, ID> {
 
-    protected JpaRepository<TYPE, ID> repository;
+    public JpaRepository<TYPE, ID> repository;
 
     public JpaAbstractRepository(JpaRepository<TYPE, ID> repository) {
         this.repository = repository;
