@@ -2,18 +2,19 @@ package org.docencia.hotel.persistence.jpa.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import org.docencia.hotel.domain.repository.IBookingRepository;
 import org.docencia.hotel.model.Booking;
 import org.docencia.hotel.model.Room;
 import org.docencia.hotel.persistence.jpa.abstrats.JpaAbstractRepository;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.docencia.hotel.persistence.jpa.interfaces.IBookingJpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class BookingJpaRepository extends JpaAbstractRepository<Booking, String> implements IBookingRepository {
 
-    public BookingJpaRepository(JpaRepository<Booking, String> repository) {
+    public BookingJpaRepository(IBookingJpaRepository repository) {
         super(repository);
     }
 
@@ -21,5 +22,13 @@ public class BookingJpaRepository extends JpaAbstractRepository<Booking, String>
     public List<Booking> findRoomBookings(Room room, LocalDateTime checkIn, LocalDateTime checkOut) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findRoomBookings'");
+    }
+
+    @Override
+    public Booking save(Booking booking) {
+        if (booking.getId() == null) {
+            booking.setId(UUID.randomUUID().toString());
+        }
+        return super.repository.save(booking);
     }
 }

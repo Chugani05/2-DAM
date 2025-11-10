@@ -11,7 +11,7 @@ import jakarta.transaction.Transactional;
 @Repository
 public abstract class JpaAbstractRepository<TYPE, ID> implements CrudInterface<TYPE, ID> {
 
-    private JpaRepository<TYPE, ID> repository;
+    public JpaRepository<TYPE, ID> repository;
 
     public JpaAbstractRepository(JpaRepository<TYPE, ID> repository) {
         this.repository = repository;
@@ -40,7 +40,5 @@ public abstract class JpaAbstractRepository<TYPE, ID> implements CrudInterface<T
     }
 
     @Override
-    public TYPE save(TYPE entity) {
-        return repository.save(entity);
-    }
+    public abstract TYPE save(TYPE entity);
 }

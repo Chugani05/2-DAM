@@ -25,7 +25,7 @@ public interface IRoomRepository extends IEntityRepository{
      * @param Room The room to save/update.
      * @return The saved/updated room.
      */
-    public Room save(Room Room);
+    public Room save(Room room);
 
     /**
      * Retrieves all the rooms of an hotel.

@@ -26,7 +26,7 @@ public interface IBookingRepository  extends IEntityRepository{
      * @param Booking The booking to save/update.
      * @return The saved/updated booking.
      */
-    public Booking save(Booking Booking);
+    public Booking save(Booking booking);
     
     /**
      * obtain all reservations for a specific room within a given date range
