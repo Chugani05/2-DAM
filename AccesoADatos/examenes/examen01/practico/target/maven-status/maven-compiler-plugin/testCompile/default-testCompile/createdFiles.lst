@@ -1,0 +1,4 @@
+com/docencia/objetos/repo/AlumnoRepositoryJpaAdapterTest.class
+com/docencia/objetos/repo/RolJpaRepositoryTest.class
+com/docencia/objetos/repo/RolJsonFileRepositoryTest.class
+com/docencia/objetos/domain/AlumnoTest.class

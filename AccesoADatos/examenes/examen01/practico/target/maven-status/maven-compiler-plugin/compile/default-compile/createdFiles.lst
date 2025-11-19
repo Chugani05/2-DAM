@@ -1,0 +1,13 @@
+com/docencia/objetos/repo/jpa/AlumnoJpaRepository.class
+com/docencia/objetos/domain/Rol.class
+com/docencia/objetos/repo/interfaces/AlumnoRepository.class
+com/docencia/objetos/service/AlumnoService.class
+com/docencia/objetos/domain/Alumno.class
+com/docencia/objetos/repo/jpa/RolJpaRepository.class
+com/docencia/objetos/repo/AlumnoRepositoryJpaAdapter.class
+com/docencia/objetos/config/H2ServerConfig.class
+com/docencia/objetos/repo/jpa/AlumnoEntity.class
+com/docencia/objetos/repo/jpa/RolEntity.class
+com/docencia/objetos/repo/json/RolJsonFileRepository.class
+com/docencia/objetos/repo/interfaces/RolRepository.class
+com/docencia/objetos/DemoApplication.class
