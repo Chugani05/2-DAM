@@ -35,7 +35,7 @@ public class PersonaService implements IPersonaService{
 
     @Override
     public Boolean deleteById(String id) {
-        personaRepository.deleteAllById(id);
+        personaRepository.deleteById(id);
         return true;
     }
 

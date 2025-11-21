@@ -1,3 +1,6 @@
 /home/dam/2-DAM/AccesoADatos/unidad03/tareas/tarea01/crud-mongo/src/main/java/com/docencia/personas/PersonasApplication.java
 /home/dam/2-DAM/AccesoADatos/unidad03/tareas/tarea01/crud-mongo/src/main/java/com/docencia/personas/model/Direccion.java
 /home/dam/2-DAM/AccesoADatos/unidad03/tareas/tarea01/crud-mongo/src/main/java/com/docencia/personas/model/Persona.java
+/home/dam/2-DAM/AccesoADatos/unidad03/tareas/tarea01/crud-mongo/src/main/java/com/docencia/personas/services/implementations/PersonaService.java
+/home/dam/2-DAM/AccesoADatos/unidad03/tareas/tarea01/crud-mongo/src/main/java/com/docencia/personas/services/IPersonaService.java
+/home/dam/2-DAM/AccesoADatos/unidad03/tareas/tarea01/crud-mongo/src/main/java/com/docencia/personas/repository/PersonaRepository.java
