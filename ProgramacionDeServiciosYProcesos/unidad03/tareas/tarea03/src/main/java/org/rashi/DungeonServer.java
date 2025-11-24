@@ -24,6 +24,8 @@ public class DungeonServer {
 
         /**
          * Constructor assigns the player and the target dungeon.
+         * @param playerName Name of the player
+         * @param dungeon Name of the dungeon that the player wants to enter
          */
         public DungeonRequest(String playerName, String dungeon) {
             this.playerName = playerName;
