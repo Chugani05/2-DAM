@@ -12,3 +12,6 @@
 - [Unidad 04 - Implantación de sistemas ERP-CRM en una empresa](./unidad04/README.md)
 - [Unidad 05 - Desarrollo de componentes para un sistema ERP-CRM](./unidad05/README.md)
 - [Unidad 06 - Utilización de herramientas para la creación y mantenimientos de una tienda online](./unidad06/README.md)
+
+## Proyectos
+- [Pierre's General Store Oddo](https://github.com/JVC0-JesusLugo2002-Chugani05/Pierres-General-Store-Oddo.git)
