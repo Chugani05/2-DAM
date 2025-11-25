@@ -8,3 +8,6 @@
 - [Introduccion](./introduccion/README.md)
 - [Unidad 01 - Interfaces gráficas de usuario](./unidad01/README.md)
 - [Unidad 02 - ](./unidad02/README.md)
+
+## Proyectos
+- [My CV](https://github.com/Chugani05/my-cv.git)
