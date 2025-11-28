@@ -34,7 +34,7 @@ public class HorrocruxesSearch {
         }
     }
 
-    public void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
         Thread harrySearch = new Thread(new Search("Harry", "the Forbidden Forest"));
         Thread hermioneSearch = new Thread(new Search("Hermione", "the Restricted Section of the library"));
         Thread ronSearch = new Thread(new Search("Ron", "the Slytherin Dungeons"));
@@ -48,11 +48,11 @@ public class HorrocruxesSearch {
         ronSearch.join();
     }
 
-    public AtomicBoolean getFound() {
+    public static AtomicBoolean getFound() {
         return found;
     }
 
-    public String getWinner() {
+    public static String getWinner() {
         return winner;
     }
 }

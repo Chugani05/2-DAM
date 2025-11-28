@@ -12,13 +12,12 @@ public class HorrocruxesSearchTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
-        HorrocruxesSearch horrocruxesSearch = new HorrocruxesSearch();
-        horrocruxesSearch.main(null);
+        HorrocruxesSearch.main(null);
 
         String output = outContent.toString();
 
-        Assertions.assertTrue(horrocruxesSearch.getFound().get());
-        Assertions.assertTrue(horrocruxesSearch.getWinner() == "Harry" || horrocruxesSearch.getWinner() == "Hermione" || horrocruxesSearch.getWinner() == "Ron" );
+        Assertions.assertTrue(HorrocruxesSearch.getFound().get());
+        Assertions.assertTrue(HorrocruxesSearch.getWinner().equals("Harry") || HorrocruxesSearch.getWinner().equals("Hermione") || HorrocruxesSearch.getWinner().equals("Ron") );
         Assertions.assertTrue(output.contains("found an Horrocrux"));
     }
 }
