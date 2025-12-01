@@ -1,4 +1,4 @@
-package com.docencia.rest.repository;
+package com.docencia.rest.repository.interfaces;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

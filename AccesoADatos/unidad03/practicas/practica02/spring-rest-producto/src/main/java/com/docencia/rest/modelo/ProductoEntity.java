@@ -1,19 +1,18 @@
 package com.docencia.rest.modelo;
 
 import java.math.BigDecimal;
+
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
+/**
+ * relacional
+ */
 @Entity
 @Table(name = "productos")
-public class Producto {
-
+public class ProductoEntity {
+    
     private int id;
 
     @Column(name = "nombre")
@@ -24,7 +23,20 @@ public class Producto {
 
     @Column(name = "stock")
     private int stock;
-    
+
+    public ProductoEntity() {
+    }
+
+    public ProductoEntity(int id) {
+        this.id = id;
+    }
+
+    public ProductoEntity(String nombre, BigDecimal precio, int stock) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
@@ -58,36 +70,10 @@ public class Producto {
     public void setStock(int stock) {
         this.stock = stock;
     }
-    
-    /**
-     * Constructor por defecto de la clase.
-     */
-    public Producto() {
-    }
-    
-    /**
-     * Contructor con el identificador.
-     * @param id Identificador único.
-     */
-    public Producto(int id) {
-        this.id = id;
-    }
-
-    /**
-     * Constructor de la clase con propiedades.
-     * @param nombre
-     * @param precio
-     * @param stock
-     */
-    public Producto(String nombre, BigDecimal precio, int stock) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.stock = stock;
-    }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hashCode(id);
     }
 
     @Override
@@ -98,7 +84,10 @@ public class Producto {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Producto other = (Producto) obj;
-        return Objects.equals(id, other.id);
+        ProductoEntity other = (ProductoEntity) obj;
+        if (id != other.id)
+            return false;
+        return true;
     }
+
 }

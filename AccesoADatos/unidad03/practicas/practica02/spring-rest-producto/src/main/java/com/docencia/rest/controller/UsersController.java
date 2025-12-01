@@ -8,18 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.docencia.rest.exeception.ResourceNotFoundException;
+import com.docencia.rest.exception.ResourceNotFoundException;
 import com.docencia.rest.modelo.User;
 import com.docencia.rest.service.interfaces.UserServiceInterface;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.*;
 import io.swagger.v3.oas.annotations.responses.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
+/**
+ * Class UsersController
+ * Es el controlador que gestina los "end points" relacionados con los usuarios.
+ * 
+ * @author Chugani05
+ */
 @RestController
-@RequestMapping("/api/v1/user")
-public class UserController {
+@RequestMapping("/api/v1/users")
+@Tag(name = "Usuarios", description = "Operaciones sobre usuarios")
+public class UsersController {
 
     private UserServiceInterface userService;
 
@@ -30,7 +37,7 @@ public class UserController {
 
 
     @Operation(summary = "Get all users")
-    @GetMapping("/users/")
+    @GetMapping("/")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }

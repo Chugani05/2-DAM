@@ -2,19 +2,17 @@ package com.docencia.rest.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.*;
+import org.springframework.web.bind.annotation.*;
 
-import com.docencia.rest.exeception.ResourceNotFoundException;
+import com.docencia.rest.exception.ResourceNotFoundException;
 import com.docencia.rest.modelo.User;
-import com.docencia.rest.repository.UserRepository;
+import com.docencia.rest.repository.interfaces.UserRepository;
 import com.docencia.rest.service.interfaces.UserServiceInterface;
 
-import jakarta.validation.Valid;
-
-@Component
+@Service
 public class UserService implements UserServiceInterface{
 
     private UserRepository userRepository;
@@ -33,12 +31,12 @@ public class UserService implements UserServiceInterface{
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
     }
 
-    public User createUser(@Valid @RequestBody User user) {
+    public User createUser(@Validated @RequestBody User user) {
         return userRepository.save(user);
     }
 
     public User updateUser(@PathVariable(value = "id") int userId,
-                                           @Valid @RequestBody User userDetails) throws ResourceNotFoundException {
+                                           @Validated @RequestBody User userDetails) throws ResourceNotFoundException {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
 
