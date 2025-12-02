@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/java/com/tiendaonline/repository/ClienteDetallesRepository.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1764591297285,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1764591297285,
+            "name": "Commit-0",
+            "content": "package com.tiendaonline.repository;\n\nimport com.tiendaonline.model.ClienteDetalles;\nimport org.springframework.data.mongodb.repository.MongoRepository;\n\nimport java.util.Optional;\n\npublic interface ClienteDetallesRepository extends MongoRepository<ClienteDetalles, String> {\n\n    Optional<ClienteDetalles> findByClienteId(int clienteId);\n}\n"
+        }
+    ]
+}

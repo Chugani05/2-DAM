@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/java/com/tiendaonline/repository/ClienteRepository.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1764591357996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1764591357996,
+            "name": "Commit-0",
+            "content": "package com.tiendaonline.repository;\n\nimport com.tiendaonline.model.Cliente;\nimport org.springframework.data.jpa.repository.JpaRepository;\n\npublic interface ClienteRepository extends JpaRepository<Cliente, Integer> {\n}\n"
+        }
+    ]
+}

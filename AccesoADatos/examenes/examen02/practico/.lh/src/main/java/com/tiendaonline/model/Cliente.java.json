@@ -1,0 +1,50 @@
+{
+    "sourceFile": "src/main/java/com/tiendaonline/model/Cliente.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1764592853679,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1764592864442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,10 +18,8 @@\n \n     @Column(unique = true, nullable = false, length = 150)\n     private String email;\n \n-    @Column(name = \"FECHA_ALTA\", nullable = false)\n-    private LocalDate fechaAlta;\n \n     @OneToMany(mappedBy = \"cliente\", cascade = CascadeType.ALL, orphanRemoval = true)\n     private List<Pedido> pedidos = new ArrayList<>();\n \n"
+                },
+                {
+                    "date": 1764592869875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,16 +18,15 @@\n \n     @Column(unique = true, nullable = false, length = 150)\n     private String email;\n \n-\n     @OneToMany(mappedBy = \"cliente\", cascade = CascadeType.ALL, orphanRemoval = true)\n     private List<Pedido> pedidos = new ArrayList<>();\n \n     public Cliente() {\n     }\n \n-    public Cliente(String nombre, String email, LocalDate fechaAlta) {\n+    public Cliente(String nombre, String email) {\n         this.nombre = nombre;\n         this.email = email;\n         this.fechaAlta = fechaAlta;\n     }\n"
+                },
+                {
+                    "date": 1764593068909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,8 @@\n @Entity\n @Table(name = \"CLIENTE\")\n public class Cliente {\n \n-    @Id\n-    @GeneratedValue(strategy = GenerationType.IDENTITY)\n     private int id;\n \n     @Column(nullable = false, length = 100)\n     private String nombre;\n@@ -27,9 +25,9 @@\n \n     public Cliente(String nombre, String email) {\n         this.nombre = nombre;\n         this.email = email;\n-        this.fechaAlta = fechaAlta;\n+\n     }\n \n     public Long getId() {\n         return id;\n"
+                },
+                {
+                    "date": 1764593075850,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,12 +10,9 @@\n public class Cliente {\n \n     private int id;\n \n-    @Column(nullable = false, length = 100)\n     private String nombre;\n-\n-    @Column(unique = true, nullable = false, length = 150)\n     private String email;\n \n     @OneToMany(mappedBy = \"cliente\", cascade = CascadeType.ALL, orphanRemoval = true)\n     private List<Pedido> pedidos = new ArrayList<>();\n"
+                },
+                {
+                    "date": 1764593082526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,12 +12,10 @@\n     private int id;\n \n     private String nombre;\n     private String email;\n+    private List<Pedido> pedidos;\n \n-    @OneToMany(mappedBy = \"cliente\", cascade = CascadeType.ALL, orphanRemoval = true)\n-    private List<Pedido> pedidos = new ArrayList<>();\n-\n     public Cliente() {\n     }\n \n     public Cliente(String nombre, String email) {\n"
+                },
+                {
+                    "date": 1764593094030,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,50 +17,6 @@\n \n     public Cliente() {\n     }\n \n-    public Cliente(String nombre, String email) {\n-        this.nombre = nombre;\n-        this.email = email;\n-\n-    }\n-\n-    public Long getId() {\n-        return id;\n-    }\n-\n-    public void setId(Long id) {\n-        this.id = id;\n-    }\n-\n-    public String getNombre() {\n-        return nombre;\n-    }\n-\n-    public void setNombre(String nombre) {\n-        this.nombre = nombre;\n-    }\n-\n-    public String getEmail() {\n-        return email;\n-    }\n-\n-    public void setEmail(String email) {\n-        this.email = email;\n-    }\n-\n-    public LocalDate getFechaAlta() {\n-        return fechaAlta;\n-    }\n-\n-    public void setFechaAlta(LocalDate fechaAlta) {\n-        this.fechaAlta = fechaAlta;\n-    }\n-\n-    public List<Pedido> getPedidos() {\n-        return pedidos;\n-    }\n-\n-    public void setPedidos(List<Pedido> pedidos) {\n-        this.pedidos = pedidos;\n-    }\n+    \n }\n"
+                },
+                {
+                    "date": 1764593592307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,8 @@\n import java.time.LocalDate;\n import java.util.ArrayList;\n import java.util.List;\n \n-@Entity\n-@Table(name = \"CLIENTE\")\n public class Cliente {\n \n     private int id;\n \n"
+                },
+                {
+                    "date": 1764593715939,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n package com.tiendaonline.model;\n \n import jakarta.persistence.*;\n-import java.time.LocalDate;\n import java.util.ArrayList;\n import java.util.List;\n \n public class Cliente {\n"
+                }
+            ],
+            "date": 1764592853679,
+            "name": "Commit-0",
+            "content": "package com.tiendaonline.model;\n\nimport jakarta.persistence.*;\nimport java.time.LocalDate;\nimport java.util.ArrayList;\nimport java.util.List;\n\n@Entity\n@Table(name = \"CLIENTE\")\npublic class Cliente {\n\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private int id;\n\n    @Column(nullable = false, length = 100)\n    private String nombre;\n\n    @Column(unique = true, nullable = false, length = 150)\n    private String email;\n\n    @Column(name = \"FECHA_ALTA\", nullable = false)\n    private LocalDate fechaAlta;\n\n    @OneToMany(mappedBy = \"cliente\", cascade = CascadeType.ALL, orphanRemoval = true)\n    private List<Pedido> pedidos = new ArrayList<>();\n\n    public Cliente() {\n    }\n\n    public Cliente(String nombre, String email, LocalDate fechaAlta) {\n        this.nombre = nombre;\n        this.email = email;\n        this.fechaAlta = fechaAlta;\n    }\n\n    public Long getId() {\n        return id;\n    }\n\n    public void setId(Long id) {\n        this.id = id;\n    }\n\n    public String getNombre() {\n        return nombre;\n    }\n\n    public void setNombre(String nombre) {\n        this.nombre = nombre;\n    }\n\n    public String getEmail() {\n        return email;\n    }\n\n    public void setEmail(String email) {\n        this.email = email;\n    }\n\n    public LocalDate getFechaAlta() {\n        return fechaAlta;\n    }\n\n    public void setFechaAlta(LocalDate fechaAlta) {\n        this.fechaAlta = fechaAlta;\n    }\n\n    public List<Pedido> getPedidos() {\n        return pedidos;\n    }\n\n    public void setPedidos(List<Pedido> pedidos) {\n        this.pedidos = pedidos;\n    }\n}\n"
+        }
+    ]
+}

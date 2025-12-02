@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/main/java/com/tiendaonline/service/interfaces/IClienteService.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1764593479071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1764593495015,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,39 @@\n package com.tiendaonline.service.interfaces;\n \n+import com.tiendaonline.model.Cliente;\n+\n public interface IClienteService {\n+    /**\n+     * Devuelve todos los clientes ordenados por nombre (ignorando mayúsculas/minúsculas).\n+     *\n+     * @return lista de clientes ordenada por nombre.\n+     */\n+    List<Cliente> findAllSortedByNombre();\n \n+    /**\n+     * Busca un cliente por su identificador.\n+     *\n+     * @param id identificador del cliente (no puede ser null).\n+     * @return Optional con el cliente si existe, vacío en caso contrario.\n+     * @throws IllegalArgumentException si id es null.\n+     */\n+    Optional<Cliente> findById(Integer id);\n+\n+    /**\n+     * Guarda un cliente.\n+     *\n+     * @param cliente cliente a guardar (no puede ser null).\n+     * @return el cliente guardado.\n+     * @throws IllegalArgumentException si cliente es null.\n+     */\n+    Cliente save(Cliente cliente);\n+\n+    /**\n+     * Elimina un cliente por su identificador.\n+     *\n+     * @param id identificador del cliente (no puede ser null).\n+     * @throws IllegalArgumentException si id es null.\n+     */\n+    void deleteById(Integer id);\n+\n }\n"
+                },
+                {
+                    "date": 1764593504046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n package com.tiendaonline.service.interfaces;\n \n+import java.util.List;\n+\n import com.tiendaonline.model.Cliente;\n \n public interface IClienteService {\n     /**\n"
+                }
+            ],
+            "date": 1764593479071,
+            "name": "Commit-0",
+            "content": "package com.tiendaonline.service.interfaces;\n\npublic interface IClienteService {\n\n}\n"
+        }
+    ]
+}

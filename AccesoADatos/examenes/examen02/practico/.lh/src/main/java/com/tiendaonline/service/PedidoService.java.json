@@ -1,0 +1,50 @@
+{
+    "sourceFile": "src/main/java/com/tiendaonline/service/PedidoService.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1764591378419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1764591790980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,12 +38,8 @@\n                 .orElseThrow(() -> new IllegalArgumentException(\"Cliente no encontrado\"));\n \n         Pedido pedido = new Pedido(LocalDateTime.now(), estado, cliente);\n \n-        for (LineaPedido linea : lineas) {\n-            linea.setPedido(pedido);\n-            pedido.getLineas().add(linea);\n-        }\n \n         return pedidoRepository.save(pedido);\n     }\n \n"
+                },
+                {
+                    "date": 1764591807386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n         this.clienteRepository = clienteRepository;\n     }\n \n     @Transactional\n-    public Pedido crearPedido(Integer clienteId, String estado, List<LineaPedido> lineas) {\n+    public Pedido crearPedido(Integer clienteId, String estado) {\n         if (clienteId == null) {\n             throw new IllegalArgumentException(\"clienteId no puede ser null\");\n         }\n         if (estado == null || estado.isBlank()) {\n@@ -38,9 +38,8 @@\n                 .orElseThrow(() -> new IllegalArgumentException(\"Cliente no encontrado\"));\n \n         Pedido pedido = new Pedido(LocalDateTime.now(), estado, cliente);\n \n-\n         return pedidoRepository.save(pedido);\n     }\n \n     public Pedido findById(Long id) {\n"
+                },
+                {
+                    "date": 1764591813973,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,11 +29,8 @@\n         }\n         if (estado == null || estado.isBlank()) {\n             throw new IllegalArgumentException(\"estado no puede ser null ni vacío\");\n         }\n-        if (lineas == null || lineas.isEmpty()) {\n-            throw new IllegalArgumentException(\"lineas no pueden ser nulas ni vacías\");\n-        }\n \n         Cliente cliente = clienteRepository.findById(clienteId)\n                 .orElseThrow(() -> new IllegalArgumentException(\"Cliente no encontrado\"));\n \n"
+                },
+                {
+                    "date": 1764591833192,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n package com.tiendaonline.service;\n \n import com.tiendaonline.model.Cliente;\n-import com.tiendaonline.model.LineaPedido;\n import com.tiendaonline.model.Pedido;\n import com.tiendaonline.repository.ClienteRepository;\n import com.tiendaonline.repository.PedidoRepository;\n import org.springframework.stereotype.Service;\n"
+                },
+                {
+                    "date": 1764593340063,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,37 +12,6 @@\n \n @Service\n public class PedidoService {\n \n-    private final PedidoRepository pedidoRepository;\n-    private final ClienteRepository clienteRepository;\n-\n-    public PedidoService(PedidoRepository pedidoRepository, ClienteRepository clienteRepository) {\n-        this.pedidoRepository = pedidoRepository;\n-        this.clienteRepository = clienteRepository;\n-    }\n-\n-    @Transactional\n-    public Pedido crearPedido(Integer clienteId, String estado) {\n-        if (clienteId == null) {\n-            throw new IllegalArgumentException(\"clienteId no puede ser null\");\n-        }\n-        if (estado == null || estado.isBlank()) {\n-            throw new IllegalArgumentException(\"estado no puede ser null ni vacío\");\n-        }\n-\n-        Cliente cliente = clienteRepository.findById(clienteId)\n-                .orElseThrow(() -> new IllegalArgumentException(\"Cliente no encontrado\"));\n-\n-        Pedido pedido = new Pedido(LocalDateTime.now(), estado, cliente);\n-\n-        return pedidoRepository.save(pedido);\n-    }\n-\n-    public Pedido findById(Long id) {\n-        if (id == null) {\n-            throw new IllegalArgumentException(\"id no puede ser null\");\n-        }\n-        return pedidoRepository.findById(id)\n-                .orElseThrow(() -> new IllegalArgumentException(\"Pedido no encontrado\"));\n-    }\n+    \n }\n"
+                },
+                {
+                    "date": 1764593350428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,15 +3,17 @@\n import com.tiendaonline.model.Cliente;\n import com.tiendaonline.model.Pedido;\n import com.tiendaonline.repository.ClienteRepository;\n import com.tiendaonline.repository.PedidoRepository;\n+import com.tiendaonline.service.interfaces.IPedidoService;\n+\n import org.springframework.stereotype.Service;\n import org.springframework.transaction.annotation.Transactional;\n \n import java.time.LocalDateTime;\n import java.util.List;\n \n @Service\n-public class PedidoService {\n+public class PedidoService implements IPedidoService{\n \n     \n }\n"
+                },
+                {
+                    "date": 1764593553848,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,8 @@\n package com.tiendaonline.service;\n \n import com.tiendaonline.model.Cliente;\n import com.tiendaonline.model.Pedido;\n-import com.tiendaonline.repository.ClienteRepository;\n-import com.tiendaonline.repository.PedidoRepository;\n import com.tiendaonline.service.interfaces.IPedidoService;\n \n import org.springframework.stereotype.Service;\n import org.springframework.transaction.annotation.Transactional;\n@@ -14,6 +12,18 @@\n \n @Service\n public class PedidoService implements IPedidoService{\n \n+    @Override\n+    public Pedido crearPedido(Integer clienteId, String estado) {\n+        // TODO Auto-generated method stub\n+        throw new UnsupportedOperationException(\"Unimplemented method 'crearPedido'\");\n+    }\n+\n+    @Override\n+    public Pedido findById(Long id) {\n+        // TODO Auto-generated method stub\n+        throw new UnsupportedOperationException(\"Unimplemented method 'findById'\");\n+    }\n+\n     \n }\n"
+                },
+                {
+                    "date": 1764593561750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,12 +4,9 @@\n import com.tiendaonline.model.Pedido;\n import com.tiendaonline.service.interfaces.IPedidoService;\n \n import org.springframework.stereotype.Service;\n-import org.springframework.transaction.annotation.Transactional;\n \n-import java.time.LocalDateTime;\n-import java.util.List;\n \n @Service\n public class PedidoService implements IPedidoService{\n \n"
+                }
+            ],
+            "date": 1764591378419,
+            "name": "Commit-0",
+            "content": "package com.tiendaonline.service;\n\nimport com.tiendaonline.model.Cliente;\nimport com.tiendaonline.model.LineaPedido;\nimport com.tiendaonline.model.Pedido;\nimport com.tiendaonline.repository.ClienteRepository;\nimport com.tiendaonline.repository.PedidoRepository;\nimport org.springframework.stereotype.Service;\nimport org.springframework.transaction.annotation.Transactional;\n\nimport java.time.LocalDateTime;\nimport java.util.List;\n\n@Service\npublic class PedidoService {\n\n    private final PedidoRepository pedidoRepository;\n    private final ClienteRepository clienteRepository;\n\n    public PedidoService(PedidoRepository pedidoRepository, ClienteRepository clienteRepository) {\n        this.pedidoRepository = pedidoRepository;\n        this.clienteRepository = clienteRepository;\n    }\n\n    @Transactional\n    public Pedido crearPedido(Integer clienteId, String estado, List<LineaPedido> lineas) {\n        if (clienteId == null) {\n            throw new IllegalArgumentException(\"clienteId no puede ser null\");\n        }\n        if (estado == null || estado.isBlank()) {\n            throw new IllegalArgumentException(\"estado no puede ser null ni vacío\");\n        }\n        if (lineas == null || lineas.isEmpty()) {\n            throw new IllegalArgumentException(\"lineas no pueden ser nulas ni vacías\");\n        }\n\n        Cliente cliente = clienteRepository.findById(clienteId)\n                .orElseThrow(() -> new IllegalArgumentException(\"Cliente no encontrado\"));\n\n        Pedido pedido = new Pedido(LocalDateTime.now(), estado, cliente);\n\n        for (LineaPedido linea : lineas) {\n            linea.setPedido(pedido);\n            pedido.getLineas().add(linea);\n        }\n\n        return pedidoRepository.save(pedido);\n    }\n\n    public Pedido findById(Long id) {\n        if (id == null) {\n            throw new IllegalArgumentException(\"id no puede ser null\");\n        }\n        return pedidoRepository.findById(id)\n                .orElseThrow(() -> new IllegalArgumentException(\"Pedido no encontrado\"));\n    }\n}\n"
+        }
+    ]
+}

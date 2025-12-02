@@ -1,0 +1,262 @@
+{
+    "sourceFile": "README.md",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 61,
+            "patches": [
+                {
+                    "date": 1764591447897,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1764591455193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,8 @@\n \n 1. **BBDD relacional H2 (JPA)**:\n    - Tabla `CLIENTE` (ID, NOMBRE, EMAIL, FECHA_ALTA).\n    - Tabla `PEDIDO` (ID, FECHA, ESTADO, CLIENTE_ID).\n-   - Tabla `LINEA_PEDIDO` (ID, PEDIDO_ID, PRODUCTO, CANTIDAD, PRECIO_UNITARIO).\n    - Relaciones:\n      - `CLIENTE 1 --- N PEDIDO`.\n \n 2. **BBDD No relacional MongoDB**:\n"
+                },
+                {
+                    "date": 1764591474634,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n    - Colección `cliente_detalles` que complemente a `CLIENTE`, enlazada por el campo `clienteId`.\n \n 3. **Operaciones CRUD mínimas**:\n    - CRUD completo de `Cliente`.\n-   - Alta de `Pedido` con sus `LineaPedido` para un `Cliente` existente.\n+   - Alta de `Pedido`  para un `Cliente` existente.\n    - Consulta de un `Cliente` que devuelva también sus detalles desde MongoDB, si existen.\n \n 4. **Requisitos extra en este proyecto**:\n    - Una **capa de servicio** específica por cada repositorio:\n"
+                },
+                {
+                    "date": 1764591479748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n    - Colección `cliente_detalles` que complemente a `CLIENTE`, enlazada por el campo `clienteId`.\n \n 3. **Operaciones CRUD mínimas**:\n    - CRUD completo de `Cliente`.\n-   - Alta de `Pedido`  para un `Cliente` existente.\n+   - Alta de `Pedido` para un `Cliente` existente.\n    - Consulta de un `Cliente` que devuelva también sus detalles desde MongoDB, si existen.\n \n 4. **Requisitos extra en este proyecto**:\n    - Una **capa de servicio** específica por cada repositorio:\n"
+                },
+                {
+                    "date": 1764591493367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,8 @@\n 4. **Requisitos extra en este proyecto**:\n    - Una **capa de servicio** específica por cada repositorio:\n      - `ClienteService`\n      - `PedidoService`\n-     - `LineaPedidoService`\n      - `ClienteDetallesService`\n    - Tests unitarios de servicios que prueban:\n      - Orden de resultados.\n      - Comportamiento con parámetros `null`.\n"
+                },
+                {
+                    "date": 1764591499377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,12 +31,8 @@\n    - Una **capa de servicio** específica por cada repositorio:\n      - `ClienteService`\n      - `PedidoService`\n      - `ClienteDetallesService`\n-   - Tests unitarios de servicios que prueban:\n-     - Orden de resultados.\n-     - Comportamiento con parámetros `null`.\n-     - Comportamiento con listas vacías.\n \n ## 2. Estructura del proyecto\n \n ```text\n"
+                },
+                {
+                    "date": 1764591512179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n     │   │   └── com\n     │   │       └── tiendaonline\n     │   │           ├── TiendaOnlineApplication.java\n     │   │           ├── controller\n-    │   │           │   ├── ClienteController.java\n+    │   │           │   ├── ClienteController.java \n     │   │           │   └── PedidoController.java\n     │   │           ├── service\n     │   │           │   ├── ClienteService.java\n     │   │           │   ├── PedidoService.java\n"
+                },
+                {
+                    "date": 1764591595702,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n     │   │               ├── Cliente.java\n     │   │               ├── Pedido.java\n     │   │               ├── LineaPedido.java\n     │   │               ├── ClienteDetalles.java\n-    │   │               ├── Direccion.java\n+\n     │   │               └── Preferencias.java\n     │   └── resources\n     │       ├── application.properties\n     │       └── data.sql (opcional)\n"
+                },
+                {
+                    "date": 1764591605493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,11 +60,9 @@\n     │   │           │   └── ClienteDetallesRepository.java\n     │   │           └── model\n     │   │               ├── Cliente.java\n     │   │               ├── Pedido.java\n-    │   │               ├── LineaPedido.java\n     │   │               ├── ClienteDetalles.java\n-\n     │   │               └── Preferencias.java\n     │   └── resources\n     │       ├── application.properties\n     │       └── data.sql (opcional)\n"
+                },
+                {
+                    "date": 1764591611758,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,10 +60,9 @@\n     │   │           │   └── ClienteDetallesRepository.java\n     │   │           └── model\n     │   │               ├── Cliente.java\n     │   │               ├── Pedido.java\n-    │   │               ├── ClienteDetalles.java\n-    │   │               └── Preferencias.java\n+    │   │               └── ClienteDetalles.java\n     │   └── resources\n     │       ├── application.properties\n     │       └── data.sql (opcional)\n     └── test\n"
+                },
+                {
+                    "date": 1764591618468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,9 @@\n     │   │               ├── Pedido.java\n     │   │               └── ClienteDetalles.java\n     │   └── resources\n     │       ├── application.properties\n-    │       └── data.sql (opcional)\n+    │       └── data.sql (opcional) c\n     └── test\n         └── java\n             └── com\n                 └── tiendaonline\n"
+                },
+                {
+                    "date": 1764591680107,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,10 +62,10 @@\n     │   │               ├── Cliente.java\n     │   │               ├── Pedido.java\n     │   │               └── ClienteDetalles.java\n     │   └── resources\n-    │       ├── application.properties\n-    │       └── data.sql (opcional) c\n+    │      └── application.properties\n+    │       └── data.sql (opcional\n     └── test\n         └── java\n             └── com\n                 └── tiendaonline\n"
+                },
+                {
+                    "date": 1764591693724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,18 +63,12 @@\n     │   │               ├── Pedido.java\n     │   │               └── ClienteDetalles.java\n     │   └── resources\n     │      └── application.properties\n-    │       └── data.sql (opcional\n+    │      \n     └── test\n         └── java\n-            └── com\n-                └── tiendaonline\n-                    └── service\n-                        ├── ClienteServiceTest.java\n-                        ├── PedidoServiceTest.java\n-                        ├── LineaPedidoServiceTest.java\n-                        └── ClienteDetallesServiceTest.java\n+            └── ()\n ```\n \n ## 3. Cómo ejecutar\n \n"
+                },
+                {
+                    "date": 1764591706225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n     │   │   └── com\n     │   │       └── tiendaonline\n     │   │           ├── TiendaOnlineApplication.java\n     │   │           ├── controller\n-    │   │           │   ├── ClienteController.java \n+    │   │           │   ├── ClienteController.java ()\n     │   │           │   └── PedidoController.java\n     │   │           ├── service\n     │   │           │   ├── ClienteService.java\n     │   │           │   ├── PedidoService.java\n@@ -66,9 +66,9 @@\n     │      └── application.properties\n     │      \n     └── test\n         └── java\n-            └── ()\n+            └── (No hay test)\n ```\n \n ## 3. Cómo ejecutar\n \n"
+                },
+                {
+                    "date": 1764591718269,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n     │   │   └── com\n     │   │       └── tiendaonline\n     │   │           ├── TiendaOnlineApplication.java\n     │   │           ├── controller\n-    │   │           │   ├── ClienteController.java ()\n+    │   │           │   ├── ClienteController.java (Para que verifiques el correcto funcionamiento)\n     │   │           │   └── PedidoController.java\n     │   │           ├── service\n     │   │           │   ├── ClienteService.java\n     │   │           │   ├── PedidoService.java\n"
+                },
+                {
+                    "date": 1764591896208,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,14 +45,13 @@\n     │   │   └── com\n     │   │       └── tiendaonline\n     │   │           ├── TiendaOnlineApplication.java\n     │   │           ├── controller\n-    │   │           │   ├── ClienteController.java (Para que verifiques el correcto funcionamiento)\n+    │   │           │   ├── ClienteController.java (Para que verifiques el correcto funcionamiento a mano)\n     │   │           │   └── PedidoController.java\n     │   │           ├── service\n     │   │           │   ├── ClienteService.java\n     │   │           │   ├── PedidoService.java\n-    │   │           │   ├── LineaPedidoService.java\n     │   │           │   └── ClienteDetallesService.java\n     │   │           ├── repository\n     │   │           │   ├── ClienteRepository.java\n     │   │           │   ├── PedidoRepository.java\n"
+                },
+                {
+                    "date": 1764591916244,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,8 @@\n     │   │           │   └── ClienteDetallesService.java\n     │   │           ├── repository\n     │   │           │   ├── ClienteRepository.java\n     │   │           │   ├── PedidoRepository.java\n-    │   │           │   ├── LineaPedidoRepository.java\n     │   │           │   └── ClienteDetallesRepository.java\n     │   │           └── model\n     │   │               ├── Cliente.java\n     │   │               ├── Pedido.java\n"
+                },
+                {
+                    "date": 1764591935970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,9 +64,9 @@\n     │      └── application.properties\n     │      \n     └── test\n         └── java\n-            └── (No hay test)\n+            └── (No hay test porque si no tengo que crear las estructuras)\n ```\n \n ## 3. Cómo ejecutar\n \n"
+                },
+                {
+                    "date": 1764592328584,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -106,12 +106,8 @@\n - **PedidoServiceTest**  \n   - Creación de pedidos con líneas asociadas.\n   - Validación de parámetros nulos o listas de líneas vacías.\n \n-- **LineaPedidoServiceTest**  \n-  - Recuperación de líneas ordenadas por ID para un pedido.\n-  - Manejo de listas vacías y `null` en el ID de pedido.\n-\n - **ClienteDetallesServiceTest**  \n   - Guardar detalles asegurando que se asigna el `clienteId`.\n   - Manejo de `null` en ID de cliente y en el propio objeto detalles.\n   - Comportamiento cuando no existen detalles en MongoDB.\n"
+                },
+                {
+                    "date": 1764592553796,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -111,9 +111,8 @@\n   - Guardar detalles asegurando que se asigna el `clienteId`.\n   - Manejo de `null` en ID de cliente y en el propio objeto detalles.\n   - Comportamiento cuando no existen detalles en MongoDB.\n \n-Los tests usan **JUnit 5 + Mockito** (incluidos en `spring-boot-starter-test`) y están pensados como pruebas de **unidad** de la capa de servicio (sin levantar el contexto completo de Spring).\n \n ## 5. Qué se evalúa con este proyecto\n \n - Correcta **modelización relacional** (tablas, tipos, claves, relaciones).\n"
+                },
+                {
+                    "date": 1764592678075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,9 @@\n ```bash\n mvn spring-boot:run\n ```\n \n-3. La API quedará disponible (por defecto) en: `http://localhost:8080`.\n+3. La API quedará disponible (por defecto) en: `http://localhost:8080`. Si implementas la capa controller\n \n Endpoints principales:\n \n - `GET /clientes`\n@@ -111,9 +111,8 @@\n   - Guardar detalles asegurando que se asigna el `clienteId`.\n   - Manejo de `null` en ID de cliente y en el propio objeto detalles.\n   - Comportamiento cuando no existen detalles en MongoDB.\n \n-\n ## 5. Qué se evalúa con este proyecto\n \n - Correcta **modelización relacional** (tablas, tipos, claves, relaciones).\n - Uso adecuado de **JPA** y anotaciones de entidades.\n"
+                },
+                {
+                    "date": 1764592687318,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,10 +70,8 @@\n \n ## 3. Cómo ejecutar\n \n 1. Asegúrate de tener:\n-   - Java 17+\n-   - Maven 3+\n    - Un MongoDB en marcha (por defecto `mongodb://localhost:27017/tiendaonline`).\n \n 2. Ejecuta la aplicación:\n \n"
+                },
+                {
+                    "date": 1764592695494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,9 @@\n ```\n \n ## 3. Cómo ejecutar\n \n-1. Asegúrate de tener:\n+1. Asegúrate de tener cong\n    - Un MongoDB en marcha (por defecto `mongodb://localhost:27017/tiendaonline`).\n \n 2. Ejecuta la aplicación:\n \n"
+                },
+                {
+                    "date": 1764592705788,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,9 @@\n ```\n \n ## 3. Cómo ejecutar\n \n-1. Asegúrate de tener cong\n+1. Asegúrate de tener configurar correct\n    - Un MongoDB en marcha (por defecto `mongodb://localhost:27017/tiendaonline`).\n \n 2. Ejecuta la aplicación:\n \n"
+                },
+                {
+                    "date": 1764592710935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,9 @@\n ```\n \n ## 3. Cómo ejecutar\n \n-1. Asegúrate de tener configurar correct\n+1. Asegúrate de tener configurar correctente la bbdd\n    - Un MongoDB en marcha (por defecto `mongodb://localhost:27017/tiendaonline`).\n \n 2. Ejecuta la aplicación:\n \n"
+                },
+                {
+                    "date": 1764592765943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n      - `CLIENTE 1 --- N PEDIDO`.\n \n 2. **BBDD No relacional MongoDB**:\n    - Colección `cliente_detalles` que complemente a `CLIENTE`, enlazada por el campo `clienteId`.\n+   \n \n 3. **Operaciones CRUD mínimas**:\n    - CRUD completo de `Cliente`.\n    - Alta de `Pedido` para un `Cliente` existente.\n"
+                },
+                {
+                    "date": 1764592774239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,10 @@\n      - `CLIENTE 1 --- N PEDIDO`.\n \n 2. **BBDD No relacional MongoDB**:\n    - Colección `cliente_detalles` que complemente a `CLIENTE`, enlazada por el campo `clienteId`.\n-   \n+   - Las propiedades son las siguiente: \n+    \n \n 3. **Operaciones CRUD mínimas**:\n    - CRUD completo de `Cliente`.\n    - Alta de `Pedido` para un `Cliente` existente.\n"
+                },
+                {
+                    "date": 1764592783520,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,10 +21,16 @@\n \n 2. **BBDD No relacional MongoDB**:\n    - Colección `cliente_detalles` que complemente a `CLIENTE`, enlazada por el campo `clienteId`.\n    - Las propiedades son las siguiente: \n-    \n+        String id;\n \n+    private int clienteId;\n+\n+    private String telefono;\n+\n+    private String notasInternas;\n+\n 3. **Operaciones CRUD mínimas**:\n    - CRUD completo de `Cliente`.\n    - Alta de `Pedido` para un `Cliente` existente.\n    - Consulta de un `Cliente` que devuelva también sus detalles desde MongoDB, si existen.\n"
+                },
+                {
+                    "date": 1764592791280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,12 +21,11 @@\n \n 2. **BBDD No relacional MongoDB**:\n    - Colección `cliente_detalles` que complemente a `CLIENTE`, enlazada por el campo `clienteId`.\n    - Las propiedades son las siguiente: \n-        String id;\n+    - String id;\n+    int clienteId;\n \n-    private int clienteId;\n-\n     private String telefono;\n \n     private String notasInternas;\n \n"
+                },
+                {
+                    "date": 1764592798773,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,12 +22,11 @@\n 2. **BBDD No relacional MongoDB**:\n    - Colección `cliente_detalles` que complemente a `CLIENTE`, enlazada por el campo `clienteId`.\n    - Las propiedades son las siguiente: \n     - String id;\n-    int clienteId;\n+    - int clienteId;\n+    String telefono;\n \n-    private String telefono;\n-\n     private String notasInternas;\n \n 3. **Operaciones CRUD mínimas**:\n    - CRUD completo de `Cliente`.\n"
+                },
+                {
+                    "date": 1764592803876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,12 +23,11 @@\n    - Colección `cliente_detalles` que complemente a `CLIENTE`, enlazada por el campo `clienteId`.\n    - Las propiedades son las siguiente: \n     - String id;\n     - int clienteId;\n-    String telefono;\n+    - String telefono;\n+     String notasInternas;\n \n-    private String notasInternas;\n-\n 3. **Operaciones CRUD mínimas**:\n    - CRUD completo de `Cliente`.\n    - Alta de `Pedido` para un `Cliente` existente.\n    - Consulta de un `Cliente` que devuelva también sus detalles desde MongoDB, si existen.\n"
+                },
+                {
+                    "date": 1764592891173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n Implementar una aplicación Spring Boot que gestione los pedidos de una tienda online con:\n \n 1. **BBDD relacional H2 (JPA)**:\n-   - Tabla `CLIENTE` (ID, NOMBRE, EMAIL, FECHA_ALTA).\n+   - Tabla `CLIENTE` (ID, NOMBRE, EMAIL).\n    - Tabla `PEDIDO` (ID, FECHA, ESTADO, CLIENTE_ID).\n    - Relaciones:\n      - `CLIENTE 1 --- N PEDIDO`.\n \n@@ -24,9 +24,9 @@\n    - Las propiedades son las siguiente: \n     - String id;\n     - int clienteId;\n     - String telefono;\n-     String notasInternas;\n+    - String notasInternas;\n \n 3. **Operaciones CRUD mínimas**:\n    - CRUD completo de `Cliente`.\n    - Alta de `Pedido` para un `Cliente` existente.\n"
+                },
+                {
+                    "date": 1764592899717,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,18 @@\n Implementar una aplicación Spring Boot que gestione los pedidos de una tienda online con:\n \n 1. **BBDD relacional H2 (JPA)**:\n    - Tabla `CLIENTE` (ID, NOMBRE, EMAIL).\n+    - int id;\n+\n+    @Column(nullable = false, length = 100)\n+    private String nombre;\n+\n+    @Column(unique = true, nullable = false, length = 150)\n+    private String email;\n+\n+    @OneToMany(mappedBy = \"cliente\", cascade = CascadeType.ALL, orphanRemoval = true)\n+    private List<Pedido> pedidos = new ArrayList<>();\n    - Tabla `PEDIDO` (ID, FECHA, ESTADO, CLIENTE_ID).\n    - Relaciones:\n      - `CLIENTE 1 --- N PEDIDO`.\n \n"
+                },
+                {
+                    "date": 1764592945901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,8 @@\n \n 1. **BBDD relacional H2 (JPA)**:\n    - Tabla `CLIENTE` (ID, NOMBRE, EMAIL).\n     - int id;\n-\n-    @Column(nullable = false, length = 100)\n     private String nombre;\n \n     @Column(unique = true, nullable = false, length = 150)\n     private String email;\n"
+                },
+                {
+                    "date": 1764592955337,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,10 @@\n \n 1. **BBDD relacional H2 (JPA)**:\n    - Tabla `CLIENTE` (ID, NOMBRE, EMAIL).\n     - int id;\n-    private String nombre;\n+    - String nombre;\n \n-    @Column(unique = true, nullable = false, length = 150)\n     private String email;\n \n     @OneToMany(mappedBy = \"cliente\", cascade = CascadeType.ALL, orphanRemoval = true)\n     private List<Pedido> pedidos = new ArrayList<>();\n"
+                },
+                {
+                    "date": 1764592961443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,11 +16,10 @@\n 1. **BBDD relacional H2 (JPA)**:\n    - Tabla `CLIENTE` (ID, NOMBRE, EMAIL).\n     - int id;\n     - String nombre;\n+    - String email;\n \n-    private String email;\n-\n     @OneToMany(mappedBy = \"cliente\", cascade = CascadeType.ALL, orphanRemoval = true)\n     private List<Pedido> pedidos = new ArrayList<>();\n    - Tabla `PEDIDO` (ID, FECHA, ESTADO, CLIENTE_ID).\n    - Relaciones:\n"
+                },
+                {
+                    "date": 1764592973502,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,11 +17,9 @@\n    - Tabla `CLIENTE` (ID, NOMBRE, EMAIL).\n     - int id;\n     - String nombre;\n     - String email;\n-\n-    @OneToMany(mappedBy = \"cliente\", cascade = CascadeType.ALL, orphanRemoval = true)\n-    private List<Pedido> pedidos = new ArrayList<>();\n+    List<Pedido> pedidos = new ArrayList<>();\n    - Tabla `PEDIDO` (ID, FECHA, ESTADO, CLIENTE_ID).\n    - Relaciones:\n      - `CLIENTE 1 --- N PEDIDO`.\n \n"
+                },
+                {
+                    "date": 1764592979775,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n    - Tabla `CLIENTE` (ID, NOMBRE, EMAIL).\n     - int id;\n     - String nombre;\n     - String email;\n-    List<Pedido> pedidos = new ArrayList<>();\n+    - List<Pedido> pedidos);\n    - Tabla `PEDIDO` (ID, FECHA, ESTADO, CLIENTE_ID).\n    - Relaciones:\n      - `CLIENTE 1 --- N PEDIDO`.\n \n"
+                },
+                {
+                    "date": 1764593777615,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-# Examen Resuelto: CRUD con JPA (H2) + MongoDB\n+# Examen: CRUD con JPA (H2) + MongoDB\n \n Este proyecto Maven contiene la **resolución completa** de un examen sobre:\n \n - Modelo de datos relacional con **JPA** y BBDD **H2**.\n@@ -17,9 +17,9 @@\n    - Tabla `CLIENTE` (ID, NOMBRE, EMAIL).\n     - int id;\n     - String nombre;\n     - String email;\n-    - List<Pedido> pedidos);\n+    - List<Pedido> pedidos;\n    - Tabla `PEDIDO` (ID, FECHA, ESTADO, CLIENTE_ID).\n    - Relaciones:\n      - `CLIENTE 1 --- N PEDIDO`.\n \n"
+                },
+                {
+                    "date": 1764593820040,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n     - String nombre;\n     - String email;\n     - List<Pedido> pedidos;\n    - Tabla `PEDIDO` (ID, FECHA, ESTADO, CLIENTE_ID).\n+    \n    - Relaciones:\n      - `CLIENTE 1 --- N PEDIDO`.\n \n 2. **BBDD No relacional MongoDB**:\n"
+                },
+                {
+                    "date": 1764593827871,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,11 @@\n     - String nombre;\n     - String email;\n     - List<Pedido> pedidos;\n    - Tabla `PEDIDO` (ID, FECHA, ESTADO, CLIENTE_ID).\n-    \n+    - int id;\n+    private String estado;\n+    private Cliente cliente;\n    - Relaciones:\n      - `CLIENTE 1 --- N PEDIDO`.\n \n 2. **BBDD No relacional MongoDB**:\n"
+                },
+                {
+                    "date": 1764593834226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n     - String email;\n     - List<Pedido> pedidos;\n    - Tabla `PEDIDO` (ID, FECHA, ESTADO, CLIENTE_ID).\n     - int id;\n-    private String estado;\n+    - String estado;\n     private Cliente cliente;\n    - Relaciones:\n      - `CLIENTE 1 --- N PEDIDO`.\n \n"
+                },
+                {
+                    "date": 1764593840340,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     - List<Pedido> pedidos;\n    - Tabla `PEDIDO` (ID, FECHA, ESTADO, CLIENTE_ID).\n     - int id;\n     - String estado;\n-    private Cliente cliente;\n+    - cliente;\n    - Relaciones:\n      - `CLIENTE 1 --- N PEDIDO`.\n \n 2. **BBDD No relacional MongoDB**:\n"
+                },
+                {
+                    "date": 1764593957962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n # Examen: CRUD con JPA (H2) + MongoDB\n \n-Este proyecto Maven contiene la **resolución completa** de un examen sobre:\n+Este e\n \n - Modelo de datos relacional con **JPA** y BBDD **H2**.\n - Modelo documental con **MongoDB**.\n - Relación lógica entre ambas BBDD.\n"
+                },
+                {
+                    "date": 1764593964292,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n # Examen: CRUD con JPA (H2) + MongoDB\n \n-Este e\n+En este examen se p\n \n - Modelo de datos relacional con **JPA** y BBDD **H2**.\n - Modelo documental con **MongoDB**.\n - Relación lógica entre ambas BBDD.\n"
+                },
+                {
+                    "date": 1764593974016,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n # Examen: CRUD con JPA (H2) + MongoDB\n \n-En este examen se p\n+En este ejercicio se pide que:\n \n - Modelo de datos relacional con **JPA** y BBDD **H2**.\n - Modelo documental con **MongoDB**.\n - Relación lógica entre ambas BBDD.\n"
+                },
+                {
+                    "date": 1764593981375,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \n - Modelo de datos relacional con **JPA** y BBDD **H2**.\n - Modelo documental con **MongoDB**.\n - Relación lógica entre ambas BBDD.\n-- Implementación de un **CRUD** básico en capas (controller, service, repository).\n+- Implementación de un **CRUD** básico en capas (controller (), service, repository).\n - **Capa de servicio** para cada repositorio.\n - **Tests unitarios** que verifican orden, nulos, listas vacías, etc.\n \n ## 1. Enunciado (resumen)\n"
+                },
+                {
+                    "date": 1764593987356,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \n - Modelo de datos relacional con **JPA** y BBDD **H2**.\n - Modelo documental con **MongoDB**.\n - Relación lógica entre ambas BBDD.\n-- Implementación de un **CRUD** básico en capas (controller (), service, repository).\n+- Implementación de un **CRUD** básico en capas (controller (opcional), service, repository).\n - **Capa de servicio** para cada repositorio.\n - **Tests unitarios** que verifican orden, nulos, listas vacías, etc.\n \n ## 1. Enunciado (resumen)\n"
+                },
+                {
+                    "date": 1764594043921,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,11 @@\n - Modelo documental con **MongoDB**.\n - Relación lógica entre ambas BBDD.\n - Implementación de un **CRUD** básico en capas (controller (opcional), service, repository).\n - **Capa de servicio** para cada repositorio.\n-- **Tests unitarios** que verifican orden, nulos, listas vacías, etc.\n \n+\n+\n ## 1. Enunciado (resumen)\n \n Implementar una aplicación Spring Boot que gestione los pedidos de una tienda online con:\n \n"
+                },
+                {
+                    "date": 1764594050841,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n - Relación lógica entre ambas BBDD.\n - Implementación de un **CRUD** básico en capas (controller (opcional), service, repository).\n - **Capa de servicio** para cada repositorio.\n \n+> Puedes hacer uso del proyecto \n \n-\n ## 1. Enunciado (resumen)\n \n Implementar una aplicación Spring Boot que gestione los pedidos de una tienda online con:\n \n"
+                },
+                {
+                    "date": 1764594056009,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n - Relación lógica entre ambas BBDD.\n - Implementación de un **CRUD** básico en capas (controller (opcional), service, repository).\n - **Capa de servicio** para cada repositorio.\n \n-> Puedes hacer uso del proyecto \n+> Puedes hacer uso del proyecto `spring-rest-producto-resuelto-clase` o \n \n ## 1. Enunciado (resumen)\n \n Implementar una aplicación Spring Boot que gestione los pedidos de una tienda online con:\n"
+                },
+                {
+                    "date": 1764594061720,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n - Relación lógica entre ambas BBDD.\n - Implementación de un **CRUD** básico en capas (controller (opcional), service, repository).\n - **Capa de servicio** para cada repositorio.\n \n-> Puedes hacer uso del proyecto `spring-rest-producto-resuelto-clase` o \n+> Puedes hacer uso del proyecto `spring-rest-producto-resuelto-clase` o completar el que se adjunta\n \n ## 1. Enunciado (resumen)\n \n Implementar una aplicación Spring Boot que gestione los pedidos de una tienda online con:\n"
+                },
+                {
+                    "date": 1764594069273,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n - Relación lógica entre ambas BBDD.\n - Implementación de un **CRUD** básico en capas (controller (opcional), service, repository).\n - **Capa de servicio** para cada repositorio.\n \n-> Puedes hacer uso del proyecto `spring-rest-producto-resuelto-clase` o completar el que se adjunta\n+> Puedes hacer uso del proyecto `spring-rest-producto-resuelto-clase` o completar el que se adjunta con el nombre \n \n ## 1. Enunciado (resumen)\n \n Implementar una aplicación Spring Boot que gestione los pedidos de una tienda online con:\n"
+                },
+                {
+                    "date": 1764594077766,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n - Relación lógica entre ambas BBDD.\n - Implementación de un **CRUD** básico en capas (controller (opcional), service, repository).\n - **Capa de servicio** para cada repositorio.\n \n-> Puedes hacer uso del proyecto `spring-rest-producto-resuelto-clase` o completar el que se adjunta con el nombre \n+> Puedes hacer uso del proyecto `spring-rest-producto-resuelto-clase` o completar el que se adjunta con el nombre  \n \n ## 1. Enunciado (resumen)\n \n Implementar una aplicación Spring Boot que gestione los pedidos de una tienda online con:\n"
+                },
+                {
+                    "date": 1764594083179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n - Relación lógica entre ambas BBDD.\n - Implementación de un **CRUD** básico en capas (controller (opcional), service, repository).\n - **Capa de servicio** para cada repositorio.\n \n-> Puedes hacer uso del proyecto `spring-rest-producto-resuelto-clase` o completar el que se adjunta con el nombre  \n+> Puedes hacer uso del proyecto `spring-rest-producto-resuelto-clase` o completar el que se adjunta con el nombre `tiendaonline-exam`.\n \n ## 1. Enunciado (resumen)\n \n Implementar una aplicación Spring Boot que gestione los pedidos de una tienda online con:\n"
+                },
+                {
+                    "date": 1764594106085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -104,26 +104,8 @@\n - `POST /clientes/{id}/detalles`\n - `POST /pedidos/cliente/{clienteId}`\n - `GET /pedidos/{id}`\n \n-## 4. Tests unitarios\n-\n-Los tests están en `src/test/java/com/tiendaonline/service` y cubren:\n-\n-- **ClienteServiceTest**  \n-  - Ordenación por nombre (`findAllSortedByNombre`).\n-  - Manejo de listas vacías.\n-  - Lanzar excepción con parámetros `null` en `findById` y `save`.\n-\n-- **PedidoServiceTest**  \n-  - Creación de pedidos con líneas asociadas.\n-  - Validación de parámetros nulos o listas de líneas vacías.\n-\n-- **ClienteDetallesServiceTest**  \n-  - Guardar detalles asegurando que se asigna el `clienteId`.\n-  - Manejo de `null` en ID de cliente y en el propio objeto detalles.\n-  - Comportamiento cuando no existen detalles en MongoDB.\n-\n ## 5. Qué se evalúa con este proyecto\n \n - Correcta **modelización relacional** (tablas, tipos, claves, relaciones).\n - Uso adecuado de **JPA** y anotaciones de entidades.\n"
+                },
+                {
+                    "date": 1764594114976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -104,9 +104,9 @@\n - `POST /clientes/{id}/detalles`\n - `POST /pedidos/cliente/{clienteId}`\n - `GET /pedidos/{id}`\n \n-## 5. Qué se evalúa con este proyecto\n+## . Qué se evalúa con este proyecto\n \n - Correcta **modelización relacional** (tablas, tipos, claves, relaciones).\n - Uso adecuado de **JPA** y anotaciones de entidades.\n - Correcta relación lógica con **MongoDB** mediante `clienteId`.\n"
+                },
+                {
+                    "date": 1764594129399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -104,9 +104,9 @@\n - `POST /clientes/{id}/detalles`\n - `POST /pedidos/cliente/{clienteId}`\n - `GET /pedidos/{id}`\n \n-## . Qué se evalúa con este proyecto\n+## 4. Qué se evalúa con este proyecto\n \n - Correcta **modelización relacional** (tablas, tipos, claves, relaciones).\n - Uso adecuado de **JPA** y anotaciones de entidades.\n - Correcta relación lógica con **MongoDB** mediante `clienteId`.\n@@ -115,4 +115,5 @@\n - Buenas prácticas de tests unitarios: verificación de:\n   - Orden de resultados.\n   - Listas vacías.\n   - Parámetros nulos que deben lanzar excepciones.\n+  \n"
+                },
+                {
+                    "date": 1764594146410,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -115,5 +115,5 @@\n - Buenas prácticas de tests unitarios: verificación de:\n   - Orden de resultados.\n   - Listas vacías.\n   - Parámetros nulos que deben lanzar excepciones.\n-  \n+- Correcto funcionamiento de cada uno de los métodos que se definen en la capa de servicios  \n"
+                },
+                {
+                    "date": 1764594157961,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -115,5 +115,7 @@\n - Buenas prácticas de tests unitarios: verificación de:\n   - Orden de resultados.\n   - Listas vacías.\n   - Parámetros nulos que deben lanzar excepciones.\n-- Correcto funcionamiento de cada uno de los métodos que se definen en la capa de servicios  \n+- Correcto funcionamiento de cada uno de los métodos que se definen en la capa de servicios.\n+\n+\n"
+                },
+                {
+                    "date": 1764594166400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -117,5 +117,5 @@\n   - Listas vacías.\n   - Parámetros nulos que deben lanzar excepciones.\n - Correcto funcionamiento de cada uno de los métodos que se definen en la capa de servicios.\n \n-\n+> Si no funciona el método\n"
+                },
+                {
+                    "date": 1764594173037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -117,5 +117,5 @@\n   - Listas vacías.\n   - Parámetros nulos que deben lanzar excepciones.\n - Correcto funcionamiento de cada uno de los métodos que se definen en la capa de servicios.\n \n-> Si no funciona el método\n+> Si no funciona el método no se evalua la parte anterior.\n"
+                }
+            ],
+            "date": 1764591447897,
+            "name": "Commit-0",
+            "content": "# Examen Resuelto: CRUD con JPA (H2) + MongoDB\n\nEste proyecto Maven contiene la **resolución completa** de un examen sobre:\n\n- Modelo de datos relacional con **JPA** y BBDD **H2**.\n- Modelo documental con **MongoDB**.\n- Relación lógica entre ambas BBDD.\n- Implementación de un **CRUD** básico en capas (controller, service, repository).\n- **Capa de servicio** para cada repositorio.\n- **Tests unitarios** que verifican orden, nulos, listas vacías, etc.\n\n## 1. Enunciado (resumen)\n\nImplementar una aplicación Spring Boot que gestione los pedidos de una tienda online con:\n\n1. **BBDD relacional H2 (JPA)**:\n   - Tabla `CLIENTE` (ID, NOMBRE, EMAIL, FECHA_ALTA).\n   - Tabla `PEDIDO` (ID, FECHA, ESTADO, CLIENTE_ID).\n   - Tabla `LINEA_PEDIDO` (ID, PEDIDO_ID, PRODUCTO, CANTIDAD, PRECIO_UNITARIO).\n   - Relaciones:\n     - `CLIENTE 1 --- N PEDIDO`.\n\n2. **BBDD No relacional MongoDB**:\n   - Colección `cliente_detalles` que complemente a `CLIENTE`, enlazada por el campo `clienteId`.\n\n3. **Operaciones CRUD mínimas**:\n   - CRUD completo de `Cliente`.\n   - Alta de `Pedido` con sus `LineaPedido` para un `Cliente` existente.\n   - Consulta de un `Cliente` que devuelva también sus detalles desde MongoDB, si existen.\n\n4. **Requisitos extra en este proyecto**:\n   - Una **capa de servicio** específica por cada repositorio:\n     - `ClienteService`\n     - `PedidoService`\n     - `LineaPedidoService`\n     - `ClienteDetallesService`\n   - Tests unitarios de servicios que prueban:\n     - Orden de resultados.\n     - Comportamiento con parámetros `null`.\n     - Comportamiento con listas vacías.\n\n## 2. Estructura del proyecto\n\n```text\ntiendaonline-exam\n├── pom.xml\n├── README.md\n└── src\n    ├── main\n    │   ├── java\n    │   │   └── com\n    │   │       └── tiendaonline\n    │   │           ├── TiendaOnlineApplication.java\n    │   │           ├── controller\n    │   │           │   ├── ClienteController.java\n    │   │           │   └── PedidoController.java\n    │   │           ├── service\n    │   │           │   ├── ClienteService.java\n    │   │           │   ├── PedidoService.java\n    │   │           │   ├── LineaPedidoService.java\n    │   │           │   └── ClienteDetallesService.java\n    │   │           ├── repository\n    │   │           │   ├── ClienteRepository.java\n    │   │           │   ├── PedidoRepository.java\n    │   │           │   ├── LineaPedidoRepository.java\n    │   │           │   └── ClienteDetallesRepository.java\n    │   │           └── model\n    │   │               ├── Cliente.java\n    │   │               ├── Pedido.java\n    │   │               ├── LineaPedido.java\n    │   │               ├── ClienteDetalles.java\n    │   │               ├── Direccion.java\n    │   │               └── Preferencias.java\n    │   └── resources\n    │       ├── application.properties\n    │       └── data.sql (opcional)\n    └── test\n        └── java\n            └── com\n                └── tiendaonline\n                    └── service\n                        ├── ClienteServiceTest.java\n                        ├── PedidoServiceTest.java\n                        ├── LineaPedidoServiceTest.java\n                        └── ClienteDetallesServiceTest.java\n```\n\n## 3. Cómo ejecutar\n\n1. Asegúrate de tener:\n   - Java 17+\n   - Maven 3+\n   - Un MongoDB en marcha (por defecto `mongodb://localhost:27017/tiendaonline`).\n\n2. Ejecuta la aplicación:\n\n```bash\nmvn spring-boot:run\n```\n\n3. La API quedará disponible (por defecto) en: `http://localhost:8080`.\n\nEndpoints principales:\n\n- `GET /clientes`\n- `GET /clientes/{id}`\n- `POST /clientes`\n- `PUT /clientes/{id}`\n- `DELETE /clientes/{id}`\n- `POST /clientes/{id}/detalles`\n- `POST /pedidos/cliente/{clienteId}`\n- `GET /pedidos/{id}`\n\n## 4. Tests unitarios\n\nLos tests están en `src/test/java/com/tiendaonline/service` y cubren:\n\n- **ClienteServiceTest**  \n  - Ordenación por nombre (`findAllSortedByNombre`).\n  - Manejo de listas vacías.\n  - Lanzar excepción con parámetros `null` en `findById` y `save`.\n\n- **PedidoServiceTest**  \n  - Creación de pedidos con líneas asociadas.\n  - Validación de parámetros nulos o listas de líneas vacías.\n\n- **LineaPedidoServiceTest**  \n  - Recuperación de líneas ordenadas por ID para un pedido.\n  - Manejo de listas vacías y `null` en el ID de pedido.\n\n- **ClienteDetallesServiceTest**  \n  - Guardar detalles asegurando que se asigna el `clienteId`.\n  - Manejo de `null` en ID de cliente y en el propio objeto detalles.\n  - Comportamiento cuando no existen detalles en MongoDB.\n\nLos tests usan **JUnit 5 + Mockito** (incluidos en `spring-boot-starter-test`) y están pensados como pruebas de **unidad** de la capa de servicio (sin levantar el contexto completo de Spring).\n\n## 5. Qué se evalúa con este proyecto\n\n- Correcta **modelización relacional** (tablas, tipos, claves, relaciones).\n- Uso adecuado de **JPA** y anotaciones de entidades.\n- Correcta relación lógica con **MongoDB** mediante `clienteId`.\n- Separación en capas (**controller**, **service**, **repository**, **model**).\n- Uso de **capa de servicio** como intermediaria entre controladores y repositorios.\n- Buenas prácticas de tests unitarios: verificación de:\n  - Orden de resultados.\n  - Listas vacías.\n  - Parámetros nulos que deben lanzar excepciones.\n"
+        }
+    ]
+}

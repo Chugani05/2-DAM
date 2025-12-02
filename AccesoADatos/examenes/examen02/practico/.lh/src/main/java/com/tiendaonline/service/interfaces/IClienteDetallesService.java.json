@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/main/java/com/tiendaonline/service/interfaces/IClienteDetallesService.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1764593385448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1764593396099,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,26 @@\n package com.tiendaonline.service.interfaces;\n \n+import com.tiendaonline.model.Pedido;\n+\n public interface IClienteDetallesService {\n+ /**\n+     * Crea un nuevo pedido para el cliente indicado y con el estado dado.\n+     *\n+     * @param clienteId id del cliente (no puede ser null)\n+     * @param estado    estado del pedido (no puede ser null ni vacío)\n+     * @return el pedido creado y persistido\n+     * @throws IllegalArgumentException si clienteId es null, estado es null/vacío\n+     *                                  o el cliente no existe\n+     */\n+    @Transactional\n+    Pedido crearPedido(Integer clienteId, String estado);\n \n+    /**\n+     * Busca un pedido por su identificador.\n+     *\n+     * @param id identificador del pedido (no puede ser null)\n+     * @return el pedido encontrado\n+     * @throws IllegalArgumentException si id es null o no se encuentra el pedido\n+     */\n+    Pedido findById(Long id);\n }\n"
+                }
+            ],
+            "date": 1764593385448,
+            "name": "Commit-0",
+            "content": "package com.tiendaonline.service.interfaces;\n\npublic interface IClienteDetallesService {\n\n}\n"
+        }
+    ]
+}

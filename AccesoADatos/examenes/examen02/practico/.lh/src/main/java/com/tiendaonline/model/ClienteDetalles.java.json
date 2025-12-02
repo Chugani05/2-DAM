@@ -1,0 +1,50 @@
+{
+    "sourceFile": "src/main/java/com/tiendaonline/model/ClienteDetalles.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1764591251032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1764591260114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     public void setId(String id) {\n         this.id = id;\n     }\n \n-    public Long getClienteId() {\n+    public int getClienteId() {\n         return clienteId;\n     }\n \n     public void setClienteId(Long clienteId) {\n"
+                },
+                {
+                    "date": 1764591268895,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,12 +14,9 @@\n     private int clienteId;\n \n     private String telefono;\n \n-    private List<Direccion> direcciones;\n \n-    private Preferencias preferencias;\n-\n     private String notasInternas;\n \n     public ClienteDetalles() {\n     }\n@@ -35,9 +32,9 @@\n     public int getClienteId() {\n         return clienteId;\n     }\n \n-    public void setClienteId(Long clienteId) {\n+    public void setClienteId(int clienteId) {\n         this.clienteId = clienteId;\n     }\n \n     public String getTelefono() {\n"
+                },
+                {
+                    "date": 1764591276989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,8 @@\n     private int clienteId;\n \n     private String telefono;\n \n-\n     private String notasInternas;\n \n     public ClienteDetalles() {\n     }\n@@ -44,24 +43,9 @@\n     public void setTelefono(String telefono) {\n         this.telefono = telefono;\n     }\n \n-    public List<Direccion> getDirecciones() {\n-        return direcciones;\n-    }\n \n-    public void setDirecciones(List<Direccion> direcciones) {\n-        this.direcciones = direcciones;\n-    }\n-\n-    public Preferencias getPreferencias() {\n-        return preferencias;\n-    }\n-\n-    public void setPreferencias(Preferencias preferencias) {\n-        this.preferencias = preferencias;\n-    }\n-\n     public String getNotasInternas() {\n         return notasInternas;\n     }\n \n"
+                },
+                {
+                    "date": 1764592750502,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,8 @@\n \n import org.springframework.data.annotation.Id;\n import org.springframework.data.mongodb.core.mapping.Document;\n \n-import java.util.List;\n \n @Document(collection = \"cliente_detalles\")\n public class ClienteDetalles {\n \n"
+                },
+                {
+                    "date": 1764593098551,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n \n @Document(collection = \"cliente_detalles\")\n public class ClienteDetalles {\n \n-    @Id\n     private String id;\n \n     private int clienteId;\n \n"
+                },
+                {
+                    "date": 1764593105818,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,7 @@\n package com.tiendaonline.model;\n \n-import org.springframework.data.annotation.Id;\n-import org.springframework.data.mongodb.core.mapping.Document;\n \n-\n-@Document(collection = \"cliente_detalles\")\n public class ClienteDetalles {\n \n     private String id;\n \n"
+                },
+                {
+                    "date": 1764593112196,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,37 +13,5 @@\n \n     public ClienteDetalles() {\n     }\n \n-    public String getId() {\n-        return id;\n-    }\n-\n-    public void setId(String id) {\n-        this.id = id;\n-    }\n-\n-    public int getClienteId() {\n-        return clienteId;\n-    }\n-\n-    public void setClienteId(int clienteId) {\n-        this.clienteId = clienteId;\n-    }\n-\n-    public String getTelefono() {\n-        return telefono;\n-    }\n-\n-    public void setTelefono(String telefono) {\n-        this.telefono = telefono;\n-    }\n-\n-\n-    public String getNotasInternas() {\n-        return notasInternas;\n-    }\n-\n-    public void setNotasInternas(String notasInternas) {\n-        this.notasInternas = notasInternas;\n-    }\n-}\n+   }\n"
+                },
+                {
+                    "date": 1764593597524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n package com.tiendaonline.model;\n \n \n+\n public class ClienteDetalles {\n \n     private String id;\n \n"
+                }
+            ],
+            "date": 1764591251032,
+            "name": "Commit-0",
+            "content": "package com.tiendaonline.model;\n\nimport org.springframework.data.annotation.Id;\nimport org.springframework.data.mongodb.core.mapping.Document;\n\nimport java.util.List;\n\n@Document(collection = \"cliente_detalles\")\npublic class ClienteDetalles {\n\n    @Id\n    private String id;\n\n    private int clienteId;\n\n    private String telefono;\n\n    private List<Direccion> direcciones;\n\n    private Preferencias preferencias;\n\n    private String notasInternas;\n\n    public ClienteDetalles() {\n    }\n\n    public String getId() {\n        return id;\n    }\n\n    public void setId(String id) {\n        this.id = id;\n    }\n\n    public Long getClienteId() {\n        return clienteId;\n    }\n\n    public void setClienteId(Long clienteId) {\n        this.clienteId = clienteId;\n    }\n\n    public String getTelefono() {\n        return telefono;\n    }\n\n    public void setTelefono(String telefono) {\n        this.telefono = telefono;\n    }\n\n    public List<Direccion> getDirecciones() {\n        return direcciones;\n    }\n\n    public void setDirecciones(List<Direccion> direcciones) {\n        this.direcciones = direcciones;\n    }\n\n    public Preferencias getPreferencias() {\n        return preferencias;\n    }\n\n    public void setPreferencias(Preferencias preferencias) {\n        this.preferencias = preferencias;\n    }\n\n    public String getNotasInternas() {\n        return notasInternas;\n    }\n\n    public void setNotasInternas(String notasInternas) {\n        this.notasInternas = notasInternas;\n    }\n}\n"
+        }
+    ]
+}

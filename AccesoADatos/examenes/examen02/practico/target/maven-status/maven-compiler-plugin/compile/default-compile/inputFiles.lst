@@ -1,0 +1,10 @@
+/home/dam/Escritorio/tiendaonline-exam/src/main/java/com/tiendaonline/TiendaOnlineApplication.java
+/home/dam/Escritorio/tiendaonline-exam/src/main/java/com/tiendaonline/model/Cliente.java
+/home/dam/Escritorio/tiendaonline-exam/src/main/java/com/tiendaonline/model/ClienteDetalles.java
+/home/dam/Escritorio/tiendaonline-exam/src/main/java/com/tiendaonline/model/Pedido.java
+/home/dam/Escritorio/tiendaonline-exam/src/main/java/com/tiendaonline/service/ClienteDetallesService.java
+/home/dam/Escritorio/tiendaonline-exam/src/main/java/com/tiendaonline/service/ClienteService.java
+/home/dam/Escritorio/tiendaonline-exam/src/main/java/com/tiendaonline/service/PedidoService.java
+/home/dam/Escritorio/tiendaonline-exam/src/main/java/com/tiendaonline/service/interfaces/IClienteDetallesService.java
+/home/dam/Escritorio/tiendaonline-exam/src/main/java/com/tiendaonline/service/interfaces/IClienteService.java
+/home/dam/Escritorio/tiendaonline-exam/src/main/java/com/tiendaonline/service/interfaces/IPedidoService.java

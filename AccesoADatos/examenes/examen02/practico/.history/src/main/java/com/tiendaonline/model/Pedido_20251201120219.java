@@ -1,0 +1,77 @@
+package com.tiendaonline.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "PEDIDO")
+public class Pedido {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private LocalDateTime fecha;
+
+    @Column(nullable = false, length = 20)
+    private String estado;
+
+    @ManyToOne
+    @JoinColumn(name = "CLIENTE_ID", nullable = false)
+    private Cliente cliente;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LineaPedido> lineas = new ArrayList<>();
+
+    public Pedido() {
+    }
+
+    public Pedido(LocalDateTime fecha, String estado, Cliente cliente) {
+        this.fecha = fecha;
+        this.estado = estado;
+        this.cliente = cliente;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<LineaPedido> getLineas() {
+        return lineas;
+    }
+
+    public void setLineas(List<LineaPedido> lineas) {
+        this.lineas = lineas;
+    }
+}

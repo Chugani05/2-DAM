@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/main/java/com/tiendaonline/service/ClienteService.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1764591341908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1764591367367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n         }\n         return clienteRepository.save(cliente);\n     }\n \n-    public void deleteById(Long id) {\n+    public void deleteById(Integer id) {\n         if (id == null) {\n             throw new IllegalArgumentException(\"id no puede ser null\");\n         }\n         clienteRepository.deleteById(id);\n"
+                },
+                {
+                    "date": 1764593517144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,38 +11,6 @@\n \n @Service\n public class ClienteService {\n \n-    private final ClienteRepository clienteRepository;\n \n-    public ClienteService(ClienteRepository clienteRepository) {\n-        this.clienteRepository = clienteRepository;\n-    }\n-\n-    public List<Cliente> findAllSortedByNombre() {\n-        List<Cliente> clientes = clienteRepository.findAll();\n-        return clientes.stream()\n-                .sorted(Comparator.comparing(Cliente::getNombre, String.CASE_INSENSITIVE_ORDER))\n-                .collect(Collectors.toList());\n-    }\n-\n-    public Optional<Cliente> findById(Integer id) {\n-        if (id == null) {\n-            throw new IllegalArgumentException(\"id no puede ser null\");\n-        }\n-        return clienteRepository.findById(id);\n-    }\n-\n-    public Cliente save(Cliente cliente) {\n-        if (cliente == null) {\n-            throw new IllegalArgumentException(\"cliente no puede ser null\");\n-        }\n-        return clienteRepository.save(cliente);\n-    }\n-\n-    public void deleteById(Integer id) {\n-        if (id == null) {\n-            throw new IllegalArgumentException(\"id no puede ser null\");\n-        }\n-        clienteRepository.deleteById(id);\n-    }\n }\n"
+                },
+                {
+                    "date": 1764593523212,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,8 @@\n import java.util.Optional;\n import java.util.stream.Collectors;\n \n @Service\n-public class ClienteService {\n+public class ClienteService implements I{\n \n \n }\n"
+                },
+                {
+                    "date": 1764593531452,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,42 @@\n package com.tiendaonline.service;\n \n import com.tiendaonline.model.Cliente;\n import com.tiendaonline.repository.ClienteRepository;\n+import com.tiendaonline.service.interfaces.IClienteService;\n+\n import org.springframework.stereotype.Service;\n \n import java.util.Comparator;\n import java.util.List;\n import java.util.Optional;\n import java.util.stream.Collectors;\n \n @Service\n-public class ClienteService implements I{\n+public class ClienteService implements IClienteService{\n \n+    @Override\n+    public List<Cliente> findAllSortedByNombre() {\n+        // TODO Auto-generated method stub\n+        throw new UnsupportedOperationException(\"Unimplemented method 'findAllSortedByNombre'\");\n+    }\n \n+    @Override\n+    public Optional<Cliente> findById(Integer id) {\n+        // TODO Auto-generated method stub\n+        throw new UnsupportedOperationException(\"Unimplemented method 'findById'\");\n+    }\n+\n+    @Override\n+    public Cliente save(Cliente cliente) {\n+        // TODO Auto-generated method stub\n+        throw new UnsupportedOperationException(\"Unimplemented method 'save'\");\n+    }\n+\n+    @Override\n+    public void deleteById(Integer id) {\n+        // TODO Auto-generated method stub\n+        throw new UnsupportedOperationException(\"Unimplemented method 'deleteById'\");\n+    }\n+\n+\n }\n"
+                },
+                {
+                    "date": 1764593570867,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n package com.tiendaonline.service;\n \n import com.tiendaonline.model.Cliente;\n-import com.tiendaonline.repository.ClienteRepository;\n import com.tiendaonline.service.interfaces.IClienteService;\n \n import org.springframework.stereotype.Service;\n \n"
+                },
+                {
+                    "date": 1764593705349,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n \n import java.util.Comparator;\n import java.util.List;\n import java.util.Optional;\n-import java.util.stream.Collectors;\n \n @Service\n public class ClienteService implements IClienteService{\n \n"
+                }
+            ],
+            "date": 1764591341908,
+            "name": "Commit-0",
+            "content": "package com.tiendaonline.service;\n\nimport com.tiendaonline.model.Cliente;\nimport com.tiendaonline.repository.ClienteRepository;\nimport org.springframework.stereotype.Service;\n\nimport java.util.Comparator;\nimport java.util.List;\nimport java.util.Optional;\nimport java.util.stream.Collectors;\n\n@Service\npublic class ClienteService {\n\n    private final ClienteRepository clienteRepository;\n\n    public ClienteService(ClienteRepository clienteRepository) {\n        this.clienteRepository = clienteRepository;\n    }\n\n    public List<Cliente> findAllSortedByNombre() {\n        List<Cliente> clientes = clienteRepository.findAll();\n        return clientes.stream()\n                .sorted(Comparator.comparing(Cliente::getNombre, String.CASE_INSENSITIVE_ORDER))\n                .collect(Collectors.toList());\n    }\n\n    public Optional<Cliente> findById(Integer id) {\n        if (id == null) {\n            throw new IllegalArgumentException(\"id no puede ser null\");\n        }\n        return clienteRepository.findById(id);\n    }\n\n    public Cliente save(Cliente cliente) {\n        if (cliente == null) {\n            throw new IllegalArgumentException(\"cliente no puede ser null\");\n        }\n        return clienteRepository.save(cliente);\n    }\n\n    public void deleteById(Long id) {\n        if (id == null) {\n            throw new IllegalArgumentException(\"id no puede ser null\");\n        }\n        clienteRepository.deleteById(id);\n    }\n}\n"
+        }
+    ]
+}

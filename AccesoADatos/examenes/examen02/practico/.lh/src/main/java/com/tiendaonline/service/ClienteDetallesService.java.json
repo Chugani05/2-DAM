@@ -1,0 +1,46 @@
+{
+    "sourceFile": "src/main/java/com/tiendaonline/service/ClienteDetallesService.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1764591286403,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1764591307526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     public ClienteDetallesService(ClienteDetallesRepository detallesRepository) {\n         this.detallesRepository = detallesRepository;\n     }\n \n-    public Optional<ClienteDetalles> findByClienteId(Long clienteId) {\n+    public Optional<ClienteDetalles> findByClienteId(int clienteId) {\n         if (clienteId == null) {\n             throw new IllegalArgumentException(\"clienteId no puede ser null\");\n         }\n         return detallesRepository.findByClienteId(clienteId);\n"
+                },
+                {
+                    "date": 1764591316495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     public ClienteDetallesService(ClienteDetallesRepository detallesRepository) {\n         this.detallesRepository = detallesRepository;\n     }\n \n-    public Optional<ClienteDetalles> findByClienteId(int clienteId) {\n+    public Optional<ClienteDetalles> findByClienteId(Integer clienteId) {\n         if (clienteId == null) {\n             throw new IllegalArgumentException(\"clienteId no puede ser null\");\n         }\n         return detallesRepository.findByClienteId(clienteId);\n"
+                },
+                {
+                    "date": 1764593408949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,28 +8,6 @@\n \n @Service\n public class ClienteDetallesService {\n \n-    private final ClienteDetallesRepository detallesRepository;\n-\n-    public ClienteDetallesService(ClienteDetallesRepository detallesRepository) {\n-        this.detallesRepository = detallesRepository;\n-    }\n-\n-    public Optional<ClienteDetalles> findByClienteId(Integer clienteId) {\n-        if (clienteId == null) {\n-            throw new IllegalArgumentException(\"clienteId no puede ser null\");\n-        }\n-        return detallesRepository.findByClienteId(clienteId);\n-    }\n-\n-    public ClienteDetalles saveDetallesForCliente(int clienteId, ClienteDetalles detalles) {\n-        if (clienteId == null) {\n-            throw new IllegalArgumentException(\"clienteId no puede ser null\");\n-        }\n-        if (detalles == null) {\n-            throw new IllegalArgumentException(\"detalles no puede ser null\");\n-        }\n-        detalles.setClienteId(clienteId);\n-        return detallesRepository.save(detalles);\n-    }\n+   \n }\n"
+                },
+                {
+                    "date": 1764593416182,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,8 @@\n \n import java.util.Optional;\n \n @Service\n-public class ClienteDetallesService {\n+public class ClienteDetallesService implements IC{\n \n    \n }\n"
+                },
+                {
+                    "date": 1764593427631,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,15 @@\n package com.tiendaonline.service;\n \n import com.tiendaonline.model.ClienteDetalles;\n import com.tiendaonline.repository.ClienteDetallesRepository;\n+import com.tiendaonline.service.interfaces.IClienteDetallesService;\n+\n import org.springframework.stereotype.Service;\n \n import java.util.Optional;\n \n @Service\n-public class ClienteDetallesService implements IC{\n+public class ClienteDetallesService implements IClienteDetallesService{\n \n    \n }\n"
+                },
+                {
+                    "date": 1764593575847,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n package com.tiendaonline.service;\n \n import com.tiendaonline.model.ClienteDetalles;\n-import com.tiendaonline.repository.ClienteDetallesRepository;\n+import com.tiendaonline.model.Pedido;\n import com.tiendaonline.service.interfaces.IClienteDetallesService;\n \n import org.springframework.stereotype.Service;\n \n@@ -10,6 +10,18 @@\n \n @Service\n public class ClienteDetallesService implements IClienteDetallesService{\n \n+    @Override\n+    public Pedido crearPedido(Integer clienteId, String estado) {\n+        // TODO Auto-generated method stub\n+        throw new UnsupportedOperationException(\"Unimplemented method 'crearPedido'\");\n+    }\n+\n+    @Override\n+    public Pedido findById(Long id) {\n+        // TODO Auto-generated method stub\n+        throw new UnsupportedOperationException(\"Unimplemented method 'findById'\");\n+    }\n+\n    \n }\n"
+                },
+                {
+                    "date": 1764593670820,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,8 @@\n import com.tiendaonline.service.interfaces.IClienteDetallesService;\n \n import org.springframework.stereotype.Service;\n \n-import java.util.Optional;\n-\n @Service\n public class ClienteDetallesService implements IClienteDetallesService{\n \n     @Override\n"
+                }
+            ],
+            "date": 1764591286403,
+            "name": "Commit-0",
+            "content": "package com.tiendaonline.service;\n\nimport com.tiendaonline.model.ClienteDetalles;\nimport com.tiendaonline.repository.ClienteDetallesRepository;\nimport org.springframework.stereotype.Service;\n\nimport java.util.Optional;\n\n@Service\npublic class ClienteDetallesService {\n\n    private final ClienteDetallesRepository detallesRepository;\n\n    public ClienteDetallesService(ClienteDetallesRepository detallesRepository) {\n        this.detallesRepository = detallesRepository;\n    }\n\n    public Optional<ClienteDetalles> findByClienteId(Long clienteId) {\n        if (clienteId == null) {\n            throw new IllegalArgumentException(\"clienteId no puede ser null\");\n        }\n        return detallesRepository.findByClienteId(clienteId);\n    }\n\n    public ClienteDetalles saveDetallesForCliente(int clienteId, ClienteDetalles detalles) {\n        if (clienteId == null) {\n            throw new IllegalArgumentException(\"clienteId no puede ser null\");\n        }\n        if (detalles == null) {\n            throw new IllegalArgumentException(\"detalles no puede ser null\");\n        }\n        detalles.setClienteId(clienteId);\n        return detallesRepository.save(detalles);\n    }\n}\n"
+        }
+    ]
+}
