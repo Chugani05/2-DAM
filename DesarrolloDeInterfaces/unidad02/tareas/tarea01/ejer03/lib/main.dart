@@ -36,6 +36,8 @@ class VolumenProvider extends ChangeNotifier {
 }
 
 class ControlVolumenScreen extends StatelessWidget {
+  const ControlVolumenScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final volumenProvider = context.watch<VolumenProvider>();
