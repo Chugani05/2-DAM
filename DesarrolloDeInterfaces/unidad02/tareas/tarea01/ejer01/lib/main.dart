@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Actividad Flutter',
+      title: 'Ejemplo con setState()',
       home: BotonFavorito(),
     );
   }

@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Texto Input y Mostrar',
+      title: 'Campo de texto',
       home: TextApp(),
     );
   }

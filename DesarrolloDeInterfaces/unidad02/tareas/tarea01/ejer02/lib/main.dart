@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Actividad Flutter',
+      title: 'Ejemplo con setState()',
       home: BotonFavorito(),
     );
   }
@@ -25,7 +25,6 @@ class BotonFavorito extends StatefulWidget {
 class _BotonFavoritoState extends State<BotonFavorito> {
   bool _esFavorito = false;
 
-  // Método privado para cambiar el estado
   void _toggleFavorito() {
     setState(() {
       _esFavorito = !_esFavorito;
