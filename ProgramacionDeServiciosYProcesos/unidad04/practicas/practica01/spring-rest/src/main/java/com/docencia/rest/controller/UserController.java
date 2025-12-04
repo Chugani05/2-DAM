@@ -15,10 +15,12 @@ import com.docencia.rest.service.interfaces.UserServiceInterface;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/")
+@Tag(name = "Usuarios", description = "Operaciones sobre usuarios")
 public class UserController {
 
     private UserServiceInterface userService;
@@ -28,9 +30,8 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @Operation(summary = "Get all users")
-    @GetMapping("/users/")
+    @GetMapping("/")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
