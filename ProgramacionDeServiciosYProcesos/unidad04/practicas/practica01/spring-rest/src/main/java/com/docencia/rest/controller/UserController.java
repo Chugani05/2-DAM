@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @Operation(summary = "Get all users")
-    @GetMapping("/")
+    @GetMapping("/user")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
