@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
     final isDark = context.watch<ThemeNotifier>().isDark;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Home Page')),
+      appBar: AppBar(title: const Text('Pantalla A')),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text('Ir a Pantalla 2'),
+              child: const Text('Ir a Pantalla B'),
             ),
           ],
         ),
@@ -94,14 +94,13 @@ class Pantalla2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeNotifier = context.read<ThemeNotifier>();
-    final isDark = context.watch<ThemeNotifier>().isDark;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Pantalla 2')),
+      appBar: AppBar(title: const Text('Pantalla B')),
       body: Center(
         child: ElevatedButton(
           onPressed: () => themeNotifier.toggleTheme(),
-          child: const Text('Cambiar modo desde Pantalla 2'),
+          child: const Text('Cambiar modo'),
         ),
       ),
     );

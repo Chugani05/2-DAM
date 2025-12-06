@@ -90,7 +90,6 @@ class Pantalla2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeNotifier = context.read<ThemeNotifier>();
-    final isDark = context.watch<ThemeNotifier>().isDark;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Pantalla B')),
