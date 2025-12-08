@@ -93,7 +93,6 @@ class _EstabilizadorPageState extends State<EstabilizadorPage> {
 
             const SizedBox(height: 30),
 
-            // Opcional: mensaje si llega exactamente a 100%
             if (energia == 100)
               Text(
                 '¡Nivel de energía estabilizado al 100%!',
