@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Actividad Flutter',
+      title: 'Ejemplo con setState()',
       home: BotonFavorito(),
     );
   }
@@ -19,7 +19,7 @@ class BotonFavorito extends StatefulWidget {
   const BotonFavorito({super.key});
 
   @override
-   _BotonFavoritoState createState() => _BotonFavoritoState();
+   State<BotonFavorito> createState() => _BotonFavoritoState();
 }
 
 class _BotonFavoritoState extends State<BotonFavorito> {
