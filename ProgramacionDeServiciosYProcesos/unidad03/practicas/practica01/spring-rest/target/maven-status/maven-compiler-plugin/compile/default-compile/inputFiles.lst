@@ -1,0 +1,8 @@
+/home/dam/Escritorio/rest/src/main/java/com/docencia/rest/RestApplication.java
+/home/dam/Escritorio/rest/src/main/java/com/docencia/rest/ServletInitializer.java
+/home/dam/Escritorio/rest/src/main/java/com/docencia/rest/controller/UserController.java
+/home/dam/Escritorio/rest/src/main/java/com/docencia/rest/exeception/ResourceNotFoundException.java
+/home/dam/Escritorio/rest/src/main/java/com/docencia/rest/modelo/User.java
+/home/dam/Escritorio/rest/src/main/java/com/docencia/rest/repository/UserRepository.java
+/home/dam/Escritorio/rest/src/main/java/com/docencia/rest/service/UserService.java
+/home/dam/Escritorio/rest/src/main/java/com/docencia/rest/service/interfaces/UserServiceInterface.java

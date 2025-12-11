@@ -1,0 +1,8 @@
+com/docencia/rest/exeception/ResourceNotFoundException.class
+com/docencia/rest/RestApplication.class
+com/docencia/rest/service/interfaces/UserServiceInterface.class
+com/docencia/rest/ServletInitializer.class
+com/docencia/rest/repository/UserRepository.class
+com/docencia/rest/service/UserService.class
+com/docencia/rest/modelo/User.class
+com/docencia/rest/controller/UserController.class

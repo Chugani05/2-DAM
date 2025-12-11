@@ -12,10 +12,10 @@ import com.docencia.tareas.repositories.TareaRepository;
 @Service
 public class TareaService implements ITareaService{
 
-    ITareaRepository repository;
+    private ITareaRepository repository;
 
     public TareaService(TareaRepository repository) {
-
+        this.repository = repository;
     }
 
     @Override
