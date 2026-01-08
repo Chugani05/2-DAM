@@ -15,3 +15,5 @@
 
 ## Proyectos
 - [Pierre's General Store Oddo](https://github.com/JVC0-JesusLugo2002-Chugani05/Pierres-General-Store-Oddo.git)
+- [Módulo 'Lista de tareas'](https://github.com/Chugani05/odoo-task-list.git)
+- [Wordpress con MariaDB](https://github.com/Chugani05-JesusLugo2002/wordpress-mariadb.git)
