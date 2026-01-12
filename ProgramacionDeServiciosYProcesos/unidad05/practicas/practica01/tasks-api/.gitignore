@@ -1,0 +1,140 @@
+############################
+# Java / JVM
+############################
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.log
+hs_err_pid*
+replay_pid*
+
+############################
+# Build outputs (Maven/Gradle)
+############################
+/target/
+/build/
+.gradle/
+out/
+
+# Maven wrapper (mantener wrapper, ignorar logs)
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+!mvnw
+!mvnw.cmd
+
+############################
+# Spring Boot / runtime
+############################
+*.pid
+*.seed
+*.swp
+*.swo
+
+# H2 (si usas archivos en disco)
+*.mv.db
+*.trace.db
+*.h2.db
+
+############################
+# Environment / secrets
+############################
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.jks
+*.keystore
+secrets*
+/config/application-*.properties
+/config/application-*.yml
+
+# (OJO) si guardas configs dentro de src/main/resources, NO ignores todo.
+# En su lugar, ignora solo los archivos con secretos (ejemplo):
+# src/main/resources/application-prod.properties
+# src/main/resources/application-prod.yml
+
+############################
+# IntelliJ IDEA
+############################
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea_modules/
+
+############################
+# Eclipse / STS
+############################
+.project
+.classpath
+.settings/
+.factorypath
+.springBeans
+.recommenders/
+.apt_generated/
+.sts4-cache/
+
+############################
+# VS Code
+############################
+.vscode/
+*.code-workspace
+
+############################
+# NetBeans
+############################
+/nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+############################
+# Mac / Windows / Linux junk
+############################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+############################
+# Test / coverage reports
+############################
+/bin/
+coverage/
+*.exec
+*.lcov
+*.coverage
+/.pytest_cache/
+.mypy_cache/
+
+############################
+# Node (si hay front dentro del repo)
+############################
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+.cache/
+
+############################
+# Docker / compose overrides (si no quieres subirlos)
+############################
+docker-compose.override.yml
+
+############################
+# Misc
+############################
+*.tmp
+*.bak
+*.orig
+*.rej
