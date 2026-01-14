@@ -4,7 +4,10 @@
 
 export function normalizeBearer(authHeader: string): string {
   // trim + "Bearer <token>" (case-insensitive), colapsa espacios a 1, Error si inválido
-  throw new Error("TODO");
+  if (!authHeader) {
+    throw new Error("authHeader can't be null");
+  }
+  const parts = authHeader.trim().split(new RegExp("\/s+\/"));
 }
 
 export function clamp01(value: number): number {
