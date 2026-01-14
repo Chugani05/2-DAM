@@ -1,0 +1,77 @@
+{
+  "puntosMax": 8,
+  "puntosObtenidos": 1.5,
+  "notaSobre10": 1.88,
+  "resumenTests": {
+    "total": 45,
+    "passed": 4,
+    "failed": 41
+  },
+  "ejercicios": {
+    "E1_Dominio": {
+      "puntosMax": 1.5,
+      "tests": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0
+      },
+      "ratio": 1,
+      "puntosObtenidos": 1.5,
+      "archivos": [
+        "domainModels.test.ts"
+      ]
+    },
+    "E2_Logica": {
+      "puntosMax": 1.5,
+      "tests": {
+        "total": 15,
+        "passed": 0,
+        "failed": 15
+      },
+      "ratio": 0,
+      "puntosObtenidos": 0,
+      "archivos": [
+        "reservas.test.ts"
+      ]
+    },
+    "E3_SQLite": {
+      "puntosMax": 1.5,
+      "tests": {
+        "total": 6,
+        "passed": 0,
+        "failed": 6
+      },
+      "ratio": 0,
+      "puntosObtenidos": 0,
+      "archivos": [
+        "repositorioReservasHotelSqlite.test.ts"
+      ]
+    },
+    "E4_REST": {
+      "puntosMax": 1.5,
+      "tests": {
+        "total": 10,
+        "passed": 0,
+        "failed": 10
+      },
+      "ratio": 0,
+      "puntosObtenidos": 0,
+      "archivos": [
+        "apiReservasHotel.test.ts"
+      ]
+    },
+    "E5_E6_Servicio_Sync": {
+      "puntosMax": 2,
+      "tests": {
+        "total": 4,
+        "passed": 0,
+        "failed": 4
+      },
+      "ratio": 0,
+      "puntosObtenidos": 0,
+      "archivos": [
+        "ServicioReservasHotel.test.ts"
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "E1_Dominio": {
+    "points": 1.5,
+    "patterns": [
+      "tests/domainModels.test.ts"
+    ]
+  },
+  "E2_Logica": {
+    "points": 1.5,
+    "patterns": [
+      "tests/reservas.test.ts"
+    ]
+  },
+  "E3_SQLite": {
+    "points": 1.5,
+    "patterns": [
+      "tests/repositorioReservasHotelSqlite.test.ts",
+      "tests/sqliteRepo.test.ts"
+    ]
+  },
+  "E4_REST": {
+    "points": 1.5,
+    "patterns": [
+      "tests/apiReservasHotel.test.ts",
+      "tests/restAndSync.test.ts"
+    ]
+  },
+  "E5_E6_Servicio_Sync": {
+    "points": 2.0,
+    "patterns": [
+      "tests/ServicioReservasHotel.test.ts",
+      "tests/servicio.test.ts"
+    ]
+  }
+}
