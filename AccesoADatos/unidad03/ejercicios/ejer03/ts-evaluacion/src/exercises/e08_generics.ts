@@ -4,7 +4,10 @@
 
 export function first<T>(items: T[]): T {
   // devuelve primer elemento, Error si vacío
-  throw new Error("TODO");
+  if (items.length == 0) {
+    throw new Error("");
+  }
+  return items[0];
 }
 
 export function unique<T>(items: T[]): T[] {
