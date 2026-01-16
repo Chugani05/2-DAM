@@ -6,7 +6,13 @@ import { JwtPayload, Role } from "../models";
 
 export function normalizeId(id: string | number): string {
   // number => String; string => trim; vacío => Error
-  throw new Error("TODO");
+  if (typeof id == "string") {
+    if (id.trim().length == 0) {
+      throw new Error("Invalid type");
+    }
+    return id.trim();
+  }
+  return id.toString();
 }
 
 export function isJwtPayload(value: unknown): value is JwtPayload {
@@ -16,5 +22,7 @@ export function isJwtPayload(value: unknown): value is JwtPayload {
 
 export function requireRole(payload: JwtPayload, role: Role): void {
   // lanza Error si payload.role != role
-  throw new Error("TODO");
+  if (payload.role != role) {
+    throw new Error("Invalid role");
+  }
 }
